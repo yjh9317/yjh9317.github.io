@@ -23,7 +23,7 @@ timezone: Asia/Seoul
 
 title: yjh9317                          # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: '코딩열심히하려는사람'   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
@@ -73,7 +73,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode:   # [light|dark]
+theme_mode:   ark
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
