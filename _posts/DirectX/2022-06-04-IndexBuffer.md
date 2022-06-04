@@ -21,42 +21,42 @@ IndexBuffer
 Code
 =============
     
-    변수 선언
-    ComPtr<ID3D11Buffer>			g_pIB; // 인덱스 버퍼
-    
-      
-  	//인덱스 버퍼
-    
-  
-  	UINT arrIDx[6] = { 0,2,3,0,1,2 }; //정점의 인덱스 (0,2,3) 삼각형과 (0,1,2) 삼각형 밑에는 예시
-    
-    //버텍스 버퍼와 마찬가지로 초기화
-  	tBufferDesc = {};
-  	tBufferDesc.ByteWidth = sizeof(UINT) * 6;
-  
-  
-     //값 수정 x
-  	tBufferDesc.CPUAccessFlags = 0;      
-  	tBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
-  
-  
-  	tBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER; //인덱스 버퍼임을 알림
-  	tBufferDesc.MiscFlags = 0;
-  	tBufferDesc.StructureByteStride = 0;
-  
-  	
-  	tSubDesc = {};
-  	tSubDesc.pSysMem = arrIDx;
-  
-    //생성
-  	DEVICE->CreateBuffer(&tBufferDesc, &tSubDesc, g_pIB.GetAddressOf()); 
-    
-    
-    
-    //ID3D11DeviceContext Com 객체에 버퍼설정
-    
-    //인덱스 버퍼 주소, 단위가 4byte UINT , 오프셋
-	  CONTEXT->IASetIndexBuffer(g_pIB.Get(), DXGI_FORMAT_R32_UINT, 0);
+		변수 선언
+		ComPtr<ID3D11Buffer>			g_pIB; // 인덱스 버퍼
+		
+		
+		//인덱스 버퍼
+		
+	
+		UINT arrIDx[6] = { 0,2,3,0,1,2 }; //정점의 인덱스 (0,2,3) 삼각형과 (0,1,2) 삼각형 밑에는 예시
+		
+		//버텍스 버퍼와 마찬가지로 초기화
+		tBufferDesc = {};
+		tBufferDesc.ByteWidth = sizeof(UINT) * 6;
+	
+	
+		//값 수정 x
+		tBufferDesc.CPUAccessFlags = 0;      
+		tBufferDesc.Usage = D3D11_USAGE::D3D11_USAGE_DEFAULT;
+	
+	
+		tBufferDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER; //인덱스 버퍼임을 알림
+		tBufferDesc.MiscFlags = 0;
+		tBufferDesc.StructureByteStride = 0;
+	
+		
+		tSubDesc = {};
+		tSubDesc.pSysMem = arrIDx;
+	
+		//생성
+		DEVICE->CreateBuffer(&tBufferDesc, &tSubDesc, g_pIB.GetAddressOf()); 
+		
+		
+		
+		//ID3D11DeviceContext Com 객체에 버퍼설정
+		
+		//인덱스 버퍼 주소, 단위가 4byte UINT , 오프셋
+		CONTEXT->IASetIndexBuffer(g_pIB.Get(), DXGI_FORMAT_R32_UINT, 0);
 
 
 <br><br>
