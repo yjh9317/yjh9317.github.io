@@ -1,6 +1,6 @@
 ---
 title: IndexBuffer
-date: 2022-06-03
+date: 2022-06-04
 categories: [DirectX, IndexBuffer]
 tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 ---
