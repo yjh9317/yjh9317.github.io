@@ -1,7 +1,7 @@
 ---
 title: Rendering_PipeLine
 date: 2022-06-07
-categories: [DirectX, Rendering_PipeLine]
+categories: [DirectX, DirectX]
 tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
