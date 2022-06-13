@@ -21,6 +21,13 @@ VertexBuffer
 버퍼를 만들때 사용할 변수
 ======================
 
+	
+
+    Vertex
+    3D 공간의 정점 좌표 데이터
+    float 배열
+
+
 	// 정점(Vertex) -> 폴리곤을 구성하기위한 단위 ,폴리곤의 단위는 일반적으로 삼각형
 	// ID3D11Buffer는 Ram에서 생성되고 Gpu의 메모리를 관리하는 관리자급 객체란 느낌
 	ComPtr<ID3D11Buffer>			g_pVB;
@@ -43,12 +50,18 @@ VertexBuffer
 Vertex_Buffer
 ========================
 
-		//버텍스 쉐이더에 사용할 정점 3개
-		Vertex arrVtx[3] = {};
+	//버텍스 쉐이더에 사용할 정점 3개
+	Vertex arrVtx[3] = {};
 	
-		//NDC를 사용해서 좌표 표현
-		// NDC  : normalized device coordinates 의 약자로 (-1, -1)~(1, 1)의 종횡비 1:1 비율을 가진 2차원 좌표계를 의미한다.(쉽게 말해서 가로,세로의 길이가 2인 평면좌표계(사각형))
-		//View Space의 모든 3차원 좌표는 이 2차원 좌표계로 사영된다.
+	//NDC를 사용해서 좌표 표현
+	// NDC  : normalized device coordinates 의 약자로 (-1, -1)~(1, 1)의 종횡비 1:1 비율을 가진 2차원 좌표계를 의미(쉽게 말해서 가로,세로의 길이가 2인 평면좌표계(사각형))
+	
+	//View Space의 모든 3차원 좌표는 이 2차원 좌표계로 사영된다.
+
+  	/* 정규화된 좌표를 사용함으로써, 좌표 계산과정을 줄일 수 있으며 화면 해상도 차이에 빠르게 대응할 수 있다.*/
+
+  	 /*정점 쉐이더에서 4x4 Projection 행렬에 의해 직교투영(Orthographic Projection) 또는 원근 투영(Perspective Projection)을 통해 얻어지는 모든 좌표는 NDC 내로 들어온다.*/
+
 	
 		arrVtx[0].vPos = Vec3(0.f, 0.5f, 0.f);
 		arrVtx[0].vColor = Vec4(1.f, 1.f, 1.f, 1.f);
@@ -128,4 +141,5 @@ Vertex_Shader
 		//컴파일 된 코드로 VertexShader 객체 만들기
 		//Blob이 관리하고있는 메모리 버퍼의 시작 주소 ,길이 , nullptr ,목적지로 저장할 버텍스 쉐이더
 		DEVICE->CreateVertexShader(g_pVSBlob->GetBufferPointer(), g_pVSBlob->GetBufferSize(), nullptr,g_pVS.GetAddressOf());
+
 
