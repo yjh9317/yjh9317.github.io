@@ -178,6 +178,9 @@ compress_html:
   ignore:
     envs: [development]
 
+include:
+  - .gitignore
+
 exclude:
   - '*.gem'
   - '*.gemspec'
