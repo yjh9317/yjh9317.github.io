@@ -1,4 +1,5 @@
 ---
+published: true
 title: Binary Tree
 date: 2022-06-20
 categories: [자료구조, Tree]

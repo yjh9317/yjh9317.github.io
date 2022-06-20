@@ -23,6 +23,8 @@ timezone: Asia/Seoul
 
 title: yjh9317                          # the main title
 
+future: true
+
 tagline: '코딩열심히하려는사람'   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
