@@ -1,6 +1,6 @@
 ---
 title: Singleton Class
-date: 2022-06-19
+date: 2022-06-20
 categories: [DirectX, DirectX]
 tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 ---
