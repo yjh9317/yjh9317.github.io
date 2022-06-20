@@ -1,5 +1,4 @@
 ---
-published: true
 title: Singleton Class
 date: 2022-06-20
 categories: [DirectX, DirectX]
