@@ -4,7 +4,7 @@ date: 2022-06-20
 categories: [자료구조, Tree]
 tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 ---
-
+ 
 
 이진 트리
 ========================
