@@ -42,7 +42,7 @@ twitter:
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
+  name: 'Yang jeong hyeon'
   email: example@doamin.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
@@ -87,7 +87,7 @@ img_cdn:
 # the avatar on sidebar, support local or CORS resources
 avatar: "/assets/img/pepe.jpg"
 # boolean type, the global switch for ToC in posts.
-toc: true
+toc: false
 
 comments:
   active:         # The global switch for posts comments, e.g., 'disqus'.  Keep it empty means disable
@@ -182,6 +182,7 @@ exclude:
   - '*.gem'
   - '*.gemspec'
   - tools
+  - docs
   - README.md
   - LICENSE
   - gulpfile.js
