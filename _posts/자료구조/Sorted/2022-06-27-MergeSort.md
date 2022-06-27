@@ -1,6 +1,6 @@
 ---
 title: MergeSort
-date: 2022-06-23
+date: 2022-06-27
 categories: [자료구조, Sort]
 tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 ---
