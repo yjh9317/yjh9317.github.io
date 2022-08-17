@@ -23,29 +23,18 @@ RenderTarget을 여러 개로 사용하는 이유는 SwapChain이 아닌 다른 
 
 * MRT 종류
   * Deffered
-    * 텍스쳐 기존색상을 가지고 있는 렌더타겟
-    * 텍스쳐의 픽셀이 자기의 노말벡터를 RGB에 저장하고 있는 렌더타겟
-    * 텍스쳐의 픽셀의 자기의 좌표정보를 RGB에 저장하고 있는 렌더타겟
   * Light
-    * 광원정보
   * Shadow
-    * 그림자
+  
+<br>
 
+* MRT안에 Depth Stencil Texture가 없다면 (nullptr), 다른 렌더타겟의 Depth Stencil를 가져와서 사용한다.
 
-<br><br>
-
-Forward와 Deffered
-==============================
-  * Forward (단일 렌더타겟)
-    * 하나의 RenderTarget으로 한번에 렌더링해서 SwapChain의 RenderTarget으로 설정하는 방식<br><br>
-  * Deferred (다중 렌더타겟 , 지연렌더링이라고도 함)
-    * 별도의 RenderTarget Texture를 생성해서 각각 렌더링을 하고 메인 RenderTarget <br>(SwapChain의 RenderTarget)에 복사하는 방식
 
 
 <br><br>
 
-
-헤더파일
+CMRT.h
 ========================
 
         class CMRT :
@@ -61,6 +50,13 @@ Forward와 Deffered
 
         public:
             void Create(int _iRTCount, Ptr<CTexture>* _ppTex, Ptr<CTexture> _pDSTex);
+            void SetClearColor(int _iCount, Vec4* _pColor)
+            {
+                for (int i = 0; i < _iCount; ++i)
+                {
+                    m_arrClearColor[i] = _pColor[i];
+                }        
+            }
 
             void OMSet();
             void Clear();
@@ -76,7 +72,7 @@ Forward와 Deffered
 
 <br>
 
-코드
+CMRT.cpp
 ==========================================
 
         CMRT::CMRT()
@@ -100,23 +96,18 @@ Forward와 Deffered
 
         void CMRT::Create(int _iRTCount, Ptr<CTexture>* _ppTex, Ptr<CTexture> _pDSTex)
         {
-            // 렌더타겟 갯수
             m_iRTCount = _iRTCount;
 
-            // RenderTarget 세팅
             for (int i = 0; i < m_iRTCount; ++i)
             {
                 m_arrRT[i] = _ppTex[i];
             }
-            
-            //Depth Stencil 세팅
+
             m_pDSTex = _pDSTex;
         }
 
         void CMRT::OMSet()
         {
-            // RenderTargetView :  렌더링 파이프라인의 출력을 받을 자원을 연결하는 데 사용
-            // RenderTarget은 RendertargetView를 통해 연결
             ID3D11RenderTargetView* arrView[8] = {};
 
             for (int i = 0; i < m_iRTCount; ++i)
@@ -124,8 +115,24 @@ Forward와 Deffered
                 arrView[i] = m_arrRT[i]->GetRTV().Get();
             }
 
-            //SwapChain에 렌더타겟 세팅
-            CONTEXT->OMSetRenderTargets(m_iRTCount, arrView, m_pDSTex->GetDSV().Get());
+            if (nullptr != m_pDSTex)
+            {
+                CONTEXT->OMSetRenderTargets(m_iRTCount, arrView, m_pDSTex->GetDSV().Get());
+            }
+
+            else
+            {
+                // MRT 에 DSTex 가 없는 경우, 장치에 있던걸 그대로 쓴다.
+
+                // 스마트포인터를 사용하지 않으면 레퍼런스가 증가하기 때문에 Release를 사용해야함
+                //ID3D11DepthStencilView* pDSView = nullptr;
+                //CONTEXT->OMGetRenderTargets(0, nullptr, &pDSView);
+                //pDSView->Release();
+                
+                ComPtr<ID3D11DepthStencilView> pDSView = nullptr;
+                CONTEXT->OMGetRenderTargets(0, nullptr, pDSView.GetAddressOf());
+                CONTEXT->OMSetRenderTargets(m_iRTCount, arrView, pDSView.Get());
+            }	
         }
 
         void CMRT::Clear()
@@ -135,5 +142,8 @@ Forward와 Deffered
                 CONTEXT->ClearRenderTargetView(m_arrRT[i]->GetRTV().Get(), m_arrClearColor[i]);
             }
             
-            CONTEXT->ClearDepthStencilView(m_pDSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
+            // DSTex가 없는 Deferred 일수도 있으므로 nullptr로 체크, 
+
+            if(nullptr != m_pDSTex)
+                CONTEXT->ClearDepthStencilView(m_pDSTex->GetDSV().Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
         }

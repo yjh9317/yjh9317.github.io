@@ -17,6 +17,9 @@ DirectX에서는 SwapChain이란 것으로 버퍼 두장으로(프론트,백) �
 
 Code
 ================
+
+<br>
+
  	DXGI_SWAP_CHAIN_DESC desc = {}; //SwapChain을 사용하기 위한 구조체
 
 	desc.BufferCount = 1;                                   // 1을 넣어주면 알아서 내부적으로 프론트,백버퍼를 만든다.

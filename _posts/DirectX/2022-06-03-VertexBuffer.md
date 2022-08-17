@@ -22,17 +22,13 @@ VertexBuffer
 ======================
 
 	
-
-    Vertex
-    3D 공간의 정점 좌표 데이터
-    float 배열
-
-
 	// 정점(Vertex) -> 폴리곤을 구성하기위한 단위 ,폴리곤의 단위는 일반적으로 삼각형
 	// ID3D11Buffer는 Ram에서 생성되고 Gpu의 메모리를 관리하는 관리자급 객체란 느낌
+
 	ComPtr<ID3D11Buffer>			g_pVB;
 	
     // 쉐이더,픽셀 컴파일 실패시 ,실패 원인을 저장할 Blob(문자열 덩어리를 저장하는 객체)
+
     ComPtr<ID3DBlob>				g_pErrBlob;
     
     
@@ -42,6 +38,7 @@ VertexBuffer
     // g_pVSBlob에서 버텍스 쉐이더에 필요한 정보를 다 저장하고 그걸 바탕으로 g_pVS에 전달해서 버텍스 쉐이더를 생성
     // D12에서는 없어지고 g_pVSBlob만 있어도 사용 가능.
     
+	// 밑에는 Vertex Shader
     ComPtr<ID3DBlob>			  	g_pVSBlob;  //버텍스 세이더 Blob
     ComPtr<ID3D11VertexShader>		g_pVS;      //버텍스 세이더
 
@@ -50,17 +47,17 @@ VertexBuffer
 Vertex_Buffer
 ========================
 
-	//버텍스 쉐이더에 사용할 정점 3개
-	Vertex arrVtx[3] = {};
-	
-	//NDC를 사용해서 좌표 표현
-	// NDC  : normalized device coordinates 의 약자로 (-1, -1)~(1, 1)의 종횡비 1:1 비율을 가진 2차원 좌표계를 의미(쉽게 말해서 가로,세로의 길이가 2인 평면좌표계(사각형))
-	
-	//View Space의 모든 3차원 좌표는 이 2차원 좌표계로 사영된다.
+		//버텍스 쉐이더에 사용할 정점 3개
+		Vertex arrVtx[3] = {};
+		
+		//NDC를 사용해서 좌표 표현
+		// NDC  : normalized device coordinates 의 약자로 (-1, -1)~(1, 1)의 종횡비 1:1 비율을 가진 2차원 좌표계를 의미(쉽게 말해서 가로,세로의 길이가 2인 평면좌표계(사각형))
+		
+		// View Space의 모든 3차원 좌표는 이 2차원 좌표계로 사영된다.
 
-  	/* 정규화된 좌표를 사용함으로써, 좌표 계산과정을 줄일 수 있으며 화면 해상도 차이에 빠르게 대응할 수 있다.*/
+		//정규화된 좌표를 사용함으로써, 좌표 계산과정을 줄일 수 있으며 화면 해상도 차이에 빠르게 대응할 수 있다.
 
-  	 /*정점 쉐이더에서 4x4 Projection 행렬에 의해 직교투영(Orthographic Projection) 또는 원근 투영(Perspective Projection)을 통해 얻어지는 모든 좌표는 NDC 내로 들어온다.*/
+		// 정점 쉐이더에서 4x4 Projection 행렬에 의해 직교투영(Orthographic Projection) 또는 원근 투영(Perspective Projection)을 통해 얻어지는 모든 좌표는 NDC 내로 들어온다.
 
 	
 		arrVtx[0].vPos = Vec3(0.f, 0.5f, 0.f);
