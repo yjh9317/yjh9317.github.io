@@ -10,8 +10,8 @@ Multi RenderTarget(MRT)
 
 * 같은 Scene을 RenderTarget을 여러개를 사용해서 다른 Pixel 처리를 하는 방법
 
-SwapChain이 윈도우의 핸들을 가지고 있으므로 SwapChain을 연결하지 않은 렌더타겟은 화면에 출력되지 않는다.<br>
-RenderTarget을 여러 개로 사용하는 이유는 SwapChain이 아닌 다른 RenderTarget에 여러가지 정보를 담아서<br> 그 정보를 토대로 여러가지 기법을 사용할 수 있기 때문이다.
+* SwapChain이 윈도우의 핸들을 가지고 있으므로 SwapChain을 연결하지 않은 렌더타겟은 화면에 출력되지 않는다.<br>
+* RenderTarget을 여러 개로 사용하는 이유는 SwapChain이 아닌 다른 RenderTarget에 여러가지 정보를 담아서<br> 그 정보를 토대로 여러가지 기법을 사용할 수 있기 때문이다.
 
 
 <br>

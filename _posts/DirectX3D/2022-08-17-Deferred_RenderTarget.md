@@ -229,3 +229,22 @@ Forward와 Deffered
     * 하나의 RenderTarget으로 한번에 렌더링해서 SwapChain의 RenderTarget으로 설정하는 방식<br><br>
   * Deferred (다중 렌더타겟 , 지연렌더링이라고도 함)
     * 별도의 RenderTarget Texture를 생성해서 각각 렌더링을 하고 메인 RenderTarget <br>(SwapChain의 RenderTarget)에 복사하는 방식
+
+
+Deferred 의 장점
+=================
+1. 지연 처리를 통한 얻어온 데이터들을 다양한 렌더링효과로 사용할 수 있다.<br><br>
+2. Forward렌더링과 다르게 훨씬 많은 광원을 사용해도 최적화가 좋음 ( 적게 쓰면 Forward가 좋다.)
+    - Forward는 광원을 많이쓰면 Light3DBuffer가 늘어나면서 Lighting을 한번에 처리하기위해 반복문을 도는데 Lighting을 한두개만 받아도 전체Lighting 개수만큼 거리값체크하고 등등해야함.
+    - Deferred는 Shader에서 라이팅연산을 하지 않고 각 텍스쳐(렌더타겟)에 값만 저장한다.<br>그 값으로 Lighting RenderTarget에서 연산한다.
+    - Forward는 물체가 기준(물체가 광원의 빛을 받는지), Deferred는 광원이 기준( 광원이 어떤 물체에 영향을주는지)
+    - 광원의 영역을 오브젝트 취급해서 렌더링(빛들을 도식화해서 절도체, 영역안에 들어오지않은 물체는 렌더링X)
+    - 결국 광원이 기준이 되어 광원의 영역 안에 있는 픽셀만 렌더링한다. (광원이 영향을 주는 픽셀에 Deferred Position 렌더타겟를 가져와서 값이 있는지 체크)
+
+<br><br>
+
+Deferred의 단점
+=========================
+1. 광원을 많이 쓰지 않으면 의미가 없음. ( 여러 렌더타겟을 그릴 이유가 없음)
+2. 알파처리가 힘들다 (반투명한 물체의 포지션을 사용하면 뒤에있는 물체들이 이상해진다.)<br> 그래서 완전히 불투1명한 물체를 Deferred렌더링하고 Forward 렌더링할 때 반투명을 Blend 처리)
+
