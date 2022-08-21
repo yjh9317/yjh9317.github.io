@@ -36,10 +36,12 @@ Light RenderTarget
 
 Light RenderTarget 생성
 =================================
+
  * Deferred와 마찬가지로 렌더타겟 및 리소스로 사용(D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE)
  * Diffuse,Specular는 빛의 색상을 저장하기 위해 R8G8B8A8_UNORM 사용
  * ShadowPower는 그림자의 세기를 저장하기 위해 R32_Float를 사용
-<br>
+ 
+<br><br>
 
 		Ptr<CTexture> arrTex[8] =
 		{
