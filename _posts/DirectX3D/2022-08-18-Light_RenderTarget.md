@@ -71,7 +71,9 @@ Directional Light
 ================================
 * 3D Light의 종류중 하나로, 태양처럼 모든 곳에 빛을 비추는 타입.
 
-* Directional Light는 화면에 있는 모든 픽셀을 호출 하기 위해 RectMesh를 사용한다.<br><br>
+* Directional Light는 화면에 있는 모든 픽셀을 호출 하기 위해 RectMesh를 사용한다.
+
+  <br><br>
 
 
       // ========================
