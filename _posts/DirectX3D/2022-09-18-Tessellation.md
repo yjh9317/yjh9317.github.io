@@ -1,6 +1,6 @@
 ---
 title: Tessellation
-date: 2022-09-17
+date: 2022-09-18
 categories: [DirectX3D, DirectX3D]
 tags: [directx3d]		# TAG는 반드시 소문자로 이루어져야함!
 ---
