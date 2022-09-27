@@ -1,5 +1,5 @@
 ---
-title: LandScape
+title: 3DCollision
 date: 2022-09-22
 categories: [DirectX3D, DirectX3D]
 tags: [directx3d]		# TAG는 반드시 소문자로 이루어져야함!
