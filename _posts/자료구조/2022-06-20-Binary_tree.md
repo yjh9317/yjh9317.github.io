@@ -91,29 +91,31 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 * 순회 Code
 
 
-      // 이진 트리에 대한 전위 순회 연산
-      void preorder(treeNode* root) {
-        if (root) {
-          printf("%c", root->data);   //현재 노드 처리
-          preorder(root->left);       //왼쪽 자식노드 처리
-          preorder(root->right);	    //오른쪽 자식노드 처리
-        }
-      }
+```C++
+// 이진 트리에 대한 전위 순회 연산
+void preorder(treeNode* root) {
+  if (root) {
+    printf("%c", root->data);   //현재 노드 처리
+    preorder(root->left);       //왼쪽 자식노드 처리
+    preorder(root->right);	    //오른쪽 자식노드 처리
+  }
+}
 
-      // 이진 트리에 대한 중위 순회 연산
-      void inorder(treeNode* root) {
-        if (root) {
-          inorder(root->left);        //왼쪽 자식노드 처리
-          printf("%c", root->data);   //현재 노드 처리
-          inorder(root->right);       //오른쪽 자식노드 처리
-        }
-      }
+// 이진 트리에 대한 중위 순회 연산
+void inorder(treeNode* root) {
+  if (root) {
+    inorder(root->left);        //왼쪽 자식노드 처리
+    printf("%c", root->data);   //현재 노드 처리
+    inorder(root->right);       //오른쪽 자식노드 처리
+  }
+}
 
-      // 이진 트리에 대한 후위 순회 연산
-      void postorder(treeNode* root) {
-        if (root) {
-          postorder(root->left);      //왼쪽 자식노드 처리
-          postorder(root->right);     //오른쪽 자식노드 처리
-          printf("%c", root->data);   //현재 노드 처리
-        }
-      }
+// 이진 트리에 대한 후위 순회 연산
+void postorder(treeNode* root) {
+  if (root) {
+    postorder(root->left);      //왼쪽 자식노드 처리
+    postorder(root->right);     //오른쪽 자식노드 처리
+    printf("%c", root->data);   //현재 노드 처리
+  }
+}
+```

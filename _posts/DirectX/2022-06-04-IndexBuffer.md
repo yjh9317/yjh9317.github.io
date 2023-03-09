@@ -26,9 +26,8 @@ Code
 		
 		
 		//인덱스 버퍼
-		
 	
-		UINT arrIDx[6] = { 0,2,3,0,1,2 }; //정점의 인덱스 (0,2,3) 삼각형과 (0,1,2) 삼각형 밑에는 예시
+		UINT arrIDx[6] = { 0,2,3,0,1,2 }; 
 		
 		//버텍스 버퍼와 마찬가지로 초기화
 		tBufferDesc = {};
@@ -58,6 +57,3 @@ Code
 		//인덱스 버퍼 주소, 단위가 4byte UINT , 오프셋
 		CONTEXT->IASetIndexBuffer(g_pIB.Get(), DXGI_FORMAT_R32_UINT, 0);
 
-
-<br><br>
-<img src="../../assets/img/1.png">
