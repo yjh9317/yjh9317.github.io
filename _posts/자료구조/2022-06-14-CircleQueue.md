@@ -23,7 +23,7 @@ Circle Queue Code
 
 * CircleQueue.h
 
-```C++
+<br>
 
     #pragma once
     #define cQ_SIZE  4
@@ -43,11 +43,12 @@ Circle Queue Code
     element peekCQ(QueueType* cQ);
     void printCQ(QueueType* cQ);
 
-```
+
+<br>
 
 *  CircleQueue.cpp
 
-```C++
+<br>
 
     #include <stdio.h>
     #include <stdlib.h>
@@ -117,4 +118,3 @@ Circle Queue Code
         printf(" ] ");
     }
     
-```

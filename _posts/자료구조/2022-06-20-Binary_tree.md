@@ -9,34 +9,45 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 이진 트리
 ========================
  * 트리의 모든 노드를 차수 2 이하로 제한하여 전체 트리의 차수가 2 이하가 되도록 정의한 트리
+
  * 이진 트리의 자식노드는 왼쪽 자식노드와 오른쪽 자식노드만 있다.
 
 <br><br>
 
-* 이진트리의 특성
+이진트리의 특성
+===========
+
   * 노드가 n개인 이진 트리는 항상 간선이 (n-1)개이다
+  
   * 높이가 h인 이진 트리가 가질 수 있는 노드 개수는 최소(h+1)개이며, 최대(2^h-1)개이다.
 
-<br>
+
 
 * 높이가 3인 최소 노드를 갖는 트리(왼쪽)와 최대 노드를 갖는 트리(오른쪽)
 <img src="./../../assets/img/Binray%20Tree.png">
 
 <br><br>
 
-* 이진 트리의 종류
+ 이진 트리의 종류
+==============
+
   * 포화 이진트리
-    * 모든 레벨에 노드가 꽉 차 더 이상 노드를 추가할 수 없는 트리
-    <img src="./../../assets/img/Full%20Binary%20Tree.png" ><br><br><br><br><br>
+    * 모든 레벨에 노드가 꽉 차 더 이상 노드를 추가할 수 없는 트리<br><br>
+    <p align="center"><img src="./../../assets/img/Full%20Binary%20Tree.png" width=500 height =200></p>
+    
+    <br><br>
+
   * 완전 이진 트리
-    * 높이가 h이고 노드 수가 n일때, 노드 위치가 포화 이진 트리에서의 노드 1번부터 n번까지 위치가 완전히 일치하는 트리
-    <img src="./../../assets/img/Compelete%20Binray%20Tree.jpg"><br><br><br><br><br>
+    * 높이가 h이고 노드 수가 n일때, 노드 위치가 포화 이진 트리에서의 노드 1번부터 n번까지 위치가 완전히 일치하는 트리<br><br>
+    <p align="center"><img src="./../../assets/img/Compelete%20Binray%20Tree.jpg"width=500 height =250></p>
+    
+    <br><br>
 
   * 편향 이진 트리
     * 높이가 h일 때, h+1개의 노드를 가지면서 모든 노드가 왼쪽이나 오른쪽중 한 방향으로만 서브 트리를 가지고 있는 트리
-    <img src="./.../../../../assets/img/Skewed%20Binary%20Tree.png">
+    <p align="center"><img src="./.../../../../assets/img/Skewed%20Binary%20Tree.png"width=500 height =200></p>
 
-<br><br><br><br><br>
+<br><br><br>
 
 이진 트리의 구성
 ========================
@@ -88,10 +99,10 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 
 <br>
 
-* 순회 Code
+Code
+===============
 
-
-```C++
+<br>
 
     // 이진 트리에 대한 전위 순회 연산
     void preorder(treeNode* root) {
@@ -119,5 +130,3 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
         printf("%c", root->data);   //현재 노드 처리
       }
     }
-
-```
