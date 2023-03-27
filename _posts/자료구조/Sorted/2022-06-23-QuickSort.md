@@ -33,70 +33,70 @@ QuickSort
 QuickSort Code
 ========================
 
-<br>
+```c++
+#include<iostream>
 
-        #include<iostream>
+void QuickSort(int* arr,int cnt)
+{
+    if (cnt < 2)
+        return;
+    int iPivot = arr[cnt - 1];  //가장 오른쪽을 피벗으로 선택
 
-        void QuickSort(int* arr,int cnt)
+    int L = 0;          // 가장 왼쪽
+    int R = cnt - 2;    // 피벗을 제외한 가장 오른쪽
+
+
+    // L과 R이 만나기전까지 반복문
+    while (1) {
+
+        // 피벗의 왼쪽에 있는 요소가 피벗보다 크기 전까지 증가
+        while ((arr[L] < iPivot) && L < R) L++; 
+
+        // 피벗의 오른쪽에 있는 요소가 피벗보다 작기 전까지 감소
+        while ((arr[R] > iPivot) && L < R) R--;
+
+        if (L == R)         // L과 R이 만난다면 break
         {
-            if (cnt < 2)
-                return;
-            int iPivot = arr[cnt - 1];  //가장 오른쪽을 피벗으로 선택
-
-            int L = 0;          // 가장 왼쪽
-            int R = cnt - 2;    // 피벗을 제외한 가장 오른쪽
-
-
-            // L과 R이 만나기전까지 반복문
-            while (1) {
-
-                // 피벗의 왼쪽에 있는 요소가 피벗보다 크기 전까지 증가
-                while ((arr[L] < iPivot) && L < R) L++; 
-
-                // 피벗의 오른쪽에 있는 요소가 피벗보다 작기 전까지 감소
-                while ((arr[R] > iPivot) && L < R) R--;
-
-                if (L == R)         // L과 R이 만난다면 break
-                {
-                    break;
-                }
-                else                // 만나지 않았더라면 L과 R을 서로 교환
-                {
-                    int tmp = arr[L];
-                    arr[L] = arr[R];
-                    arr[R] = tmp;
-                }
-            }
-
-            //왼쪽 리스트 정렬
-            if (arr[L] > iPivot)    // 멈춘 요소가 더 크다면
-            {
-                //피벗과 자리를 교환한 후
-                int tmp = arr[L];
-                arr[L] = iPivot;
-                arr[cnt - 1] = tmp;
-
-                // 0부터 L까지
-                QuickSort(arr, L);
-            }
-            else                    // 멈춘 요소가 더 작다면
-            {
-                // 0 부터 L+1 까지
-                QuickSort(arr, L + 1);
-            }
-
-            // 오른쪽 리스트 정렬
-            QuickSort(arr + L + 1, cnt - (L + 1));
+            break;
         }
-
-        int main()
+        else                // 만나지 않았더라면 L과 R을 서로 교환
         {
-            int arr[10] = { 10,5,9,8,6,1,3,4,2,7 };
-
-            QuickSort(arr, 10);
-
-            for (int i = 0; i < 10; ++i)
-            {
-                printf("arr[%d] = %d\n",i, arr[i]);
-            }
+            int tmp = arr[L];
+            arr[L] = arr[R];
+            arr[R] = tmp;
         }
+    }
+
+    //왼쪽 리스트 정렬
+    if (arr[L] > iPivot)    // 멈춘 요소가 더 크다면
+    {
+        //피벗과 자리를 교환한 후
+        int tmp = arr[L];
+        arr[L] = iPivot;
+        arr[cnt - 1] = tmp;
+
+        // 0부터 L까지
+        QuickSort(arr, L);
+    }
+    else                    // 멈춘 요소가 더 작다면
+    {
+        // 0 부터 L+1 까지
+        QuickSort(arr, L + 1);
+    }
+
+    // 오른쪽 리스트 정렬
+    QuickSort(arr + L + 1, cnt - (L + 1));
+}
+
+int main()
+{
+    int arr[10] = { 10,5,9,8,6,1,3,4,2,7 };
+
+    QuickSort(arr, 10);
+
+    for (int i = 0; i < 10; ++i)
+    {
+        printf("arr[%d] = %d\n",i, arr[i]);
+    }
+}
+```

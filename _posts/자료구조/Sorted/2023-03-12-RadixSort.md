@@ -35,41 +35,39 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 Code
 ====================
 
-<br>
+```c++
+#include
+#include "LinkedQueue.h"
+#define RADIX 10        // 정렬할 자료의 키값이 10진수이므로 10으로 정의
+#define DIGIT 2         // 정렬할 자료의 키값이 두 자리이므로 2로 정의
 
-    #include
-    #include "LinkedQueue.h"
-    #define RADIX 10        // 정렬할 자료의 키값이 10진수이므로 10으로 정의
-    #define DIGIT 2         // 정렬할 자료의 키값이 두 자리이므로 2로 정의
 
+void radixsSort(int a[], int n){
+    int i,bucket,d,factor = 1;
 
-    void radixsSort(int a[], int n){
-        int i,bucket,d,factor = 1;
+    // 정렬할 자료의 기수, 즉 RADIX에 따라 10개의 버킷을 큐로 생성
+    LQueueType* Q[RADIX];   // 버킷 큐의 헤드 포인터를 포인터 배열로 선언
+    for(bucket = 0; bucket < RADIX; bucket++)
+        Q[bucket] = createLinkedQueue();
 
-        // 정렬할 자료의 기수, 즉 RADIX에 따라 10개의 버킷을 큐로 생성
-        LQueueType* Q[RADIX];   // 버킷 큐의 헤드 포인터를 포인터 배열로 선언
-        for(bucket = 0; bucket < RADIX; bucket++)
-            Q[bucket] = createLinkedQueue();
+    
+    // 키값의 자릿수만큼, 즉 두번 기수 정렬을 반복 수행
+    for(d = 0;d < DIGIT; d++){
 
+        // 키값의 1의 자리에 대한 버킷을 찾아 원소를 저장(enQueue)
+        for(i = 0;i< n;i++)
+            enLQueue(Q[ (a[i] / factor) % RADIX] , a[i]);
         
-        // 키값의 자릿수만큼, 즉 두번 기수 정렬을 반복 수행
-        for(d = 0;d < DIGIT; d++){
+        // 버킷 0부터 9까지 저장된 원소를 순서대로 꺼내어(deQueue) 배열 a에 저장
+        for(bucket = 0; bucket < RADIX; bucket++)
+            while(!isLQEmpty(Q[bucket])) a[i++] = deLQueue(Q[bucket]);
+        
+        // 1의 자리에 대해 기수 정렬이 끝난 현재 상태를 출력
+        printf("\n\n %d 단계 : ",d+1 );
+        for(i = 0;i< n;i++) printf(" %3d", a[i]);
 
-            // 키값의 1의 자리에 대한 버킷을 찾아 원소를 저장(enQueue)
-            for(i = 0;i< n;i++)
-                enLQueue(Q[ (a[i] / factor) % RADIX] , a[i]);
-            
-            // 버킷 0부터 9까지 저장된 원소를 순서대로 꺼내어(deQueue) 배열 a에 저장
-            for(bucket = 0; bucket < RADIX; bucket++)
-                while(!isLQEmpty(Q[bucket])) a[i++] = deLQueue(Q[bucket]);
-            
-            // 1의 자리에 대해 기수 정렬이 끝난 현재 상태를 출력
-            printf("\n\n %d 단계 : d+1 );
-            for(i = 0;i< n;i++) printf(" %3d", a[i]);
-
-            // 10의 자리에 대해 기수 정렬을 반복하기 위해 factor을 상위 단위로 수정(1의 자리 -> 10의 자리)
-            factor = factor * RADIX;
-        }
-
+        // 10의 자리에 대해 기수 정렬을 반복하기 위해 factor을 상위 단위로 수정(1의 자리 -> 10의 자리)
+        factor = factor * RADIX;
     }
-
+}
+```

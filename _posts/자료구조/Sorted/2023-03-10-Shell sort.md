@@ -37,47 +37,45 @@ Code
 
 * 일반적으로 사용하는 h값은 원소 개수의 1/2을 사용하고, 한 단계를 수행할 때마다 h값을 반으로 감소시키면서 반복 수행한다.
 
-<br>
-
-
-    #include <stdio.h>
-    void intervalSort(int a[],int begin, int end, int interval)
+```c++
+#include <stdio.h>
+void intervalSort(int a[],int begin, int end, int interval)
+{
+    int i,j,them;
+    for(i = begin + interval; i <= end; i = i + interval)
     {
-        int i,j,them;
-        for(i = begin + interval; i <= end; i = i + interval)
+        item = a[i];
+        for(j = i -interval; j >= begin && item < a[j]; j = j - interval)
         {
-            item = a[i];
-            for(j = i -interval; j >= begin && item < a[j]; j = j - interval)
-            {
-                a[j + interval] = a[j];
-            }
-            a[j + interval] = item;
+            a[j + interval] = a[j];
         }
+        a[j + interval] = item;
     }
+}
 
-    void ShellSort(int a[], int size)
+void ShellSort(int a[], int size)
+{
+    int i , interval;
+    interval = size / 2;
+    while(interval >= 1) 
     {
-        int i , interval;
-        interval = size / 2;
-        while(interval >= 1) 
-        {
-            for(i = 0; i < interval; i++) intervalSort(a, i , size-1, interval);
-            printf("\n interval=%d>>", interval);
-            for(i = 0; i< size ; i++) printf("%d", a[i]);
-            printf("\n");
-            interval =interval /2;
-        }
+        for(i = 0; i < interval; i++) intervalSort(a, i , size-1, interval);
+        printf("\n interval=%d>>", interval);
+        for(i = 0; i< size ; i++) printf("%d", a[i]);
+        printf("\n");
+        interval =interval /2;
     }
+}
 
-    int main()
-    {
-        int i, list[8] = { 69,10,30,2,16,8,31,22};
-        int size = sizeof(list) / sizeof(list[0]); // list 배열의 원소 개수
-        printf("\n정렬할 원소 : ");
-        for(i = 0; i < size;i++) printf("%3d", list[i]);
-        printf("\n\n<<<<<<<<<<<<<<<<<<셀 정렬 수행>>>>>>>>>>>>>>>>>>\n");
-        shellSort(list,size);
+int main()
+{
+    int i, list[8] = { 69,10,30,2,16,8,31,22};
+    int size = sizeof(list) / sizeof(list[0]); // list 배열의 원소 개수
+    printf("\n정렬할 원소 : ");
+    for(i = 0; i < size;i++) printf("%3d", list[i]);
+    printf("\n\n<<<<<<<<<<<<<<<<<<셀 정렬 수행>>>>>>>>>>>>>>>>>>\n");
+    shellSort(list,size);
 
-        getchar(); return 0;
-    }
-
+    getchar(); return 0;
+}
+```

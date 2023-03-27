@@ -16,44 +16,45 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 
 선택정렬 Code
 =====================
+```c++
+void swap(int* a, int* b)
+{
+    int tmp = *a;
+    *a = *b;
+    *b = tmp;
+}
 
-    void swap(int* a, int* b)
+
+int main()
+{
+    srand((unsigned int)time(NULL));
+    
+    int iArr[MAX];
+
+    for (int i = 0; i < MAX; ++i)
     {
-        int tmp = *a;
-        *a = *b;
-        *b = tmp;
+        iArr[i] = rand() % MAX;
     }
-
-
-    int main()
+    
+    // 선택 정렬
+    for (int i = 0; i < MAX - 1; ++i)
     {
-        srand((unsigned int)time(NULL));
-        
-        int iArr[MAX];
-
-        for (int i = 0; i < MAX; ++i)
+        int min = i;
+        for (int j = i + 1; j < MAX; ++j)
         {
-            iArr[i] = rand() % MAX;
-        }
-        
-        // 선택 정렬
-        for (int i = 0; i < MAX - 1; ++i)
-        {
-            int min = i;
-            for (int j = i + 1; j < MAX; ++j)
+            if (iArr[j] < iArr[min])
             {
-                if (iArr[j] < iArr[min])
-                {
-                    min = j;
-                }
+                min = j;
             }
-            
-            swap(&iArr[i], &iArr[min]);
         }
-
-
-        for (int i = 0; i < MAX; ++i)
-        {
-            cout << iArr[i] << endl;
-        }
+        
+        swap(&iArr[i], &iArr[min]);
     }
+
+
+    for (int i = 0; i < MAX; ++i)
+    {
+        cout << iArr[i] << endl;
+    }
+}
+```

@@ -71,14 +71,13 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
  * 포인터가 포함된 노드(구조체)로 구현한 이진트리
    * 데이터를 저장하는 변수와 왼쪽 자식노드를 연결하는 포인터,오른쪽 자식노드를 연결하는 포인터로 구성
   
-<br>
-
-      typedef struct treeNode{
-        char data;
-        struct treeNode *left;
-        struct treeNode *right;
-      } treeNode;
-
+```c++
+typedef struct treeNode{
+  char data;
+  struct treeNode *left;
+  struct treeNode *right;
+} treeNode;
+```
 
 <br>
 
@@ -102,31 +101,31 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 Code
 ===============
 
-<br>
+```c++
+// 이진 트리에 대한 전위 순회 연산
+void preorder(treeNode* root) {
+  if (root) {
+    printf("%c", root->data);   //현재 노드 처리
+    preorder(root->left);       //왼쪽 자식노드 처리
+    preorder(root->right);	    //오른쪽 자식노드 처리
+  }
+}
 
-    // 이진 트리에 대한 전위 순회 연산
-    void preorder(treeNode* root) {
-      if (root) {
-        printf("%c", root->data);   //현재 노드 처리
-        preorder(root->left);       //왼쪽 자식노드 처리
-        preorder(root->right);	    //오른쪽 자식노드 처리
-      }
-    }
+// 이진 트리에 대한 중위 순회 연산
+void inorder(treeNode* root) {
+  if (root) {
+    inorder(root->left);        //왼쪽 자식노드 처리
+    printf("%c", root->data);   //현재 노드 처리
+    inorder(root->right);       //오른쪽 자식노드 처리
+  }
+}
 
-    // 이진 트리에 대한 중위 순회 연산
-    void inorder(treeNode* root) {
-      if (root) {
-        inorder(root->left);        //왼쪽 자식노드 처리
-        printf("%c", root->data);   //현재 노드 처리
-        inorder(root->right);       //오른쪽 자식노드 처리
-      }
-    }
-
-    // 이진 트리에 대한 후위 순회 연산
-    void postorder(treeNode* root) {
-      if (root) {
-        postorder(root->left);      //왼쪽 자식노드 처리
-        postorder(root->right);     //오른쪽 자식노드 처리
-        printf("%c", root->data);   //현재 노드 처리
-      }
-    }
+// 이진 트리에 대한 후위 순회 연산
+void postorder(treeNode* root) {
+  if (root) {
+    postorder(root->left);      //왼쪽 자식노드 처리
+    postorder(root->right);     //오른쪽 자식노드 처리
+    printf("%c", root->data);   //현재 노드 처리
+  }
+}
+```

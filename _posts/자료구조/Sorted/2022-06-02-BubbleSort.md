@@ -16,41 +16,42 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 버블정렬 Code
 =====================
 
+```c++
+void swap(int* a, int* b)
+{
+	int tmp = *a;
+	*a = *b;
+	*b = tmp;
+}
 
-    void swap(int* a, int* b)
-    {
-	    int tmp = *a;
-	    *a = *b;
-	    *b = tmp;
-    }
 
+int main()
+{
+	srand((unsigned int)time(NULL));
 
-    int main()
-    {
-	    srand((unsigned int)time(NULL));
-
-	    int iArr[MAX];
-
-    	for (int i = 0; i < MAX; ++i)
-    	{
-		    iArr[i] = rand() % MAX;
-	    }
-
-	    // 버블 정렬
-	    for (int i = MAX - 1; i > 0; --i)
-	    {
-    		for (int j = 0; j < i ; ++j)
-		    {
-    			if (iArr[j] > iArr[j + 1])
-			    {
-    				swap(&iArr[j], &iArr[j + 1]);
-			    }
-		    }	
-	    }
-
+	int iArr[MAX];
 
 	for (int i = 0; i < MAX; ++i)
 	{
-		cout << iArr[i] << endl;
+		iArr[i] = rand() % MAX;
 	}
-    }
+
+	// 버블 정렬
+	for (int i = MAX - 1; i > 0; --i)
+	{
+		for (int j = 0; j < i ; ++j)
+		{
+			if (iArr[j] > iArr[j + 1])
+			{
+				swap(&iArr[j], &iArr[j + 1]);
+			}
+		}	
+	}
+
+
+for (int i = 0; i < MAX; ++i)
+{
+	cout << iArr[i] << endl;
+}
+}
+```
