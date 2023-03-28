@@ -27,6 +27,8 @@ Reflection System
 
 * UScriptStruct: C++ 구조체를 나타내는 클래스입니다. UScriptStruct는 Reflection System에서 구조체의 정보를 저장하고 검색하는 데 사용됩니다.
 
+<br>
+
 * Reflection System은 UClass의 GetPropertyByName, SetPropertyByName, FindFunctionByName, Invoke 등의 함수를 사용하여 C++ 클래스의 정보를 검색하고 수정합니다. Reflection System은 런타임에 클래스의 정보를 수정할 수 있으므로, 디버깅이나 게임 플레이 중에도 클래스의 정보를 동적으로 변경할 수 있습니다.
 
 * Reflection System은 Blueprint System과 함께 작동하여 Blueprint 클래스와 C++ 클래스 간의 상호 작용을 가능하게 합니다. Blueprint에서 C++ 클래스의 변수나 함수를 노출할 수 있으며, C++ 클래스에서 Blueprint에서 노출된 변수나 함수를 사용할 수 있습니다.
