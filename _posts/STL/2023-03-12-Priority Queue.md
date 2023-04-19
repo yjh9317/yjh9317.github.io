@@ -39,13 +39,12 @@ Priority Queue
 priority_queue의 기본 구조
 ============
 
-<br>
+```c++
+template <typename T, typename Container = std::vector<T>,
+          typename Compare = std::less<typename Container::value_type>>
+class priority_queue;
+```
 
-    template <typename T, typename Container = std::vector<T>,
-              typename Compare = std::less<typename Container::value_type>>
-    class priority_queue;
-
-<br>
 
 * T는 우선순위 큐에 저장될 요소의 타입
 
@@ -60,17 +59,40 @@ priority_queue의 기본 구조
 priority_queue의 함수
 ==============
 
-* push(const T& val): 주어진 요소를 우선순위 큐에 삽입합니다.
+```c++
+void push( const value_type& value );
+void push( value_type&& value );
+```
+* 주어진 요소를 우선순위 큐에 삽입합니다.
+
+<br>
+
+```c++
+std::pop_heap(c.begin(), c.end(), comp); c.pop_back();
+```
+* 우선순위 큐에서 가장 높은 우선순위를 가진 요소를 제거합니다.
+
+<br>
 
 
-* pop(): 우선순위 큐에서 가장 높은 우선순위를 가진 요소를 제거합니다.
-
-
+```c++
+const_reference top() const;
+```
 * top(): 우선순위 큐에서 가장 높은 우선순위를 가진 요소에 대한 참조를 반환합니다.
 
+<br>
 
+```c++
+bool empty() const;
+[[nodiscard]] bool empty() const;
+```
 * empty(): 우선순위 큐가 비어있는지 여부를 반환합니다.
 
+<br>
+
+```c++
+size_type size() const;
+```
 
 * size(): 우선순위 큐의 요소 수를 반환합니다.
 
@@ -79,31 +101,31 @@ priority_queue의 함수
 priority_queue의 예시
 ==============
 
-<br>
+```c++
+#include <iostream>
+#include <queue>
 
-    #include <iostream>
-    #include <queue>
+int main() {
+    // std::priority_queue를 선언하고 초기화합니다.
+    std::priority_queue<int> myQueue;
 
-    int main() {
-        // std::priority_queue를 선언하고 초기화합니다.
-        std::priority_queue<int> myQueue;
+    // 요소를 추가합니다.
+    myQueue.push(3);
+    myQueue.push(1);
+    myQueue.push(4);
+    myQueue.push(1);
+    myQueue.push(5);
 
-        // 요소를 추가합니다.
-        myQueue.push(3);
-        myQueue.push(1);
-        myQueue.push(4);
-        myQueue.push(1);
-        myQueue.push(5);
+    // 가장 높은 우선순위를 가진 요소를 출력합니다.
+    std::cout << "Top element: " << myQueue.top() << std::endl;
 
-        // 가장 높은 우선순위를 가진 요소를 출력합니다.
-        std::cout << "Top element: " << myQueue.top() << std::endl;
-
-        // 모든 요소를 제거합니다.
-        while (!myQueue.empty()) {
-            std::cout << myQueue.top() << " ";
-            myQueue.pop();
-        }
-        std::cout << std::endl;
-
-        return 0;
+    // 모든 요소를 제거합니다.
+    while (!myQueue.empty()) {
+        std::cout << myQueue.top() << " ";
+        myQueue.pop();
     }
+    std::cout << std::endl;
+
+    return 0;
+}
+```
