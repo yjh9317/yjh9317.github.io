@@ -15,7 +15,7 @@ tags: [effective c++]		# TAG는 반드시 소문자로 이루어져야함!
 **예시**
 --------
 
-```c++
+```
 #define ASPECT_RATIO 1.653
 ```
 
@@ -114,7 +114,7 @@ private:
 <br>
 
 > 매크로는 일단 정의되면 컴파일이 끝날 때까지(중간에 #undef되지만 않으면) 유효하다
-> 정리하면, #define은 클래스 상수를 정의하는 데 쓸 수 없을 뿐만 아니라 어떤 형태의 캡슐화 혜텍도 받을 수 없다.
+> 정리하면, #define은 클래스 상수를 정의하는 데 쓸 수 없을 뿐만 아니라 어떤 형태의 캡슐화 혜택도 받을 수 없다.
 > 즉, private 성격의 #define 같은 것이 없다는 이야기
 {: .prompt-tip }
 
@@ -227,6 +227,6 @@ inline void callWithMax(const T& a, const T& b)
 
 
 > 이것만은 잊지 말자!
-> * 단순한 상수를 슬 때는 #define보다 const 객체 혹은 enum을 우선 생각하자.
+> * 단순한 상수를 쓸 때는 #define보다 const 객체 혹은 enum을 우선 생각하자.
 > * 함수처럼 쓰이는 매크로를 만들려면, #define 매크로보다 인라인 함수를 우선 생각하자.
 {: .prompt-tip }
