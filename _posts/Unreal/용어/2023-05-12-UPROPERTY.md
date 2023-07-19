@@ -1,7 +1,7 @@
 ---
 title: UPROPERTY
 date: 2023-05-12
-categories: [unreal,unreal]
+categories: [unreal, 용어]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 

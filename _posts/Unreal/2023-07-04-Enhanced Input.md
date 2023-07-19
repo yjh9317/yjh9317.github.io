@@ -1,7 +1,7 @@
 ---
 title: Enhanced Input
 date: 2023-07-04
-categories: [unreal,unreal]
+categories: [unreal,Basic]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
@@ -89,16 +89,16 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 1. Triggered : 아래와 같은 상태로 변할 때
 (None -> Triggered, Ongoing -> Triggered, Triggered -> Triggered)
 
-1. Started : 키를 누른 그 프레임에 발동
+2. Started : 키를 누른 그 프레임에 발동
 (None -> Ongoing, None -> Triggered)
 
-1. Ongoing : 누르고 있던 키를 계속 누를 때
+3. Ongoing : 누르고 있던 키를 계속 누를 때
 (Ongoing -> Ongoing)
 
-1. Completed : 누르고 있던 키를 뗐을 때
+4. Completed : 누르고 있던 키를 뗐을 때
 (Ongoing -> None)
 
-1. Canceled : 트리거 상태가 끝났을 때
+5. Canceled : 트리거 상태가 끝났을 때
 (Triggered -> None)
 ```
 
@@ -136,7 +136,9 @@ void APlayerCharacter::BeginPlay()
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
-		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem =
+		 ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>
+		 								(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
@@ -157,28 +159,28 @@ void APlayerCharacter::BeginPlay()
 
 ```c++
 // 가상 함수인 SetupPlayerInputComponent을 이용한다.
-// virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 void APlayerCharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
-	// 이 조건문으로 EnhancedInputComponent를 가져온다.
 	if (UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent)) {
 
-		//BindAction 함수를 이용하여 입력 액션를 바인딩
 		// 점프
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered,
+											this, &ACharacter::Jump);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed,
+											this,&ACharacter::StopJumping);
 
 		//Moving
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Move);
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered,
+											this, &APlayerCharacter::Move);
 
 		//Looking
-		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered, this, &APlayerCharacter::Look);
+		EnhancedInputComponent->BindAction(LookAction, ETriggerEvent::Triggered,
+											this, &APlayerCharacter::Look);
 	}
 }
+```
 
-
-// Controller의 ForwardVector와 RightVector를 이용하여 값을 구한다.
+```c++
 // AddMovementInput는 캐릭터의 이동을 조작하는 데 사용하는 함수
 void APlayerCharacter::Move(const FInputActionValue& Value)
 {
@@ -192,19 +194,23 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 		const FRotator YawRotation(0, Rotation.Yaw, 0);
 
 		// get forward vector
-		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+		const FVector ForwardDirection = 
+				FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 	
 		// get right vector 
-		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+		const FVector RightDirection = 
+				FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
 		// add movement 
 		AddMovementInput(ForwardDirection, MovementVector.Y);
 		AddMovementInput(RightDirection, MovementVector.X);
 	}
 }
+```
 
-// AddControllerYawInput 함수는 캐릭터의 수평(Yaw) 회전을 조작하는 데 사용
-// AddControllerPitchInput 함수는 캐릭터의 수직 회전 (Pitch)을 조작하는 데 사용
+```c++
+// AddControllerYawInput 	함수는 캐릭터의 수평 회전(Yaw)을 조작
+// AddControllerPitchInput 	함수는 캐릭터의 수직 회전(Pitch)을 조작
 void APlayerCharacter::Look(const FInputActionValue& Value)
 {
 	// input is a Vector2D
@@ -217,5 +223,4 @@ void APlayerCharacter::Look(const FInputActionValue& Value)
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
 }
-
 ```

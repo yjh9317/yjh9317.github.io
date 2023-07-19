@@ -1,7 +1,7 @@
 ---
 title: Animation
 date: 2023-07-08
-categories: [unreal,unreal]
+categories: [unreal,Basic]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
