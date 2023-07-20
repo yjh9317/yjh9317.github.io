@@ -1,5 +1,5 @@
 ---
-title: #define을 쓰려거든 const,enum,inline을 떠올리자
+title: 항목2: #define을 쓰려거든 const,enum,inline을 떠올리자
 date: 2023-06-22
 categories: [Effective C++,Effective C++]
 tags: [effective c++]		# TAG는 반드시 소문자로 이루어져야함!
