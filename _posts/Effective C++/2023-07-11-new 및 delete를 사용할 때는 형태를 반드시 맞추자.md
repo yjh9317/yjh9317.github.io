@@ -1,5 +1,5 @@
 ---
-title: 항목16: new 및 delete를 사용할 때는 형태를 반드시 맞추자
+title: 항목16 - new 및 delete를 사용할 때는 형태를 반드시 맞추자
 date: 2023-07-11
 categories: [Effective C++,Effective C++]
 tags: [effective c++]		# TAG는 반드시 소문자로 이루어져야함!
