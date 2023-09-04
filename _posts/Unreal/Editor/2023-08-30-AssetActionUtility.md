@@ -73,7 +73,7 @@ class SUPERMANAGER_API UQuickAssetAction : public UAssetActionUtility
 	GENERATED_BODY()
 
 public:
-	UFUNCTION(CallInEditor) // CallInEditor 속성을 사용해야함.
+	UFUNCTION(CallInEditor) // CallInEditor 속성을 사용해서 에디터에서 해당 함수를 사용
 	void TestFunc();
 };
 
