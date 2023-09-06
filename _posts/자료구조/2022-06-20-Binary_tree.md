@@ -12,7 +12,7 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 
  * 이진 트리의 자식노드는 왼쪽 자식노드와 오른쪽 자식노드만 있다.
 
-<br><br>
+<br>
 
 이진트리의 특성
 ===========
@@ -26,28 +26,35 @@ tags: [data_structure]		# TAG는 반드시 소문자로 이루어져야함!
 * 높이가 3인 최소 노드를 갖는 트리(왼쪽)와 최대 노드를 갖는 트리(오른쪽)
 <img src="./../../assets/img/Binray%20Tree.png">
 
-<br><br>
+<br>
 
  이진 트리의 종류
 ==============
 
-  * 포화 이진트리
-    * 모든 레벨에 노드가 꽉 차 더 이상 노드를 추가할 수 없는 트리<br><br>
-    <p align="center"><img src="./../../assets/img/Full%20Binary%20Tree.png" width=500 height =200></p>
+* 포화 이진트리
+  * 모든 레벨에 노드가 꽉 차 더 이상 노드를 추가할 수 없는 트리<br><br>
+
+
+<center><img src="./../../assets/img/Full%20Binary%20Tree.png" width=500 height =200></p></center>
     
-    <br><br>
+<br>
 
-  * 완전 이진 트리
-    * 높이가 h이고 노드 수가 n일때, 노드 위치가 포화 이진 트리에서의 노드 1번부터 n번까지 위치가 완전히 일치하는 트리<br><br>
-    <p align="center"><img src="./../../assets/img/Compelete%20Binray%20Tree.jpg"width=500 height =250></p>
+* 완전 이진 트리
+  * 높이가 h이고 노드 수가 n일때, 노드 위치가 포화 이진 트리에서의 노드 1번부터 n번까지 위치가 완전히 일치하는 트리
+
+<br>
+
+<center><img src="./../../assets/img/Compelete%20Binray%20Tree.jpg"width=500 height =250></p></center>
     
-    <br><br>
 
-  * 편향 이진 트리
-    * 높이가 h일 때, h+1개의 노드를 가지면서 모든 노드가 왼쪽이나 오른쪽중 한 방향으로만 서브 트리를 가지고 있는 트리
-    <p align="center"><img src="./.../../../../assets/img/Skewed%20Binary%20Tree.png"width=500 height =200></p>
+* 편향 이진 트리
+  * 높이가 h일 때, h+1개의 노드를 가지면서 모든 노드가 왼쪽이나 오른쪽중 한 방향으로만 서브 트리를 가지고 있는 트리
 
-<br><br><br>
+<br>
+
+<center><img src="./.../../../../assets/img/Skewed%20Binary%20Tree.png"width=500 height =200></p></center>
+
+<br>
 
 이진 트리의 구성
 ========================
