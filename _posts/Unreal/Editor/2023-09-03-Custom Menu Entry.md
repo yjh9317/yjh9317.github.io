@@ -31,8 +31,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 
 // 델리게이트로 사용할 함수
-TSharedRef<FExtender> FSuperManagerModule::CustomCBMenuExtender
-											(const TArray<FString>& SelecetedPaths)
+TSharedRef<FExtender> FSuperManagerModule::CustomCBMenuExtender(const TArray<FString>& SelecetedPaths)
 {
 	TSharedRef<FExtender> MenuExtender(new FExtender());
 
