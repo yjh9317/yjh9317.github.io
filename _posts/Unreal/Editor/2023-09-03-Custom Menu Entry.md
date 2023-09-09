@@ -10,7 +10,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 * 델리게이트를 이용하여 에디터의 메뉴 엔트리에 버튼을 추가할 수 있다.
 
-* build.cs 파일에서 `"ContentBrowser"`를 넣어줘야 한다.
+* build.cs 파일에서 `"ContentBrowser"`를 넣어줘야 하고 메뉴 엔트리는 플러그인 모듈에서 추가한다
 
  ```c++
  void FSuperManagerModule::InitCBMenuExtention()
@@ -23,14 +23,12 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 	TArray<FContentBrowserMenuExtender_SelectedPaths>& 
     ContentBrowserModuleMenuExtenders = ContentBrowserModule.GetAllPathViewContextMenuExtenders();
 
-	// 델리게이트 추가
+	// 메뉴 엔트리에서 위치를 정할 델리게이트 추가
 	ContentBrowserModuleMenuExtenders.Add
         (FContentBrowserMenuExtender_SelectedPaths::CreateRaw
 		    (this,&FSuperManagerModule::CustomCBMenuExtender));
 }
 
-
-// 델리게이트로 사용할 함수
 TSharedRef<FExtender> FSuperManagerModule::CustomCBMenuExtender(const TArray<FString>& SelecetedPaths)
 {
 	TSharedRef<FExtender> MenuExtender(new FExtender());
@@ -41,7 +39,7 @@ TSharedRef<FExtender> FSuperManagerModule::CustomCBMenuExtender(const TArray<FSt
 		EExtensionHook::After,                          // 위치
 		TSharedPtr<FUICommandList>(),                   // 단축키
 		FMenuExtensionDelegate::CreateRaw
-            (this,&FSuperManagerModule::AddCBMenuEntry)); // 델리게이트
+            (this,&FSuperManagerModule::AddCBMenuEntry)); // 디테일을 위한 델리게이트
 	}
 	
 	return MenuExtender;
@@ -57,13 +55,17 @@ void FSuperManagerModule::AddCBMenuEntry(FMenuBuilder& MenuBuilder)
 		FText::FromString(TEXT("Safely delete all unused assets under folder")),// 툴팁
 		FSlateIcon(),	                                                    // 아이콘
 		FExecuteAction::CreateRaw
-        	(this,&FSuperManagerModule::OnDeleteUnusedAssetbuttonClicked) // 델리게잍
+        	(this,&FSuperManagerModule::OnDeleteUnusedAssetbuttonClicked) // 실제로 호출되는 함수
 	);
 }
  ```
 
+* `OnDeleteUnusedAssetbuttonClicked`는 다음장에서 작성
+
 
 * 다음과 같이 메뉴 엔트리에 추가된다
+
+
 
 <center><img src="./../../../assets/img/Unreal/Editor/Custom%20Menu%20Entry/DeleteUnusedAssetButton.png" style="width: 70%; height: auto;"></center>
 

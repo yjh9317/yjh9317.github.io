@@ -5,7 +5,7 @@ categories: [unreal,Editor]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
-* `Custom Menu Entry`에서 사용했던 `CustomCBMenuExtender 함수`의 매개변수는 경로이므로 이 경로를 헤더 파일에 따로 저장하고 다음 함수에서 사용한다.
+* `Custom Menu Entry`에서 사용했던 `CustomCBMenuExtender 함수의 매개변수`는 `경로`이므로 이 경로를 헤더 파일에 따로 저장하고 다음 함수에서 사용한다.
 
 * 함수에서 보기 불필요한 메세지는 제외함
 
@@ -24,9 +24,11 @@ void FSuperManagerModule::OnDeleteUnusedAssetbuttonClicked()
 	if(AssetsPathNames.Num() == 0) return;
 
 	EAppReturnType::Type ConfirmResult = 
-	    DebugHeader::ShowMsgDialog(EAppMsgType::YesNo, TEXT("~내용~")); 
+	    DebugHeader::ShowMsgDialog(EAppMsgType::YesNo, TEXT("~내용~"),false); 
 
 	if(ConfirmResult == EAppReturnType::No) return;
+
+	FixupRedirectors();
 
 	TArray<FAssetData> UnusedAssetsDataArray;
 
@@ -34,7 +36,9 @@ void FSuperManagerModule::OnDeleteUnusedAssetbuttonClicked()
 	{
 		// 지우면 안되는 최상위 폴더는 삭제 안되게 넘어간다.
 		if(AssetPathName.Contains(TEXT("Developers")) ||
-			AssetPathName.Contains(TEXT("Collections")))
+			AssetPathName.Contains(TEXT("Collections")) ||
+			AssetPathName.Contains(TEXT("__ExternalActors__")) ||
+			AssetPathName.Contains(TEXT("__ExternalObjects__")))
 		{
 			continue;
 		}
@@ -61,3 +65,5 @@ void FSuperManagerModule::OnDeleteUnusedAssetbuttonClicked()
 	}
 }
 ```
+
+<br>
