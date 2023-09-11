@@ -44,8 +44,9 @@ private:
 
 * 그러고 나서 모듈 파일에서 에셋 데이터 배열을 받아오는 함수를 작성해서 받아온다. 
 
+* 이 함수의 반환값을 `SLATE_ARGUMENT`로 보내서 Slate 클래스에서 사용함
+
 ```c++
-// OnSpawnAdvanceDeletionTab은 버튼에 등록한 델리게이트 함수
 TSharedRef<SDockTab> FSuperManagerModule::OnSpawnAdvanceDeletionTab(const FSpawnTabArgs& SpawnTabArgs)
 {
 	return SNew(SDockTab).TabRole(ETabRole::NomadTab)
@@ -56,7 +57,6 @@ TSharedRef<SDockTab> FSuperManagerModule::OnSpawnAdvanceDeletionTab(const FSpawn
 	];
 }
 
-// 에셋 데이터를 TSharedPtr에 담아서 배열로 반환하는 함수
 TArray<TSharedPtr<FAssetData>> FSuperManagerModule::GetAllAssetDataUnderSelectedFolder()
 {
 	TArray<TSharedPtr<FAssetData>> AvailableAssetsData;
@@ -81,7 +81,7 @@ TArray<TSharedPtr<FAssetData>> FSuperManagerModule::GetAllAssetDataUnderSelected
         AvailableAssetsData.Add(MakeShared<FAssetData>(Data));
     }
 
-	return StoredAssetsData;
+	return AvailableAssetsData;
 }
 ```
 
@@ -90,9 +90,7 @@ TArray<TSharedPtr<FAssetData>> FSuperManagerModule::GetAllAssetDataUnderSelected
 **에셋 데이터를 목록(행)으로 등록**
 ============
 
-* 그다음 받아온 에셋 데이터를 Construct 함수에서 Slot으로 추가한다.
-
-* 기존에 있는 부분은 코드가 길어져서 삭제하고 이 장에 관련된 코드 함수만 추가함
+* 그다음 받아온 에셋 데이터를 Slate 클래스의 Construct 함수에서 Slot으로 추가한다.
 
 * FKey와 관련된 Input Event에 대해 컴파일 오류가 난다면 build.cs파일에서 `InputCore`를 넣어주면 된다
 
@@ -105,21 +103,21 @@ void SAdvanceDeletionTab::Construct(const FArguments& InArgs)
 	StoredAssetsData = InArgs._AssetsDataToStore;
 	
     +SVerticalBox::Slot()
-    .AutoHeight()
+    .VAlign(VAlign_Fill)  // 이 값을 설정해야 스크롤이 작동
     [
-        SNew(SScrollBox) // 스크롤 Widget 사용
+        SNew(SScrollBox)
 
         +SScrollBox::Slot()
         [
             SNew(SListView<TSharedPtr<FAssetData>>)
             .ItemHeight(24.f)						// 세로 길이
-            .ListItemsSource(&StoredAssetsData)		// 에셋 데이터(에셋) 배열
-            .OnGenerateRow(this,&SAdvanceDeletionTab::OnGenerateRowForList) // 델리게이트 함수
+            .ListItemsSource(&StoredAssetsData)		// 에셋 데이터 배열
+            .OnGenerateRow(this,&SAdvanceDeletionTab::OnGenerateRowForList) // 델리게이트
         ]
     ]
 }
 
-// 행으로 추가하면서 각 행에 대해 텍스트 같은 디테일적인 부분을 변경하는 함수
+// 각 행에 대해 버튼,체크박스 같은 것들을 추가할 때 사용
 TSharedRef<ITableRow> SAdvanceDeletionTab::OnGenerateRowForList(TSharedPtr<FAssetData> AssetDataToDisplay,
 	const TSharedRef<STableViewBase>& OwnerTable)
 {
@@ -139,12 +137,8 @@ TSharedRef<ITableRow> SAdvanceDeletionTab::OnGenerateRowForList(TSharedPtr<FAsse
 사진
 -------
 
-* Blueprint Folder 안에 있는 에셋 목록
-
-<center><img src="./../../../assets/img/Unreal/Editor/SListView/Blueprint%20Folder.png" style="width: 70%; height: auto;"></center>
-
 <br>
 
-* Blueprint Folder를 우클릭하고 에디터를 열면 다음과 같이 뜬다.
+* Content를 우클릭하고 에디터를 열면 다음과 같이 뜬다.
 
-<center><img src="./../../../assets/img/Unreal/Editor/SListView/SList.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/SListView/SList.png" style="width: 80%; height: auto;"></center>

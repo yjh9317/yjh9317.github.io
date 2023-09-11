@@ -1,6 +1,6 @@
 ---
-title: Sending Data To Slate Widget
-date: 2023-09-09
+title: 2-Sending Data To Slate Widget
+date: 2023-09-08
 categories: [unreal,Editor]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
@@ -39,10 +39,8 @@ public:
 * 다음과 같이 만들면 다른 클래스에서 이 위젯 클래스에게 데이터를 보낼 때 사용할 수 있다.
   
 ```c++
-// 
 TSharedRef<SDockTab> FSuperManagerModule::OnSpawnAdvanceDeletionTab(const FSpawnTabArgs& SpawnTabArgs)
 {
-	// SDockTab(Slate) 생성 후 반환
 	return SNew(SDockTab).TabRole(ETabRole::NomadTab)
 	[
 		SNew(SAdvanceDeletionTab) 	// 괄호 안의 클래스 이름의 Slate 생성
@@ -50,13 +48,11 @@ TSharedRef<SDockTab> FSuperManagerModule::OnSpawnAdvanceDeletionTab(const FSpawn
 	];
 }
 ```
+* `SNew` 키워드는 `Slate 관련 클래스를 만들 때 사용`한다.
+
+  * ex) SButton, SCheckBox ...
 
 * 여기서 `대괄호 []` 는 `하나의 슬롯을 의미한다`.
-
-* 위 함수는 블루프린트 에디터에서 계층 구조에 텍스트를 하나 넣은 것과 동일하다
-
-
-
 
 <br>
 
@@ -73,8 +69,9 @@ void SAdvanceDeletionTab::Construct(const FArguments& InArgs)
     // ChildSlot은 Slate Widget의 기본 슬롯
 	ChildSlot
 	[
-		SNew(STextBlock) // Slate 텍스트 생성
-		.Text(FText::FromString(InArgs._TestString)) // 텍스트 전달
+		// SLATE_ARGUMENT에서 ArgName이 TestString이여서 _TestString으로 받아올 수 있음
+		SNew(STextBlock)
+		.Text(FText::FromString(InArgs._TestString))
 	];
 }
 ```
