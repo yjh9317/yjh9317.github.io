@@ -48,6 +48,12 @@ void SAdvanceDeletionTab::OnCheckBoxStateChanged(ECheckBoxState NewState, TShare
 ```
 * ECheckBoxState로 체크 박스에 대한 상태를 확인 후, switch에서 값에 맞게 처리
 
+<br>
+
+**사진**
+========
+
+
 * 체크
 
 <center><img src="./../../../assets/img/Unreal/Editor/SCheckBox/Check.png" style="width: 70%; height: auto;"></center>

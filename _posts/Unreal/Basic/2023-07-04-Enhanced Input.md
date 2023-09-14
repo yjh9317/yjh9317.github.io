@@ -19,18 +19,12 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 * 만약 안되어 있다면 `편집 -> 플러그인`으로 가서 다음 사진과 같이 체크버튼을 눌러야 한다.
 
-//
-//대충 사진
-//
 
 
 <br>
 
 * 그러고 나서 에디터창에서 다시 `편집 -> 프로젝트 세팅`으로 가서 다음과 같이 엔진 카테고리에서 입력으로 들어가고 Default Classes를 찾아 다음과 같이 변경해야 한다.
 
-//
-// 대충 사진
-//
 
 
 **핵심 컨셉**
@@ -89,16 +83,16 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 1. Triggered : 아래와 같은 상태로 변할 때
 (None -> Triggered, Ongoing -> Triggered, Triggered -> Triggered)
 
-2. Started : 키를 누른 그 프레임에 발동
+1. Started : 키를 누른 그 프레임에 발동
 (None -> Ongoing, None -> Triggered)
 
-3. Ongoing : 누르고 있던 키를 계속 누를 때
+1. Ongoing : 누르고 있던 키를 계속 누를 때
 (Ongoing -> Ongoing)
 
-4. Completed : 누르고 있던 키를 뗐을 때
+1. Completed : 누르고 있던 키를 뗐을 때
 (Ongoing -> None)
 
-5. Canceled : 트리거 상태가 끝났을 때
+1. Canceled : 트리거 상태가 끝났을 때
 (Triggered -> None)
 ```
 
@@ -115,8 +109,6 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
   * Negate을 이용하여 해당 입력의 부정(+면 -)값을 얻을 수 있다.
 
 
-// 사진
-
 
 <br>
 
@@ -125,6 +117,8 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ===============
 
 * C++ 코드에서 플레이어가 Enhanced Input을 사용하기 위해서는 사전 작업이 필요하다.
+
+* Actor 클래스에서도 되지만, 해당 Actor의 PlayerController 클래스에서도 할 수 있다.
 
 ```c++
 // 플레이어로 사용할 캐릭터의 BeginPlay

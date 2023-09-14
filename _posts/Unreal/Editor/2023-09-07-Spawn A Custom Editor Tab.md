@@ -1,6 +1,6 @@
 ---
-title: 1-Spawn A Custom Editor Tab
-date: 2023-09-08
+title: Spawn A Custom Editor Tab
+date: 2023-09-07
 categories: [unreal,Editor]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---

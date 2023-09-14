@@ -94,6 +94,8 @@ TArray<TSharedPtr<FAssetData>> FSuperManagerModule::GetAllAssetDataUnderSelected
 
 * FKey와 관련된 Input Event에 대해 컴파일 오류가 난다면 build.cs파일에서 `InputCore`를 넣어주면 된다
 
+* 행으로 추가할 때는 `OnGenerateRow 함수`를 사용하면 된다.
+
 ```c++
 void SAdvanceDeletionTab::Construct(const FArguments& InArgs)
 {
@@ -103,23 +105,34 @@ void SAdvanceDeletionTab::Construct(const FArguments& InArgs)
 	StoredAssetsData = InArgs._AssetsDataToStore;
 	
     +SVerticalBox::Slot()
-    .VAlign(VAlign_Fill)  // 이 값을 설정해야 스크롤이 작동
+    .VAlign(VAlign_Fill)
     [
         SNew(SScrollBox)
 
         +SScrollBox::Slot()
         [
-            SNew(SListView<TSharedPtr<FAssetData>>)
-            .ItemHeight(24.f)						// 세로 길이
-            .ListItemsSource(&StoredAssetsData)		// 에셋 데이터 배열
-            .OnGenerateRow(this,&SAdvanceDeletionTab::OnGenerateRowForList) // 델리게이트
+            ConstructAssetListView(); // ListView 생성하는 함수
         ]
     ]
 }
 
-// 각 행에 대해 버튼,체크박스 같은 것들을 추가할 때 사용
-TSharedRef<ITableRow> SAdvanceDeletionTab::OnGenerateRowForList(TSharedPtr<FAssetData> AssetDataToDisplay,
-	const TSharedRef<STableViewBase>& OwnerTable)
+
+TSharedRef<SListView<TSharedPtr<FAssetData>>> SAdvanceDeletionTab::ConstructAssetListView()
+{
+    // TSharedPtr<SListView<TSharedPtr<FAssetData>>> ConstructedAssetListView
+	ConstructedAssetListView = SNew(SListView<TSharedPtr<FAssetData>>)
+	.ItemHeight(24.f)	    // 세로 길이
+	.ListItemsSource(&StoredAssetsData) // 에셋 데이터 배열
+	.OnGenerateRow(this,&SAdvanceDeletionTab::OnGenerateRowForList); // 델리게이트
+
+	// ToSharedRef는 TSharedPtr함수를 TSharedRef로 변환하는 함수
+	return ConstructedAssetListView.ToSharedRef(); 
+}
+
+
+// 각 행에 대해 무언가 추가할 때 사용
+TSharedRef<ITableRow> SAdvanceDeletionTab::OnGenerateRowForList( TSharedPtr<FAssetData> AssetDataToDisplay, 
+const TSharedRef<STableViewBase>& OwnerTable)
 {
 	const FString DisplayAssetName = AssetDataToDisplay->AssetName.ToString();
 

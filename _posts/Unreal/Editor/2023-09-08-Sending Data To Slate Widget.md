@@ -1,5 +1,5 @@
 ---
-title: 2-Sending Data To Slate Widget
+title: Sending Data To Slate Widget
 date: 2023-09-08
 categories: [unreal,Editor]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
