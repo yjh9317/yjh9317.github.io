@@ -89,4 +89,4 @@ void FSuperManagerModule::OnAdvanceDeletionButtonClicked()
 
 * 생성한 에디터 탭
 
-<center><img src="./../../../assets/img/Unreal/Editor/SpawnACustomEditor/SpawnCustomEditor.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/SpawnACustomEditor/SpawnCustomEditor.png" style="width: 90%; height: auto;"></center>

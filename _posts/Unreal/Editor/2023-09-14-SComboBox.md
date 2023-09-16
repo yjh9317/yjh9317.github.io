@@ -62,7 +62,7 @@ TSharedRef<SComboBox<TSharedPtr<FString>>> SAdvanceDeletionTab::ConstructComboBo
 {
 	TSharedRef<SComboBox<TSharedPtr<FString>>> ConstructedComboBox
 	=SNew(SComboBox<TSharedPtr<FString>>)   // ComboBox 생성
-	.OptionsSource(&ComboBoxSourceItems)    // ComboBox에 사용될 리소스를 받는 함수
+	.OptionsSource(&ComboBoxSourceItems)    // OnGenerateComboContent 함수에 사용할 인자
 	.OnGenerateWidget(this, &SAdvanceDeletionTab::OnGenerateComboContent) // Combo 추가
 	.OnSelectionChanged(this,&SAdvanceDeletionTab::OnComboSelectionChanged) // 다른 Combo 선택할 때 함수호출
 	[
@@ -97,4 +97,4 @@ void SAdvanceDeletionTab::OnComboSelectionChanged(TSharedPtr<FString> SelectedOp
 
 * 좌측 상단에 Combox 생성
 
-<center><img src="./../../../assets/img/Unreal/Editor/ComboBox/ComboBox.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/ComboBox/ComboBox.png" style="width: 80%; height: auto;"></center>

@@ -87,11 +87,11 @@ void UQuickAssetAction::AddPrefixes()
 * 에디터에서 해당 함수 호출전
 
 
-<center><img src="./../../../assets/img/Unreal/Editor/PrefixToAssets/변경전.png" style="width: 60%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/PrefixToAssets/변경전.png" style="width: 90%; height: auto;"></center>
 
 
 <br>
 
 * 호출후
 
-<center><img src="./../../../assets/img/Unreal/Editor/PrefixToAssets/변경후.png" style="width: 60%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/PrefixToAssets/변경후.png" style="width: 90%; height: auto;"></center>

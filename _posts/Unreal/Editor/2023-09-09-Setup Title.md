@@ -62,4 +62,4 @@ void SAdvanceDeletionTab::Construct(const FArguments& InArgs)
 
 * Advance Deletion 이 중앙에 생긴 모습
 
-<center><img src="./../../../assets/img/Unreal/Editor/SetupTitle/Title.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/SetupTitle/Title.png" style="width: 90%; height: auto;"></center>

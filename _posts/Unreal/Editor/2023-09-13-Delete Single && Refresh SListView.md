@@ -84,8 +84,8 @@ void SAdvanceDeletionTab::RefreshAssetListView()
 
 * 삭제 버튼 누르면 ObjectTools::DeleteAssets 함수 호출이 됨
 
-<center><img src="./../../../assets/img/Unreal/Editor/Refresh%20SListView/DeleteBefore.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/Refresh%20SListView/DeleteBefore.png" style="width: 90%; height: auto;"></center>
 
 * 지우고 나서 Refresh되어서 삭제된 에셋이 리스트에 없음
 
-<center><img src="./../../../assets/img/Unreal/Editor/Refresh%20SListView/DeleteAfter.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/Refresh%20SListView/DeleteAfter.png" style="width: 90%; height: auto;"></center>

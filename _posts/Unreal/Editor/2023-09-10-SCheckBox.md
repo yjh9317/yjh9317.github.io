@@ -56,10 +56,10 @@ void SAdvanceDeletionTab::OnCheckBoxStateChanged(ECheckBoxState NewState, TShare
 
 * 체크
 
-<center><img src="./../../../assets/img/Unreal/Editor/SCheckBox/Check.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/SCheckBox/Check.png" style="width: 90%; height: auto;"></center>
 
 <br>
 
 * 체크 후 해제
 
-<center><img src="./../../../assets/img/Unreal/Editor/SCheckBox/UnCheck.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/SCheckBox/UnCheck.png" style="width: 90%; height: auto;"></center>

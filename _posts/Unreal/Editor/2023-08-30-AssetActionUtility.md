@@ -91,4 +91,4 @@ void UQuickAssetAction::TestFunc()
 
 * 에디터에 TestFunc를 추가
 
-<center><img src="./../../../assets/img/Unreal/Editor/AssetAction/TestFunc.png" style="width: 50%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/AssetAction/TestFunc.png" style="width: 60%; height: auto;"></center>

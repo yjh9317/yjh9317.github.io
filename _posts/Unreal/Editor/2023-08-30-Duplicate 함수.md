@@ -103,10 +103,10 @@ void UQuickAssetAction::DuplicateAssets(int32 NumOfDuplicates)
 
 * 에디터에서 다음과 같이 창이 뜨면 매개변수값을 넣어주고 확인을 누르면
 
-<center><img src="./../../../assets/img/Unreal/Editor/Duplicate/Duplicate.png" style="width: 50%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/Duplicate/Duplicate.png" style="width: 60%; height: auto;"></center>
 
 <br>
 
 * 다음과 같이 5개의 복사된 에셋이 생성된다.
 
-<center><img src="./../../../assets/img/Unreal/Editor/Duplicate/Duplicate result.png" style="width: 80%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/Duplicate/Duplicate result.png" style="width: 90%; height: auto;"></center>

@@ -167,7 +167,7 @@ bool FSuperManagerModule::DeleteMultipleAssetsForAssetList(const TArray<FAssetDa
 
 * 선택된 에셋들에 대해서 `ObjectTools::DeleteAssets`가 호출됨
 
-<center><img src="./../../../assets/img/Unreal/Editor/AllButton/DeleteAllButton.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/AllButton/DeleteAllButton.png" style="width: 90%; height: auto;"></center>
 
 <br>
 

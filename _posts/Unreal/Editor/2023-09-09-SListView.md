@@ -154,4 +154,4 @@ const TSharedRef<STableViewBase>& OwnerTable)
 
 * Content를 우클릭하고 에디터를 열면 다음과 같이 뜬다.
 
-<center><img src="./../../../assets/img/Unreal/Editor/SListView/SList.png" style="width: 80%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/SListView/SList.png" style="width: 90%; height: auto;"></center>

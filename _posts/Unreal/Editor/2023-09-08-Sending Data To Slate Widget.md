@@ -84,5 +84,5 @@ void SAdvanceDeletionTab::Construct(const FArguments& InArgs)
 * i am passing data가 적힌 모습
 
 
-<center><img src="./../../../assets/img/Unreal/Editor/SendingDataToSlate/passing%20data.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/SendingDataToSlate/passing%20data.png" style="width: 90%; height: auto;"></center>
 

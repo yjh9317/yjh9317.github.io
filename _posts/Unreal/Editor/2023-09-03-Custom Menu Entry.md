@@ -12,7 +12,14 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 * build.cs 파일에서 `"ContentBrowser"`를 넣어줘야 하고 메뉴 엔트리는 플러그인 모듈에서 추가한다
 
+* 모듈에서 진행하므로 모듈이 시작하면서 호출되는 함수인 StartModule에 InitCbMenuExtention에서 호출해야 한다.
+
  ```c++
+void FSuperManagerModule::StartupModule()
+{
+	InitCBMenuExtention();
+}
+
  void FSuperManagerModule::InitCBMenuExtention()
 {
     // 컨텐츠 브라우저 모듈을 가져온다,
@@ -67,7 +74,7 @@ void FSuperManagerModule::AddCBMenuEntry(FMenuBuilder& MenuBuilder)
 
 
 
-<center><img src="./../../../assets/img/Unreal/Editor/Custom%20Menu%20Entry/DeleteUnusedAssetButton.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/Custom%20Menu%20Entry/DeleteUnusedAssetButton.png" style="width: 90%; height: auto;"></center>
 
 
 <br>
@@ -79,6 +86,6 @@ void FSuperManagerModule::AddCBMenuEntry(FMenuBuilder& MenuBuilder)
 
 * 편집->에디터 설정에서 다음과 같이 검색한 후 체크해주고 에디터를 재시작하면 된다.
 
-<center><img src="./../../../assets/img/Unreal/Editor/Custom%20Menu%20Entry/UI Extension.png" style="width: 70%; height: auto;"></center>
+<center><img src="./../../../assets/img/Unreal/Editor/Custom%20Menu%20Entry/UI Extension.png" style="width: 90%; height: auto;"></center>
 
 
