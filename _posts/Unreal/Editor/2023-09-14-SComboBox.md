@@ -37,6 +37,7 @@ TSharedPtr<STextBlock> ComboDisplayTextBlock;
 ```c++
 void SAdvanceDeletionTab::Construct(const FArguments& InArgs)
 {
+	ComboBoxSourceItems.Empty();
 	ComboBoxSourceItems.Add(MakeShared<FString>(TEXT("List All Available Assets")));
 
     // ...
