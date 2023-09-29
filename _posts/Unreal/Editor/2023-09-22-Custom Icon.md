@@ -149,4 +149,30 @@ void FSuperManagerModule::RegisterAdvanceDeletionTab()
 
 <center><img src="./../../../assets/img/Unreal/Editor/CustomIcon/Custom Editor Icon.png" style="width: 70%; height: auto;"></center>
 
+<br>
+
+**ShutDown**
+=======
+
+* 그리고 생성했던 SlateStyle들은 따로 UnRegister 함수를 해준다.
+
+```c++
+// SuperManagerStyle.cpp
+void FSuperManagerStyle::ShutDown()
+{
+	if(CreatedSlateStyleSet.IsValid())
+	{
+		FSlateStyleRegistry::UnRegisterSlateStyle(*CreatedSlateStyleSet);
+		CreatedSlateStyleSet.Reset();
+	}
+}
+
+// SuperManager.cpp
+void FSuperManagerModule::ShutdownModule()
+{
+	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(FName("AdvanceDeletion"));
+
+	FSuperManagerStyle::ShutDown();
+}
+```
 
