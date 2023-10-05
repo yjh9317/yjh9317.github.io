@@ -1,7 +1,7 @@
 ---
 title: Dynamic && Multicast Deletgate && Event
 date: 2023-09-21
-categories: [unreal, 용어]
+categories: [unreal, Basic]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 

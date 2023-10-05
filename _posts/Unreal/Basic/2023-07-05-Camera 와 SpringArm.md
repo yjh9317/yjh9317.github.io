@@ -1,7 +1,7 @@
 ---
 title: Camera와 SpringArm
 date: 2023-07-05
-categories: [unreal,Basic]
+categories: [unreal, Basic]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
