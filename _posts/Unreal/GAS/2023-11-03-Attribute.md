@@ -113,20 +113,20 @@ public:
 
 	UPROPERTY(BlueprintReadOnly, ReplicatedUsing= OnRep_Health) // 변수 Replicate
 	FGameplayAttributeData Health;
-    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Health); // Get,Set 함수 선언
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, Health); // Get,Set 함수 선언
 
 
-    UPROPERTY(BlueprintReadOnly, ReplicatedUsing= OnRep_MaxHealth)
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing= OnRep_MaxHealth)
 	FGameplayAttributeData MaxHealth;
-    ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxHealth);
+	ATTRIBUTE_ACCESSORS(UAuraAttributeSet, MaxHealth);
 
 
 
-    // OnRep : 변수의 값이 바뀌면 호출되는 함수
-    UFUNCTION()
+	// OnRep : 변수의 값이 바뀌면 호출되는 함수
+	UFUNCTION()
 	void OnRep_Health(const FGameplayAttributeData& OldHealth) const;
 
-    UFUNCTION()
+	UFUNCTION()
 	void OnRep_MaxHealth(const FGameplayAttributeData& OldMaxHealth) const;
 }
 ```
@@ -147,9 +147,9 @@ void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>&
                                                     OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-	
+
 	// REPNOTIFY_Always: 변수의 값이 바뀌지 않아도 항상 Replicate
-    // REPNOTIFY_OnChanged : 변수의 값이 바뀌면 Replicate 
+	// REPNOTIFY_OnChanged : 변수의 값이 바뀌면 Replicate 
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, Health, COND_None, REPNOTIFY_Always);
 	DOREPLIFETIME_CONDITION_NOTIFY(UAuraAttributeSet, MaxHealth, COND_None, REPNOTIFY_Always);
 }
