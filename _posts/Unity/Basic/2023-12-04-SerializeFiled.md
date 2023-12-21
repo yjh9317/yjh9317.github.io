@@ -1,7 +1,7 @@
 ---
 title: SerializeFiled
 date: 2023-12-04
-categories: [unity,basic]
+categories: [unity,unitybasic]
 tags: [unity]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
