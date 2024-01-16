@@ -1,0 +1,219 @@
+<!DOCTYPE html><html lang="ko" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="항목31 파일 사이의 컴파일 의존성을 최대로 줄이자" /><meta property="og:locale" content="ko" /><meta name="description" content="C++는 인터페이스와 구현을 깔끔하게 분리하는데에 있어 일가견이 없다" /><meta property="og:description" content="C++는 인터페이스와 구현을 깔끔하게 분리하는데에 있어 일가견이 없다" /><link rel="canonical" href="https://yjh9317.github.io/posts/%ED%95%AD%EB%AA%A931-%ED%8C%8C%EC%9D%BC-%EC%82%AC%EC%9D%B4%EC%9D%98-%EC%BB%B4%ED%8C%8C%EC%9D%BC-%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84-%EC%B5%9C%EB%8C%80%EB%A1%9C-%EC%A4%84%EC%9D%B4%EC%9E%90/" /><meta property="og:url" content="https://yjh9317.github.io/posts/%ED%95%AD%EB%AA%A931-%ED%8C%8C%EC%9D%BC-%EC%82%AC%EC%9D%B4%EC%9D%98-%EC%BB%B4%ED%8C%8C%EC%9D%BC-%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84-%EC%B5%9C%EB%8C%80%EB%A1%9C-%EC%A4%84%EC%9D%B4%EC%9E%90/" /><meta property="og:site_name" content="yjh9317" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2023-08-06T00:00:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="항목31 파일 사이의 컴파일 의존성을 최대로 줄이자" /><meta name="twitter:site" content="@twitter_username" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-06T00:00:00+09:00","datePublished":"2023-08-06T00:00:00+09:00","description":"C++는 인터페이스와 구현을 깔끔하게 분리하는데에 있어 일가견이 없다","headline":"항목31 파일 사이의 컴파일 의존성을 최대로 줄이자","mainEntityOfPage":{"@type":"WebPage","@id":"https://yjh9317.github.io/posts/%ED%95%AD%EB%AA%A931-%ED%8C%8C%EC%9D%BC-%EC%82%AC%EC%9D%B4%EC%9D%98-%EC%BB%B4%ED%8C%8C%EC%9D%BC-%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84-%EC%B5%9C%EB%8C%80%EB%A1%9C-%EC%A4%84%EC%9D%B4%EC%9E%90/"},"url":"https://yjh9317.github.io/posts/%ED%95%AD%EB%AA%A931-%ED%8C%8C%EC%9D%BC-%EC%82%AC%EC%9D%B4%EC%9D%98-%EC%BB%B4%ED%8C%8C%EC%9D%BC-%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84-%EC%B5%9C%EB%8C%80%EB%A1%9C-%EC%A4%84%EC%9D%B4%EC%9E%90/"}</script><title>항목31 파일 사이의 컴파일 의존성을 최대로 줄이자 | yjh9317</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="yjh9317"><meta name="application-name" content="yjh9317"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> </a></div><div class="site-title mt-3"> <a href="/">yjh9317</a></div><div class="site-subtitle font-italic">코딩열심히하려는사람</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/yjh9317" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>항목31 파일 사이의 컴파일 의존성을 최대로 줄이자</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>항목31 파일 사이의 컴파일 의존성을 최대로 줄이자</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1691247600" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Aug 6, 2023 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/username">Yang jeong hyeon</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2894 words"> <em>16 min</em> read</span></div></div></div><div class="post-content"><ul><li><p>C++는 인터페이스와 구현을 깔끔하게 분리하는데에 있어 일가견이 없다</p><li><p>C++의 클래스 정의는 클래스 인터페이스만 지정하는 것이 아닌, 구현 세부사항까지 상당히 많이 지정하고 있다.</p></ul><h2 id="예시"><span class="mr-2">예시</span><a href="#예시" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+
+    <span class="nl">public:</span>
+        <span class="n">Person</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">Date</span><span class="o">&amp;</span> <span class="n">birthday</span><span class="p">,</span>
+               <span class="k">const</span> <span class="n">Address</span><span class="o">&amp;</span> <span class="n">addr</span><span class="p">);</span>
+
+        <span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="n">string</span> <span class="n">birthDate</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="n">string</span> <span class="n">address</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+
+    <span class="nl">private:</span>
+        <span class="n">string</span> <span class="n">theName</span><span class="p">;</span>         <span class="c1">// 구현 세부사항</span>
+        <span class="n">Date</span> <span class="n">theBirthDate</span><span class="p">;</span>      <span class="c1">// 구현 세부사항</span>
+        <span class="n">Address</span> <span class="n">theAddress</span><span class="p">;</span>     <span class="c1">// 구현 세부사항</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>위 코드에서 string 타입과 Date 타입과 Address 타입이 어떻게 정의됐는지 몰라 컴파일자체가 불가능하다.</p><li><p>이들이 정의된 정보를 가져 와야 하고 이때 사용하는 지시자가 <code class="language-plaintext highlighter-rouge">#include</code>이다.</p><li><p>따라서 Person 클래스를 정의하는 파일에 다음과 같은 코드를 발견하게 된다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp">
+#include</span> <span class="cpf">"date.h"</span><span class="cp">
+#include</span> <span class="cpf">"address.h"</span><span class="cp">
+</span></pre></table></code></div></div><ul><li><p>그런데 이 부분이 골칫덩이다.</p><li><p><code class="language-plaintext highlighter-rouge">#include</code>문은 Person을 정의한 파일과 위의 헤더 파일들 사이에 <code class="language-plaintext highlighter-rouge">컴파일 의존성(compliation dependency)</code>란 것이 엮여져 버린다.</p><li><p><code class="language-plaintext highlighter-rouge">위 헤더 파일 셋 중 하나라도 바뀌든가,아니면 이 헤더 파일들과 엮여있는 다른 헤더 파일들이 바뀌기만 해도 Person 클래스를 정의한 파일은 컴파일러에서 문제가 생긴다.</code></p><ul><li>심지어 Person을 사용하는 다른 파일들까지 다시 컴파일되어야 한다.</ul></ul><p><br /></p><h2 id="전방-선언으로-바꾸기"><span class="mr-2"><strong>전방 선언으로 바꾸기</strong></span><a href="#전방-선언으로-바꾸기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li>C++에서 구현 세부사항을 따로 떼어 지정하는 식으로 하는 방법을 생각하는 사람도 있을 것이다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>
+    <span class="k">class</span> <span class="nc">string</span><span class="p">;</span>       <span class="c1">// 전방 선언</span>
+<span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">Date</span><span class="p">;</span>             <span class="c1">// 전방 선언</span>
+<span class="k">class</span> <span class="nc">Address</span><span class="p">;</span>          <span class="c1">// 전방 선언</span>
+
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>이런 코드가 되면 Person 사용자는 Person 클래스의 인터페이스가 바꼈을때만 컴파일을 다시 하면 되니 괜찮아 보인다.</p><li><p>아이디어는 좋아 보이지만 이러한 방식에도 문제가 두 가지나 있다.</p></ul><p><br /></p><h4 id="첫-번째-string은-사실-클래스가-아닌-typedef로-정의한-타입-동의어이다"><span class="mr-2">첫 번째, <code class="language-plaintext highlighter-rouge"><span class="mr-2">string은 사실 클래스가 아닌 typedef로 정의한 타입 동의어이다.</code></span><a href="#첫-번째-string은-사실-클래스가-아닌-typedef로-정의한-타입-동의어이다" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><ul><li><p>string은 <code class="language-plaintext highlighter-rouge">basic_string&lt;char&gt;를 typedef한 형식</code>이다.</p><li><p>string을 제대로 전방 선언하기 위해선, 템플릿이 들어있는 파일을 추가로 끌고 와야 한다.</p><li><p>하지만 표준 라이브러리는 어지간한 경우가 아니면 컴파일시 병목요인이 되진 않는다</p></ul><h4 id="두-번째-컴파일러가-컴파일-도중에-객체들의-크기를-전부-알아야-하는데에-문제가-있다"><span class="mr-2">두 번째, <code class="language-plaintext highlighter-rouge"><span class="mr-2">컴파일러가 컴파일 도중에 객체들의 크기를 전부 알아야 하는데에 문제가 있다.</code></span><a href="#두-번째-컴파일러가-컴파일-도중에-객체들의-크기를-전부-알아야-하는데에-문제가-있다" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>                  <span class="c1">// int 정의</span>
+
+    <span class="n">Person</span> <span class="n">p</span> <span class="p">{</span> <span class="n">params</span> <span class="p">};</span>    <span class="c1">// Person 정의</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>컴파일러는 int 변수 하나를 담기 위해선 int 하나 만큼의 메모리를 사용한다는 것을 알지만 Person 객체 하나를 담기 위해서 얼만큼의 크기가 드는지 알 수 없다</ul><p><br /></p><ul><li>만약 포인터로 변경한다면 포인터로 실제 객체 구현부 숨기기가 가능하다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Person</span><span class="o">*</span> <span class="n">p</span><span class="p">;</span> 
+<span class="p">}</span>
+</pre></table></code></div></div><p><br /></p><h2 id="pimpl-관용구"><span class="mr-2"><strong>pimpl 관용구</strong></span><a href="#pimpl-관용구" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li>위처럼 포인터로 실제 구현부를 숨기는 그런 설계인 한가지 방법이 있다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="c1">   // 표준 라이브러리 구성요소는</span><span class="cp">
+</span>                    <span class="c1">// 전방 선언을 하면 안된다</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="c1">   // shared_ptr 헤더</span><span class="cp">
+</span>
+<span class="k">class</span> <span class="nc">PersonImpl</span><span class="p">;</span>   <span class="c1">// Person의 구현 클래스에 대한 전방 선언</span>
+
+
+<span class="k">class</span> <span class="nc">Date</span><span class="p">;</span>         <span class="c1">// Person 구현 클래스 안에서 </span>
+<span class="k">class</span> <span class="nc">Address</span><span class="p">;</span>      <span class="c1">// 사용하는 것들에 대한 전방 선언</span>
+
+
+<span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="p">...</span>
+
+    <span class="nl">private:</span>
+        <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">PersonImpl</span><span class="o">&gt;</span> <span class="n">pImpl</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>Person 클래스에 들어 있는 데이터 멤버는 <code class="language-plaintext highlighter-rouge">구현 클래스에 대한 포인터</code>뿐이다.</p><li><p>이런 설계는 패턴으로 굳어져 있어 <code class="language-plaintext highlighter-rouge">pimpl 관용구(pointer to implementation)</code>라고 한다.</p><li><p>이렇게 설계하면 Person의 사용자는 자질구레한 세부사항과 완전히 갈라서게 된다.</p><li><p>Person 클래스에 대한 구현 클래스 부분은 마음대로 고칠 수 있지만, Person 사용자 쪽에서는 컴파일을 다시 할 필요가 없다.</p><ul><li>즉, <code class="language-plaintext highlighter-rouge">구현 세부사항이 직접 발을 걸치는 코드를 작성할 여지가 사라진다.</code></ul></ul><p><br /></p><h2 id="인터페이스와-구현을-둘로-나누기"><span class="mr-2"><strong>인터페이스와 구현을 둘로 나누기</strong></span><a href="#인터페이스와-구현을-둘로-나누기" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><p>인터페이스와 구현을 둘로 나누는 열쇠는 두 가지가 있다.</p><ul><li><p><code class="language-plaintext highlighter-rouge">정의부에 대한 의존성(dependencies on definitions)</code></p><li><p><code class="language-plaintext highlighter-rouge">선언부에 대한 의존성(dependencies on declarations)</code></p></ul><li><p>이것이 컴파일 의존성을 최소화하는 핵심 원리이다.</p><li><p>헤더 파일을 만들 때는 실용적으로 의미를 갖는 한 자체조달(self-sufficient) 형태로 만들고,<br /> 정 안되면 다른 파일에 대해 의존성을 갖도록 하되 정의부가 아닌 선언부에 대해 의존성을 갖도록 만드는 것이다.</p><li><p>즉, 정리하면 다음과 같다.</p></ul><h2 id="정리"><span class="mr-2">정리</span><a href="#정리" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><h3 id="객체-참조자-및-포인터로-충분한-경우에는-객체를-직접-쓰지-않는다"><span class="mr-2">객체 참조자 및 포인터로 충분한 경우에는 객체를 직접 쓰지 않는다.</span><a href="#객체-참조자-및-포인터로-충분한-경우에는-객체를-직접-쓰지-않는다" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>어떤 타입에 대한 참조자 및 포인터를 정의할 때는 그 타입의 선언부만 필요하다.<li>반면, 어떤 타입의 객체를 정의할 떄는 그 타입의 정의가 준비되어 있어야 한다.</ul><h3 id="할-수-있으면-클래스-정의-대신-클래스-선언에-대한-최대한-의존하도록-만들자"><span class="mr-2">할 수 있으면 클래스 정의 대신 클래스 선언에 대한 최대한 의존하도록 만들자.</span><a href="#할-수-있으면-클래스-정의-대신-클래스-선언에-대한-최대한-의존하도록-만들자" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>어떤 클래스를 사용하는 함수를 선언할 때는 그 클래스의 정의를 가져오지 않아도 된다.<li>심지어 그 클래스 객체를 값으로 전달하건 반환하더라도 클래스 정의가 필요 없다.</ul><p><br /></p><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1">// 클래스 선언</span>
+<span class="k">class</span> <span class="nc">Date</span><span class="p">;</span>
+
+<span class="c1">// Date 클래스의 정의를 가져오지 않아도 된다.</span>
+<span class="n">Date</span> <span class="nf">today</span><span class="p">();</span>       
+<span class="kt">void</span> <span class="nf">clearAppointments</span><span class="p">(</span><span class="n">Date</span> <span class="n">d</span><span class="p">);</span>
+</pre></table></code></div></div><ul><li><p>함수 선언이 되어있는 라이브러리의 헤더 파일쪽에 부담을 주지 않고 실제 함수 호출이 일어나는 사용자의 소스파일 쪽에 전가하는 방법이다.</p><li><p>이렇게 하면 실제로 쓰지 않을 타입 정의에 대해 사용자가 의존성을 끌어오는 거추장스러움을 막을 수 있다.</p></ul><h3 id="선언부와-정의부에-대해-별도의-헤더-파일을-제공하자"><span class="mr-2">선언부와 정의부에 대해 별도의 헤더 파일을 제공하자.</span><a href="#선언부와-정의부에-대해-별도의-헤더-파일을-제공하자" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p>하나는 <code class="language-plaintext highlighter-rouge">선언부를 위한 헤더 파일</code>이고 다른 하나는 <code class="language-plaintext highlighter-rouge">정의부를 위한 헤더파일</code>이다.</p><li><p>한쪽에서 어떤 선언이 바뀌면 다른쪽도 똑같이 바꿔야 하기 때문에 이 두 파일은 짝으로 관리해야 한다.</p><li><p>그렇기 때문에 라이브러리 사용자 쪽에서는 전방 선언 대신 선언부 헤더 파일을 항상 #include해야 하고,<br />라이브러리 제작자 쪽에서는 헤더 파일 두 개를 짝지어 제공하는 일을 잊으면 안된다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="c1">// 사용자</span>
+<span class="cp">#include</span> <span class="cpf">"datefwd.h"</span><span class="c1">    // Date 클래스를 선언하고 있는 헤더 파일</span><span class="cp">
+</span>
+<span class="n">Date</span> <span class="nf">today</span><span class="p">();</span>       
+<span class="kt">void</span> <span class="nf">clearAppointments</span><span class="p">(</span><span class="n">Date</span> <span class="n">d</span><span class="p">);</span>
+</pre></table></code></div></div><ul><li><p>datefwd 헤더파일은 &lt;iosfwd&gt; 헤더를 보고 따온 것</p><li><p>iosfwd 파일을 알아두면 좋은 점이 <code class="language-plaintext highlighter-rouge">이번 항목의 내용이 템플릿이 아닌 파일뿐만 아니라 템플릿에도 들어맞다는 사실을 확인하기에 좋다</code></p><li><p>항목30에서 대다수의 빌드 환경에서 템플릿 정의가 헤더파일에 있다고 했지만, <br /> 몇몇 빌드 환경에서는 헤더가 아닌 파일에 템플릿 정의가 포함된 경우도 있다.</p><li><p>즉, 선언부 전용 헤더를 제공하자는 이야기가 템플릿에 대해서도 의미가 없지 않고, &lt;iosfwd&gt;가 바로 그런 헤더의 대표이다.</p></ul><p><br /></p><h1 id="핸들-클래스"><strong>핸들 클래스</strong></h1><ul><li><p>pimpl 관용구를 사용하는 Person 클래스를 가리켜 <code class="language-plaintext highlighter-rouge">핸들 클래스(handle class)</code>라고 한다.</p><li><p>이런 핸들 클래스의 활용 방법은 <code class="language-plaintext highlighter-rouge">핸들 클래스에서 어떤 함수를 호출하게 되어 있다면, 핸들 클래스에 대응되는 구현 클래스쪽으로 함수 호출을 전달해서 구현 클래스가 실제 작업을 수행하게 만들면 된다.</code></p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"Person.h"</span><span class="c1">     // Person 클래스</span><span class="cp">
+</span>
+<span class="cp">#include</span> <span class="cpf">"PersonImpl.h"</span><span class="c1"> // PersonImpl 클래스</span><span class="cp">
+</span>
+
+<span class="n">Person</span><span class="o">::</span><span class="n">Person</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span> <span class="k">const</span> <span class="n">Date</span><span class="o">&amp;</span> <span class="n">birthday</span><span class="p">,</span>
+               <span class="k">const</span> <span class="n">Address</span><span class="o">&amp;</span> <span class="n">addr</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">pImpl</span><span class="p">(</span><span class="k">new</span> <span class="nf">PersonImpl</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">birthday</span><span class="p">,</span> <span class="n">addr</span><span class="p">))</span> <span class="c1">// PersonImpl은 Person과 일대일 대응</span>
+    <span class="p">{</span> <span class="p">}</span> 
+
+<span class="n">string</span> <span class="n">Person</span><span class="o">::</span><span class="n">name</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">pImpl</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>Person 클래스에서 PersonImpl 클래스의 함수를 사용하는 형태</ul><p><br /></p><h2 id="인터페이스-클래스"><span class="mr-2">인터페이스 클래스</span><a href="#인터페이스-클래스" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><p>핸들 클래스 대신 다른 방법을 사용하고 싶다면 Person을 특수 형태의 추상 기본 클래스, 이른 바 <code class="language-plaintext highlighter-rouge">인터페이스 클래스</code>로 만든는 방법도 있다.</p><li><p>어떤 기능을 나타내는 인터페이스를 추상 기본 클래스를 통해 마련하고, 이 클래스로부터 파생 클래스를 만들면 된다.</p><li><p><code class="language-plaintext highlighter-rouge">파생이 목적이기 떄문에 데이터 멤버, 생성자가 없고 하나의 가상 소멸자와 인터페이스를 구성하는 순수 가상함수만 들어 있다.</code></p><li><p>인터페이스 클래스는 자바 및 닷넷의 ‘인터페이스’와 흡사하지만, <code class="language-plaintext highlighter-rouge">C++는 자바와 닷넷과 달리 인터페이스에 제약을 가하지 않는다.</code></p><ul><li>자바 및 닷넷의 인터페이스는 데이터 멤버나 함수 구현이 안되지만 C++는 가능하다.</ul></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Person</span> <span class="p">{</span>
+
+  <span class="nl">public:</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">Person</span><span class="p">();</span>
+
+    <span class="k">virtual</span> <span class="n">string</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="n">string</span> <span class="n">birthDate</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="n">string</span> <span class="n">address</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li>이 클래스를 사용하려면 Person에 대한 포인터 or 참조자로 접근해야 한다.</ul><p><br /></p><h2 id="인터페이스-클래스-객체-생성-수단"><span class="mr-2"><strong>인터페이스 클래스 객체 생성 수단</strong></span><a href="#인터페이스-클래스-객체-생성-수단" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><p>인터페이스 클래스를 사용하기 위해선 객체 생성 수단이 최소 하나는 있어야 한다.</p><li><p>대개 이 문제를 <code class="language-plaintext highlighter-rouge">파생 클래스의 생성자 역할을 대신하는 어떤 함수를 만들어 놓고 이것을 호출하여 해결하려고 한다.</code></p><ul><li>이러한 함수를 가리켜 <code class="language-plaintext highlighter-rouge">팩토리 함수</code> or <code class="language-plaintext highlighter-rouge">가상 생성자</code> 라고 한다</ul></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Person</span><span class="p">{</span>
+
+  <span class="nl">public:</span>
+    <span class="k">static</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span>
+               <span class="n">create</span><span class="p">(</span><span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">,</span>
+                      <span class="k">const</span> <span class="n">Date</span><span class="o">&amp;</span> <span class="n">birthday</span><span class="p">,</span>
+                      <span class="k">const</span> <span class="n">Address</span><span class="o">&amp;</span> <span class="n">addr</span><span class="p">);</span>
+<span class="p">};</span>
+
+<span class="c1">// 사용자 쪽</span>
+<span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="n">Date</span> <span class="n">dateofBirth</span><span class="p">;</span>
+<span class="n">Address</span> <span class="n">address</span><span class="p">;</span>
+
+<span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">pp</span><span class="p">(</span><span class="n">Person</span><span class="o">::</span><span class="n">create</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">dateofBirth</span><span class="p">,</span><span class="n">address</span><span class="p">));</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="o">&lt;&lt;</span> <span class="n">pp</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">()</span>            <span class="c1">// Person 인터페이스를 통해 객체 사용</span>
+         <span class="o">&lt;&lt;</span> <span class="n">pp</span><span class="o">-&gt;</span><span class="n">birthDate</span><span class="p">()</span>
+         <span class="o">&lt;&lt;</span> <span class="n">pp</span><span class="o">-&gt;</span><span class="n">address</span><span class="p">();</span>
+</pre></table></code></div></div><p><br /></p><h1 id="결론">결론</h1><blockquote class="prompt-tip"><div><p>이것만은 잊지 말자!</p><ul><li><p>컴파일 의존성을 최소화하는 작업의 배경이 되는 가장 기본적인 아이디어는 ‘정의’ 대신 <br />‘선언’에 의존하게 만들자는 것이다. 이 아이디어에 기반한 두 가지 접근 방법은 <br />핸들 클래스와 인터페이스 클래스다.</p><li><p>라이브러리 헤더는 그 자체로 모든것을 갖추어야 하며 선언부만 갖고있는 형태여야 한다 <br />이 규칙은 템플릿이 쓰이든, 안쓰이든 동일하게 적용한다.</p></ul></div></blockquote></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/effective-c/'>Effective C++</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/effective-c/" class="post-tag no-text-decoration" >effective c++</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=%ED%95%AD%EB%AA%A931+%ED%8C%8C%EC%9D%BC+%EC%82%AC%EC%9D%B4%EC%9D%98+%EC%BB%B4%ED%8C%8C%EC%9D%BC+%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84+%EC%B5%9C%EB%8C%80%EB%A1%9C+%EC%A4%84%EC%9D%B4%EC%9E%90+-+yjh9317&url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25ED%2595%25AD%25EB%25AA%25A931-%25ED%258C%258C%25EC%259D%25BC-%25EC%2582%25AC%25EC%259D%25B4%25EC%259D%2598-%25EC%25BB%25B4%25ED%258C%258C%25EC%259D%25BC-%25EC%259D%2598%25EC%25A1%25B4%25EC%2584%25B1%25EC%259D%2584-%25EC%25B5%259C%25EB%258C%2580%25EB%25A1%259C-%25EC%25A4%2584%25EC%259D%25B4%25EC%259E%2590%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=%ED%95%AD%EB%AA%A931+%ED%8C%8C%EC%9D%BC+%EC%82%AC%EC%9D%B4%EC%9D%98+%EC%BB%B4%ED%8C%8C%EC%9D%BC+%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84+%EC%B5%9C%EB%8C%80%EB%A1%9C+%EC%A4%84%EC%9D%B4%EC%9E%90+-+yjh9317&u=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25ED%2595%25AD%25EB%25AA%25A931-%25ED%258C%258C%25EC%259D%25BC-%25EC%2582%25AC%25EC%259D%25B4%25EC%259D%2598-%25EC%25BB%25B4%25ED%258C%258C%25EC%259D%25BC-%25EC%259D%2598%25EC%25A1%25B4%25EC%2584%25B1%25EC%259D%2584-%25EC%25B5%259C%25EB%258C%2580%25EB%25A1%259C-%25EC%25A4%2584%25EC%259D%25B4%25EC%259E%2590%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25ED%2595%25AD%25EB%25AA%25A931-%25ED%258C%258C%25EC%259D%25BC-%25EC%2582%25AC%25EC%259D%25B4%25EC%259D%2598-%25EC%25BB%25B4%25ED%258C%258C%25EC%259D%25BC-%25EC%259D%2598%25EC%25A1%25B4%25EC%2584%25B1%25EC%259D%2584-%25EC%25B5%259C%25EB%258C%2580%25EB%25A1%259C-%25EC%25A4%2584%25EC%259D%25B4%25EC%259E%2590%2F&text=%ED%95%AD%EB%AA%A931+%ED%8C%8C%EC%9D%BC+%EC%82%AC%EC%9D%B4%EC%9D%98+%EC%BB%B4%ED%8C%8C%EC%9D%BC+%EC%9D%98%EC%A1%B4%EC%84%B1%EC%9D%84+%EC%B5%9C%EB%8C%80%EB%A1%9C+%EC%A4%84%EC%9D%B4%EC%9E%90+-+yjh9317" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/%ED%95%A8%EC%88%98/">함수</a><li><a href="/posts/2.%EC%97%B4%EB%A6%BC-%EB%8B%AB%ED%9E%98-%EC%9B%90%EC%B9%99/">열림-닫힘 원칙</a><li><a href="/posts/4.%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%B6%84%EB%A6%AC-%EC%9B%90%EC%B9%99/">인터페이스 분리 원칙</a><li><a href="/posts/5.%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%97%AD%EC%A0%84-%EC%9B%90%EC%B9%99/">의존성 역전 원칙</a><li><a href="/posts/Table/">Table</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/effective-c/">effective c++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/%ED%95%AD%EB%AA%A926-%EB%B3%80%EC%88%98-%EC%A0%95%EC%9D%98%EB%8A%94-%EB%8A%A6%EC%B6%9C-%EC%88%98-%EC%9E%88%EB%8A%94-%EB%8D%B0%EA%B9%8C%EC%A7%80-%EB%8A%A6%EC%B6%94%EB%8A%94-%EA%B7%BC%EC%84%B1%EC%9D%84-%EB%B0%9C%ED%9C%98%ED%95%98%EC%9E%90/"><div class="card-body"> <em class="small" data-ts="1690038000" data-df="ll" > Jul 23, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>항목26 - 변수 정의는 늦출 수 있는 데까지 늦추는 근성을 발휘하자</h3><div class="text-muted small"><p> 항목26 변수 정의는 늦출 수 있는 데까지 늦추는 근성을 발휘하자 생성자 혹은 소멸자를 지닌 타입으로 변수를 정의하면 반드시 소비되는 비용이 있다. 하나는 프로그램 제어 흐름이 변수의 정의에 닿을 때 생성자가 호출되는 비용이고, 또 하나는 그 변수가 유효범위를 벗어날 때 소멸자가 호출되는 비용이다. ...</p></div></div></a></div><div class="card"> <a href="/posts/%ED%95%AD%EB%AA%A927-%EC%BA%90%EC%8A%A4%ED%8C%85%EC%9D%80-%EC%A0%88%EC%95%BD,-%EB%98%90-%EC%A0%88%EC%95%BD!-%EC%9E%8A%EC%A7%80%EB%A7%90%EC%9E%90/"><div class="card-body"> <em class="small" data-ts="1690124400" data-df="ll" > Jul 24, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>항목27 캐스팅은 절약, 또 절약! 잊지말자</h3><div class="text-muted small"><p> 항목27 캐스팅은 절약, 또 절약! 잊지말자 C++의 동작 규칙은 어떤 일이 있어도 타입 에러가 생기지 않도록 보장한다를 바탕으로 설계되어 있다. 즉, 이론적으로 C++ 프로그램은 컴파일만 깔끔하면 그 이후엔 어떤 객체에 대해서도 불안전한 연산이나 말도 안되는 연산을 수행하려 들지 않는다는 것이다. ...</p></div></div></a></div><div class="card"> <a href="/posts/%ED%95%AD%EB%AA%A928-%EB%82%B4%EB%B6%80%EC%97%90%EC%84%9C-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EA%B0%9D%EC%B2%B4%EC%97%90-%EB%8C%80%ED%95%9C-%ED%95%B8%EB%93%A4%EC%9D%84-%EB%B0%98%ED%99%98%ED%95%98%EB%8A%94-%EC%BD%94%EB%93%9C%EB%8A%94-%EB%90%98%EB%8F%84%EB%A1%9D-%ED%94%BC%ED%95%98%EC%9E%90/"><div class="card-body"> <em class="small" data-ts="1690210800" data-df="ll" > Jul 25, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>항목28 내부에서 사용하는 객체에 대한 핸들을 반환하는 코드는 되도록 피하자</h3><div class="text-muted small"><p> 항목28 내부에서 사용하는 객체에 대한 핸들을 반환하는 코드는 되도록 피하자 Rectangle을 사용하는 어떤 응용프로그램을 만들고 있다고 한다 이 클래스 객체를 썼을 때의 메모리 부담을 줄이기 위해 사각형 영역을 정의하는 꼭짓점을 별도의 구조체로 넣고 Rectangle이 구조체를 가리키도록 한다. class...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-7/" class="btn btn-outline-primary" prompt="Older"><p>프로젝트-7</p></a> <a href="/posts/%ED%95%AD%EB%AA%A932-public-%EC%83%81%EC%86%8D-%EB%AA%A8%ED%98%95%EC%9D%80-%EB%B0%98%EB%93%9C%EC%8B%9C-is-a%EB%A5%BC-%EB%94%B0%EB%A5%B4%EB%8F%84%EB%A1%9D-%EB%A7%8C%EB%93%A4%EC%9E%90/" class="btn btn-outline-primary" prompt="Newer"><p>항목32 public 상속 모형은 반드시 is-a(...는...의 일종)를 따르도록 만들자</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2024 <a href="https://twitter.com/username">Yang jeong hyeon</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/effective-c/">effective c++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>

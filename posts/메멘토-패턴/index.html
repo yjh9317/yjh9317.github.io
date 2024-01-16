@@ -1,0 +1,229 @@
+<!DOCTYPE html><html lang="ko" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="메멘토 패턴" /><meta property="og:locale" content="ko" /><meta name="description" content="프롤로그" /><meta property="og:description" content="프롤로그" /><link rel="canonical" href="https://yjh9317.github.io/posts/%EB%A9%94%EB%A9%98%ED%86%A0-%ED%8C%A8%ED%84%B4/" /><meta property="og:url" content="https://yjh9317.github.io/posts/%EB%A9%94%EB%A9%98%ED%86%A0-%ED%8C%A8%ED%84%B4/" /><meta property="og:site_name" content="yjh9317" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2023-06-19T00:00:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="메멘토 패턴" /><meta name="twitter:site" content="@twitter_username" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-19T00:00:00+09:00","datePublished":"2023-06-19T00:00:00+09:00","description":"프롤로그","headline":"메멘토 패턴","mainEntityOfPage":{"@type":"WebPage","@id":"https://yjh9317.github.io/posts/%EB%A9%94%EB%A9%98%ED%86%A0-%ED%8C%A8%ED%84%B4/"},"url":"https://yjh9317.github.io/posts/%EB%A9%94%EB%A9%98%ED%86%A0-%ED%8C%A8%ED%84%B4/"}</script><title>메멘토 패턴 | yjh9317</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="yjh9317"><meta name="application-name" content="yjh9317"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> </a></div><div class="site-title mt-3"> <a href="/">yjh9317</a></div><div class="site-subtitle font-italic">코딩열심히하려는사람</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/yjh9317" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>메멘토 패턴</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>메멘토 패턴</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1687100400" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jun 19, 2023 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/username">Yang jeong hyeon</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1993 words"> <em>11 min</em> read</span></div></div></div><div class="post-content"><h1 id="프롤로그"><strong>프롤로그</strong></h1><ul><li><p>커맨드 디자인 패턴에서, 시스템의 모든 변경 이력을 기록해 둔다면 이론적으로 과거의 어떤 지점으로든 상대를 되돌릴 수 있다는 것을 살펴보았다.</p><li><p>하지만 어떤 경우에는 시스템의 모든 임의의 과거가 아니라 필요할 때 특정 시점으로만 되돌릴 수만 있으면 충분한 경우가 있다.</p><li><p>메멘토 패턴이 바로 이런 경우이다.</p><li><p><code class="language-plaintext highlighter-rouge">메멘토는 특정 시점의 시스템 상태를 전용 객체에 저장하여 리턴한다.</code></p><ul><li><p><code class="language-plaintext highlighter-rouge">이 객체는 읽기 전용 속성을 가지고 자체적으로 아무 동작하지 않는다</code>.</p><li><p>이러한 객체를 <code class="language-plaintext highlighter-rouge">토큰</code> 이라고 부른다.</p><li><p>이 객체는 필요할 때 시스템에 주입되어 저장되어 있던 상태로 되돌린다.</p></ul></ul><p><br /></p><h1 id="은행-계좌"><strong>은행 계좌</strong></h1><ul><li>예시를 들기 위해 은행계좌 클래스 BankAccount를 정의한다</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">BankAccount</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="nl">public:</span>
+  <span class="k">explicit</span> <span class="n">BankAccount</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">balance</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">balance</span><span class="p">(</span><span class="n">balance</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></table></code></div></div><p><br /></p><hr /><ul><li><p>먼저 은행 계좌에 입금 기능만 있다고 가정한다.</p><ul><li>즉, deposit() 멤버 함수만 존재한다.</ul><li><p>그리고 이전에 이 함수가 아무런 동작도 하지 않았지만 여기서 Memento 객체를 리턴한다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1">// BankAccount 클래스의 멤버 함수</span>
+<span class="n">Memento</span> <span class="nf">deposit</span><span class="p">(</span><span class="kt">int</span> <span class="n">amount</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span><span class="p">;</span>
+  <span class="k">return</span> <span class="p">{</span> <span class="n">balance</span> <span class="p">};</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p><br /></p><hr /><ul><li>Memento 객체는 계좌를 Memento에 저장된 상태로 되돌릴 때 사용할 수 있다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="c1">// BankAccount 클래스의 멤버 함수</span>
+<span class="kt">void</span> <span class="nf">restore</span><span class="p">(</span><span class="k">const</span> <span class="n">Memento</span><span class="o">&amp;</span> <span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">balance</span> <span class="o">=</span> <span class="n">m</span><span class="p">.</span><span class="n">balance</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p><br /></p><hr /><ul><li>Memento 클래스는 아래와 같이 쉽게 구현된다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Memento</span>
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">balance</span><span class="p">;</span>
+<span class="nl">public:</span>
+  <span class="n">Memento</span><span class="p">(</span><span class="kt">int</span> <span class="n">balance</span><span class="p">)</span>
+    <span class="o">:</span> <span class="n">balance</span><span class="p">(</span><span class="n">balance</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
+  <span class="k">friend</span> <span class="k">class</span> <span class="nc">BankAccount</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>Memento 클래스는 두 가지 특이할 점이 있다.</p><ul><li><p><code class="language-plaintext highlighter-rouge">불변 속성을 가진다.</code> 저장된 잔고 값이 나중에 변경될 수 있다면 존재한 적 없는 과거 상태로 되돌리는게 가능해져 버린다.</p><li><p><code class="language-plaintext highlighter-rouge">BankAccount 클래스를 friend로 선언한다.</code> balance 필드 변수에 접근하기 위해 필요하다.<br /> friend로 선언한 대신 Memento 클래스를 BankAccount 내부의 중첩 클래스로 만드는 방법도 있다.</p></ul></ul><p><br /></p><hr /><ul><li>이제 다음과 같이 계좌 상태를 기억해 두었다가 되돌릴 수 있다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">memento</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">BankAccount</span> <span class="n">ba</span><span class="p">{</span> <span class="mi">100</span> <span class="p">};</span>
+  <span class="k">auto</span> <span class="n">m1</span> <span class="o">=</span> <span class="n">ba</span><span class="p">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span> <span class="c1">// 150</span>
+  <span class="k">auto</span> <span class="n">m2</span> <span class="o">=</span> <span class="n">ba</span><span class="p">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span> <span class="c1">// 175</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ba</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+  <span class="c1">// undo to m1</span>
+  <span class="n">ba</span><span class="p">.</span><span class="n">restore</span><span class="p">(</span><span class="n">m1</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ba</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+  <span class="c1">// redo</span>
+  <span class="n">ba</span><span class="p">.</span><span class="n">restore</span><span class="p">(</span><span class="n">m2</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ba</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li><p>이 구현은 제 역할을 하긴 하지만 예외 상황 처리가 부족하다.</p><li><p>예를 들어 계좌를 만든 초기 상황으로는 돌아갈 수 없다.</p><li><p>왜냐하면 생성자에서 balance의 값을 리턴할 방법이 없기 때문이다.</p><li><p>물론 포인터를 이용할 수 있겠지만 코드가 지저분해진다.</p></ul><p><br /></p><h2 id="undo와-redo"><span class="mr-2"><strong>Undo와 Redo</strong></span><a href="#undo와-redo" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><p>BankAccount에서 생성되는 Memento를 모두 저장한다면 어떻게 ㄷ될까?</p><li><p>이 경우 커맨드 디자인 패턴의 구현에서와 마찬가지로 <code class="language-plaintext highlighter-rouge">되돌리기(Undo)</code>와 <code class="language-plaintext highlighter-rouge">다시하기(Redo)</code>가 가능해진다.</p><li><p>이제 Memento를 이용하여 Undo/Redo 기능을 어떻게 구현할 수 있는지 알아본다.</p></ul><p><br /></p><hr /><ul><li><p>새로운 은행 계좌 클래스 BankAccount2를 만든다.</p><li><p>BankAccount2에서 생성되는 모든 Memento를 저장한다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">BankAccount2</span> 
+<span class="p">{</span>
+  <span class="kt">int</span> <span class="n">balance</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">vector</span><span class="o">&lt;</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Memento</span><span class="o">&gt;&gt;</span> <span class="n">changes</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">current</span><span class="p">;</span>
+<span class="nl">public:</span>
+  <span class="k">explicit</span> <span class="n">BankAccount2</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">balance</span><span class="p">)</span>
+  <span class="o">:</span> <span class="n">balance</span><span class="p">(</span><span class="n">balance</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">changes</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Memento</span><span class="o">&gt;</span><span class="p">(</span><span class="n">balance</span><span class="p">));</span>
+    <span class="n">current</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">friend</span> <span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="k">const</span> <span class="n">BankAccount2</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">"balance: "</span> <span class="o">&lt;&lt;</span> <span class="n">obj</span><span class="p">.</span><span class="n">balance</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>이제 계좌 생성 초기 잔고 값이 저장되어 생성자에서 리턴할 수 없는 문제가 해결된다.</p><li><p>물론 생성자에서 메멘토를 리턴할 수 있게 되는 것은 아니지만 되돌리기 작업에는 활용할 수 있다.</p><li><p><code class="language-plaintext highlighter-rouge">초기 상태로 되돌리기 위해 reset() 같은 전용 멤버 함수를 만들 수도 있고 메멘토의 저장소를 직접 읽을 수 있게 할 수도 있다.</code></p><ul><li>이 부분은 구현하는 사람의 마음이다.</ul><li><p>위 코드에서 메멘토를 저장할 때 shared_ptr를 사용하고, 리턴할 때도 shared_ptr를 사용한다.</p><li><p>그리고 <code class="language-plaintext highlighter-rouge">현재 위치를 나타내는 current 필드를 두어 방금 수행한 작업을 기준으로 뒤 또는 앞으로 순회할 수 있게 한다.</code></p><li><p>이것을 이용하여 되돌리기와 다시하기 작업을 쉽게 구현할 수 있다.</p></ul><p><br /></p><hr /><ul><li>다음은 deposit() 멤버 함수의 구현이다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Memento</span><span class="o">&gt;</span> <span class="n">deposit</span><span class="p">(</span><span class="kt">int</span> <span class="n">amount</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">balance</span> <span class="o">+=</span> <span class="n">amount</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">m</span> <span class="o">=</span> <span class="n">make_shared</span><span class="o">&lt;</span><span class="n">Memento</span><span class="o">&gt;</span><span class="p">(</span><span class="n">balance</span><span class="p">);</span>
+    <span class="n">changes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+    <span class="o">++</span><span class="n">current</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p><br /></p><hr /><ul><li>다음에는 특정 메멘토에 맞추어 계좌의 상태를 되돌리는 멤버 함수의 구현한다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">restore</span><span class="p">(</span><span class="k">const</span> <span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Memento</span><span class="o">&gt;&amp;</span> <span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">balance</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">balance</span><span class="p">;</span>
+        <span class="n">changes</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">changes</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li><p>위 코드는 이전에 작성한 것과 많이 다르다.</p><li><p><code class="language-plaintext highlighter-rouge">첫 번째로, 인자로 받은 shared_ptr가 유효한지 검사한다</code></p><ul><li><p>이러한 검사를 하는 이유는 아무것도 하지 앟는 기능을 제공하기 위해서이다.</p><li><p>이렇게 하면 어떤 선행 작업에서 아무것도 하지 않는 디폴트 값을 리턴 할 수 있다.</p></ul><li><p><code class="language-plaintext highlighter-rouge">두 번째로, 메멘토를 복구할 때, 복구로 인한 변경 작업 자체도 변경 리스트에 추가하고 있다.</code></p><ul><li>이렇게 함으로써 방금 수행한 되돌리기를 다시 되돌리는 것도 가능하게 한다.</ul></ul><p><br /></p><hr /><ul><li>이제 undo() 함수를 구현한다</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Memento</span><span class="o">&gt;</span> <span class="n">undo</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">current</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="o">--</span><span class="n">current</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">m</span> <span class="o">=</span> <span class="n">changes</span><span class="p">[</span><span class="n">current</span><span class="p">];</span>
+    <span class="n">balance</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">balance</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">{};</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li><p>당연히 변경 목록에 대한 현재 위치(current)가 0보다 클 때만 undo()를 수행할 수 있다.</p><li><p>현재 위치가 0보다 크다면, 현재 위치를 한 칸 뒤로 옮기고 그 위치의 변경 사항을 얻어서 상태에 적용하고 그 변경을 리턴한다.</p><li><p>만약 이전 메멘토로 되돌릴 수 없다면 shared_ptr의 디폴트 생성자를 통해 공백 포인터 객체를 리턴한다.</p><ul><li>공백 포인터는 restore()에서 검사되어 무시된다.</ul></ul><p><br /></p><hr /><ul><li>redo()도 비슷하게 구현한다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Memento</span><span class="o">&gt;</span> <span class="n">redo</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">current</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">changes</span><span class="p">.</span><span class="n">size</span><span class="p">())</span>
+  <span class="p">{</span>
+    <span class="o">++</span><span class="n">current</span><span class="p">;</span>
+    <span class="k">auto</span> <span class="n">m</span> <span class="o">=</span> <span class="n">changes</span><span class="p">[</span><span class="n">current</span><span class="p">];</span>
+    <span class="n">balance</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">balance</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">m</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span><span class="p">{};</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p><br /></p><hr /><ul><li><p>이제 사용 예를 보면, 되돌리기를 안전하게 할 수 있다면 수행하고, 그렇지 않다면 공백 포인터를 리턴한다.</p><li><p>따라서 아래와 같은 Undo/Redo 작업을 크래시없이 수행할 수 있다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="n">BankAccount2</span> <span class="n">ba</span><span class="p">{</span> <span class="mi">100</span> <span class="p">};</span>
+<span class="n">ba</span><span class="p">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="n">ba</span><span class="p">.</span><span class="n">deposit</span><span class="p">(</span><span class="mi">25</span><span class="p">);</span> <span class="c1">// 125</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ba</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+<span class="n">ba</span><span class="p">.</span><span class="n">undo</span><span class="p">();</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Undo 1: "</span> <span class="o">&lt;&lt;</span> <span class="n">ba</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="n">ba</span><span class="p">.</span><span class="n">undo</span><span class="p">();</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Undo 2: "</span> <span class="o">&lt;&lt;</span> <span class="n">ba</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="n">ba</span><span class="p">.</span><span class="n">redo</span><span class="p">();</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Redo 2: "</span> <span class="o">&lt;&lt;</span> <span class="n">ba</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+<span class="n">ba</span><span class="p">.</span><span class="n">undo</span><span class="p">();</span>
+</pre></table></code></div></div><p><br /></p><h1 id="요약"><strong>요약</strong></h1><ul><li><p><code class="language-plaintext highlighter-rouge">메멘토 디자인 패턴은 시스템의 상태를 이전으로 되돌리기 위한 토큰을 어떻게 정의하고 어떻게 관리할 수 있는지 보여준다.</code></p><li><p>보통 그러한 토큰은 시스템을 특정 상태로 옮기기에 딱 필요한 만큼의 작은 정보를 저장한다.</p><li><p>이러한 토큰들을 이용하여 시스템을 임의의 상태로 재설정하는 대신 시스템의 모든 정보를 저장해서 뒤 or 앞 상태로의 이동과정을 하나하나 따져보고 통제할 수 있다.</p></ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/'>디자인 패턴</a>, <a href='/categories/%ED%96%89%ED%83%9C-%ED%8C%A8%ED%84%B4/'>행태 패턴</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/design-pattern/" class="post-tag no-text-decoration" >design pattern</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=%EB%A9%94%EB%A9%98%ED%86%A0+%ED%8C%A8%ED%84%B4+-+yjh9317&url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EB%25A9%2594%25EB%25A9%2598%25ED%2586%25A0-%25ED%258C%25A8%25ED%2584%25B4%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=%EB%A9%94%EB%A9%98%ED%86%A0+%ED%8C%A8%ED%84%B4+-+yjh9317&u=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EB%25A9%2594%25EB%25A9%2598%25ED%2586%25A0-%25ED%258C%25A8%25ED%2584%25B4%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EB%25A9%2594%25EB%25A9%2598%25ED%2586%25A0-%25ED%258C%25A8%25ED%2584%25B4%2F&text=%EB%A9%94%EB%A9%98%ED%86%A0+%ED%8C%A8%ED%84%B4+-+yjh9317" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/%ED%95%A8%EC%88%98/">함수</a><li><a href="/posts/2.%EC%97%B4%EB%A6%BC-%EB%8B%AB%ED%9E%98-%EC%9B%90%EC%B9%99/">열림-닫힘 원칙</a><li><a href="/posts/4.%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%B6%84%EB%A6%AC-%EC%9B%90%EC%B9%99/">인터페이스 분리 원칙</a><li><a href="/posts/5.%EC%9D%98%EC%A1%B4%EC%84%B1-%EC%97%AD%EC%A0%84-%EC%9B%90%EC%B9%99/">의존성 역전 원칙</a><li><a href="/posts/Table/">Table</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/effective-c/">effective c++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/%EC%B1%85%EC%9E%84-%EC%82%AC%EC%8A%AC-%ED%8C%A8%ED%84%B4/"><div class="card-body"> <em class="small" data-ts="1685631600" data-df="ll" > Jun 2, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>책임 사슬 패턴</h3><div class="text-muted small"><p> 프롤로그 책임 사슬은 어떤 시스템을 구성하고 있는 여러 개의 서로 다른 컴포넌트들이 어던 메시지를 역할에 따라 주고 받으며 처리할 수 있다. 어떤 처리를 수행할 담당 컴포넌트의 목록만 있으면 된다. 시나리오 컴퓨터 게임에 크리처가 있다고 한다. 이 크리처는 공격력과 방어력...</p></div></div></a></div><div class="card"> <a href="/posts/%EC%BB%A4%EB%A7%A8%EB%93%9C-%ED%8C%A8%ED%84%B4/"><div class="card-body"> <em class="small" data-ts="1685890800" data-df="ll" > Jun 5, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>커맨드 패턴</h3><div class="text-muted small"><p> 프롤로그 a = 1;과 같은 단순 변숫값 대입은 값은 바뀌지만 기록이 남지 않는다. 데이터 변경 작업들을 직렬화하고 싶을 때 이러한 대입구문을 반영할 수가 없다. 또는 그러한 변경을 되돌리고 싶어도 기록이 없으니 대응할 수 없다. 데이터가 어떻게 관리되는지, 감시를 실행하거나, 변경...</p></div></div></a></div><div class="card"> <a href="/posts/%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0-%ED%8C%A8%ED%84%B4/"><div class="card-body"> <em class="small" data-ts="1686150000" data-df="ll" > Jun 8, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>인터프리터 패턴</h3><div class="text-muted small"><p> 프롤로그 인터프리터 디자인 패턴의 목적은 입력 데이터를 해석하는 것이다. 텍스트 입력 대상으로 할 때가 많지만 텍스트에 한정되지는 않는다. 인터프리터에 관한 것에 대해 설명할 것도 많고 디자인 패턴이라는 주제에 집중하는데에도 부적절하기에, 인터프리터 작업을 수행하는 예시를 위주로 설명한다. ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/%EB%A7%A4%EA%B0%9C%EC%9E%90-%ED%8C%A8%ED%84%B4/" class="btn btn-outline-primary" prompt="Older"><p>매개자 패턴</p></a> <a href="/posts/C++%EB%A5%BC-%EC%96%B8%EC%96%B4%EB%93%A4%EC%9D%98-%EC%97%B0%ED%95%A9%EC%B2%B4%EB%A1%9C-%EB%B0%94%EB%9D%BC%EB%B3%B4%EB%8A%94-%EC%95%88%EB%AA%A9%EC%9D%80-%ED%95%84%EC%88%98/" class="btn btn-outline-primary" prompt="Newer"><p>항목1 - C++를 언어들의 연합체로 바라보는 안목은 필수</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2024 <a href="https://twitter.com/username">Yang jeong hyeon</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/effective-c/">effective c++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
