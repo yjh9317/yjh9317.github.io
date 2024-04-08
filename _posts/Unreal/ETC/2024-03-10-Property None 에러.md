@@ -1,7 +1,7 @@
 ---
 title: Property None 에러
 date: 2024-03-10
-categories: [Unreal Etc,Unreal Etc]
+categories: [unreal,Unreal Etc]
 tags: [unreal etc]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 

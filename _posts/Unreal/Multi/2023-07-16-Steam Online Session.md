@@ -14,14 +14,14 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 * 프로젝트 생성 후 사용할 플러그인을 프로젝트 폴더 안에 넣는다.
 
 
-<p align="center"><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/프로젝트안에%20플러그인.png"></p>
+<center><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/프로젝트안에%20플러그인.png"></center>
 
 <Br>
 
 * 그다음 에디터에서 `편집->플러그인`을 클릭한다
 
 
-<p align="center"><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/편집-플러그인.png"></p>
+<center><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/편집-플러그인.png"></center>
 
 <br>
 
@@ -29,7 +29,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
   * 각 버전에 맞게 설치해야됨. 여기서는 스팀
 
-<p align="center"><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/Steam전용%20서브시스템.png"></p>
+<center><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/Steam전용%20서브시스템.png"></center>
 
 
 <br>
@@ -39,8 +39,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 * 그 후 폴더에 가서 `Config 폴더`를 연다.
 
 
-<p align="center"><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/ini파일.png"></p>
-
+<center><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/ini파일.png"></center>
 <br>
 
 * 코드를 추가해야 하는데 `OnlineSubsystem Steam버전`으로 추가해야 하기 때문에 `언리얼 공식문서`에 가서 해당 코드를 복사해야 한다.
@@ -55,7 +54,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 * 처음에는 `DefaultEngine.ini`를 열어 밑의 코드를 복사하여 붙여넣기를 한다.
 
-<p align="center"><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/언리얼%20공식문서%20온라인시스템%20완성세팅.png"></p>
+<center><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/언리얼%20공식문서%20온라인시스템%20완성세팅.png"></center>
 
 <br>
 
@@ -66,7 +65,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 <br>
 
-<p align="center"><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/GameEngineini파일-설정안하면기본플레이어16이최대.png"></p>
+<center><img src="./../.../../../../assets/img/Unreal/MultiPlayer/Project-1/GameEngineini파일-설정안하면기본플레이어16이최대.png"></center>
 
 
 

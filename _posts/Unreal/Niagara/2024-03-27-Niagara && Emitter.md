@@ -23,7 +23,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 # 기본설정
 
-<p align="center"><img src="./../../../assets/img/Unreal/Niagara/NiagaraEmitter/NiagaraEmitterProperty.png"></p>
+<center><img src="./../../../assets/img/Unreal/Niagara/NiagaraEmitter/NiagaraEmitterProperty.png"></center>
 
 
 * 맨 위에서 시작하여 맨 아래까지 순서대로 실행되며 이 중 `렌더`를 먼저 설정해야 한다.

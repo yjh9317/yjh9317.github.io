@@ -1,7 +1,7 @@
 ---
 title: Online Subsystem
 date: 2023-07-09
-categories: [unreal,multiplayer project]
+categories: [unreal,multi]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 

@@ -7,7 +7,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 # 언리얼 공식문서
 
-**https://dev.epicgames.com/documentation/ko-kr/unreal-engine/behavior-trees-in-unreal-engine?application_version=5.3**
+* <https://dev.epicgames.com/documentation/ko-kr/unreal-engine/behavior-trees-in-unreal-engine?application_version=5.3>
 
 # Behavior Tree
 
