@@ -1,0 +1,511 @@
+<!DOCTYPE html><html lang="ko" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="관찰자 패턴" /><meta property="og:locale" content="ko" /><meta name="description" content="프롤로그" /><meta property="og:description" content="프롤로그" /><link rel="canonical" href="https://yjh9317.github.io/posts/%EA%B4%80%EC%B0%B0%EC%9E%90-%ED%8C%A8%ED%84%B4/" /><meta property="og:url" content="https://yjh9317.github.io/posts/%EA%B4%80%EC%B0%B0%EC%9E%90-%ED%8C%A8%ED%84%B4/" /><meta property="og:site_name" content="yjh9317" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2023-06-25T00:00:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="관찰자 패턴" /><meta name="twitter:site" content="@twitter_username" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-06-27T19:48:17+09:00","datePublished":"2023-06-25T00:00:00+09:00","description":"프롤로그","headline":"관찰자 패턴","mainEntityOfPage":{"@type":"WebPage","@id":"https://yjh9317.github.io/posts/%EA%B4%80%EC%B0%B0%EC%9E%90-%ED%8C%A8%ED%84%B4/"},"url":"https://yjh9317.github.io/posts/%EA%B4%80%EC%B0%B0%EC%9E%90-%ED%8C%A8%ED%84%B4/"}</script><title>관찰자 패턴 | yjh9317</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="yjh9317"><meta name="application-name" content="yjh9317"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> </a></div><div class="site-title mt-3"> <a href="/">yjh9317</a></div><div class="site-subtitle font-italic">코딩열심히하려는사람</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/yjh9317" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>관찰자 패턴</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>관찰자 패턴</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1687618800" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jun 25, 2023 </em> </span> <span> Updated <em class="" data-ts="1687862897" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jun 27, 2023 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/username">Yang jeong hyeon</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="5065 words"> <em>28 min</em> read</span></div></div></div><div class="post-content"><h1 id="프롤로그"><strong>프롤로그</strong></h1><ul><li><p>관찰자 패턴은 널리 사용되는 패턴으로, C#등 다른 언어에서는 언어 자체나 표준 라이브러리에서 지원하지만, C++에서는 바로 사용할 수 있는 관찰자 패턴의 구현이 제공되지 않는다.</p><li><p>제대로 된 관찰자 패턴은 기술적으로 매우 정교한 구현을 요구한다.</p></ul><p><br /></p><h1 id="속성-관찰자"><strong>속성 관찰자</strong></h1><ul><li>Person 클래스를 구현하고 Person 객체의 나이가 바뀔 때(생일) 이벤트를 발생시키려고 한다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">Person</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+    <span class="n">Person</span><span class="p">(</span><span class="kt">int</span> <span class="n">age</span><span class="p">)</span> <span class="o">:</span> <span class="n">age</span><span class="p">{</span><span class="n">age</span><span class="p">}</span> <span class="p">{}</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li>나이가 변경되는 것을 감지하려면 폴링(일정 시간마다 체크)하는 방법도 있지만 매우 비효율적이다.</ul><p><br /></p><hr /><ul><li><p>Person의 age에 쓰기 작업이 될 때 정보를 받는 것이 가장 효율적이다.</p><li><p>그러한 방법을 구현하기 위한 유일한 방법은 set 멤버 함수를 두는 것이다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">Person</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">get_age</span><span class="p">()</span> <span class="k">const</span>  <span class="p">{</span> <span class="k">return</span> <span class="n">age</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">set_age</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">age</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nl">private:</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>이제 set_age()가 호출되어 값이 바뀔 때 알림을 보내기만 하면된다.</p><li><p>어떤 방법으로 알림을 보낼지는 아래에 기술한다.</p></ul><p><br /></p><h1 id="observert"><strong>Observer&lt;T&gt;</strong></h1><ul><li><p>한 가지 접근 방법은 <code class="language-plaintext highlighter-rouge">변경이 일어날 때마다 호출되는 멤버함수(콜백)를 정의하여 베이스 클래스에 두는 것</code>이다.</p><li><p>클라이언트에서는 이 베이스를 상속받아 변경 시점에 수행할 작업을 구현한다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1">// Person 타입 전용 알림 클래스</span>
+<span class="k">struct</span> <span class="nc">PersonListener</span>
+<span class="p">{</span>
+    <span class="k">virtual</span> <span class="o">~</span><span class="n">PersonListener</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">person_changed</span><span class="p">(</span><span class="n">Person</span><span class="o">&amp;</span> <span class="n">p</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">property_name</span><span class="p">,</span> <span class="k">const</span> <span class="n">any</span> <span class="n">new_value</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>하지만 이러한 방법은 Person 타입에 한정되어 있다.</p><li><p><code class="language-plaintext highlighter-rouge">객체의 속성 변경과 그 변경을 모니터링해야 하는 작업은 매우 흔하지만, 그때마다 객체 타입에 종속된 알림 전용 베이스 클래스를 정의하는 것은 번거롭다.</code></p><ul><li>따라서 <code class="language-plaintext highlighter-rouge">템플릿으로 접근을 일반화</code>한다.</ul></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">Observer</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">field_changed</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">field_name</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>field_changed() 의 파라미터들은 이름에서 의미를 알 수 있다.</p><ul><li><p><code class="language-plaintext highlighter-rouge">source는 모니터링할 필드를 가진 객체의 참조</code></p><li><p><code class="language-plaintext highlighter-rouge">field_name은 그 필드의 이름</code></p></ul></ul><p><br /></p><hr /><ul><li><p>이 구현은 Person 클래스의 변경 사항을 모니터링할 수 있게 해준다.</p><li><p>예를 들어 age에 쓰기 작업이 있을 때마다 콘솔에 메세지를 출력하고 싶다면 아래와 같이 작성할 수 있다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">ConsolePersonObserver</span> <span class="o">:</span> <span class="n">Observer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span>
+<span class="p">{</span>
+	<span class="kt">void</span> <span class="n">field_changed</span><span class="p">(</span><span class="n">Person</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">field_name</span><span class="p">)</span> <span class="k">override</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Person's "</span> <span class="o">&lt;&lt;</span> <span class="n">field_name</span> <span class="o">&lt;&lt;</span> <span class="s">" has changed to "</span>
+	       <span class="o">&lt;&lt;</span> <span class="n">source</span><span class="p">.</span><span class="n">get_age</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">".</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>이 구현은 유연하기 때문에 여러 다른 시나리오들도 지원할 수 있다.</p><li><p>예를 들어 복수의 클래스의 필드 값들을 모니터링할 수 있다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="c1">// Person과 Creature 두 클래스 한꺼번에 모니터링</span>
+<span class="k">struct</span> <span class="nc">ConsolePersonObserver</span> <span class="o">:</span> <span class="n">Observer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Observer</span><span class="o">&lt;</span><span class="n">Creature</span><span class="o">&gt;</span>
+<span class="p">{</span>
+	<span class="kt">void</span> <span class="n">field_changed</span><span class="p">(</span><span class="n">Person</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="p">...)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">field_changed</span><span class="p">(</span><span class="n">Creature</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="p">...)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li>또 다른 방법은 <code class="language-plaintext highlighter-rouge">std::any를 이용한 제네릭으로 구현</code>하는 것이다.</ul><p><br /></p><h1 id="observablet"><strong>Observable&lt;T&gt;</strong></h1><ul><li><p>다시 Person으로 돌아와서, Person을 모니터링이 가능한 Observable 클래스로 만들어 본다.</p><li><p>Observable은 다음과 같은 책임을 갖게 된다.</p></ul><div class="language-yaml highlighter-rouge"><div class="code-header"> <span data-label-text="YAML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>
+<span class="s">1. Person의 변경을 모니터링하려는 관찰자들은 private 리스트로 관리한다.</span>
+
+<span class="s">2. 관찰자가 Person의 변경 이벤트에 수신 등록 또는 해제(subscribe()/unsubscribe())할 수 있게 한다.</span>
+
+<span class="s">3. notify()를 통해 변경 이벤트가 발생했을 때 모든 관찰자에게 정보를 전달하도록 한다.</span>
+</pre></table></code></div></div><ul><li><p>이 모든 기능은 별도 베이스 클래스로 옮길 수 있다.</p><li><p>그렇게 함으로써 잠재적으로 일어날 수 있는 중복 구현을 예방한다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">Observable</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="n">notify</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+  
+  <span class="kt">void</span> <span class="n">subscribe</span><span class="p">(</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*</span> <span class="n">f</span><span class="p">)</span> <span class="p">{</span> <span class="n">observers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">f</span><span class="p">);</span> <span class="p">}</span>
+  
+  <span class="kt">void</span> <span class="n">unsubscribe</span><span class="p">(</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*</span> <span class="n">o</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+
+<span class="nl">private:</span>
+	<span class="n">vector</span><span class="o">&lt;</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*&gt;</span> <span class="n">observers</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p><code class="language-plaintext highlighter-rouge">subscribe()</code>는 <code class="language-plaintext highlighter-rouge">관찰자 목록에 새로운 관찰자를 추가하는 작업만 있다.</code></p><ul><li><p>관찰자 목록은 private으로 내부에서만 접근할 수 있게 통제된다.</p><li><p>이 목록은 상속받는 클래스에서도 접근할 수 없다.</p><li><p>이렇게 함으로써 관찰자 목록이 임의로 수정되는 것을 막는다.</p></ul><li><p>다음으로 <code class="language-plaintext highlighter-rouge">notify()</code>를 구현한다.</p><ul><li><code class="language-plaintext highlighter-rouge">모든 관찰자를 순회하며 관찰자의 field_changed()를 차례로 호출한다.</code></ul></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">notify</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">obs</span> <span class="o">:</span> <span class="n">observers_copy</span><span class="p">)</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+          <span class="n">obs</span><span class="o">-&gt;</span><span class="n">field_changed</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><p><br /></p><ul><li><p>Observable&lt;T&gt;를 상속받는 것만으로 부족하다. 관찰 받는 클래스에서도 자신의 필드가 변경되면 notify()함수를 호출해야 한다.</p><li><p>예를 들어 set_age()멤버 함수를 보면 다음과 같은 세 가지 책임이 있다.</p></ul><div class="language-yaml highlighter-rouge"><div class="code-header"> <span data-label-text="YAML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre> <span class="s">1. 필드의 값이 실제로 바뀌었는지 검사해야 한다.</span>
+   <span class="s">만약 age값이 20살인 상태로 동일한 20살로 중복 설정되면 대입 작업과 알림이 의미가 없어진다.</span>
+
+ <span class="s">2. 필드에 적절한 값이 설정되어야 한다.</span>
+   <span class="s">만약 -1 같은 값이 들어오면 의미가 없어진다.</span>
+
+ <span class="s">3. 필드의 값이 바뀌었을 때 올바른 인자로 notify()를 호출한다.</span>
+</pre></table></code></div></div><ul><li>위과 같이 set_age를 새롭게 구현한다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">Person</span> <span class="o">:</span> <span class="n">Observable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="kt">void</span> <span class="n">set_age</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">==</span> <span class="n">age</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>   <span class="c1">// 같다면 return</span>
+        <span class="k">this</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+        <span class="n">notify</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="s">"age"</span><span class="p">);</span>   <span class="c1">// 자기 자신에게 알림</span>
+    <span class="p">}</span>
+
+<span class="nl">private:</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><p><br /></p><h1 id="관찰자observer와-관찰-대상observable의-연결"><strong>관찰자(Observer)와 관찰 대상(Observable)의 연결</strong></h1><ul><li><p>준비된 코드를 기반으로 Person의 필드 값(속성) 변화에 대한 알림을 받아본다.</p><li><p>알림을 받기 위한 관찰자는 다음과 같이 정의된다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">ConsolePersonObserver</span> <span class="o">:</span> <span class="n">Observer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span>
+<span class="p">{</span>
+	<span class="kt">void</span> <span class="n">field_changed</span><span class="p">(</span><span class="n">Person</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">field_name</span><span class="p">)</span> <span class="k">override</span>
+	<span class="p">{</span>
+		<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Person's "</span> <span class="o">&lt;&lt;</span> <span class="n">field_name</span> <span class="o">&lt;&lt;</span> <span class="s">" has changed to "</span>
+	       <span class="o">&lt;&lt;</span> <span class="n">source</span><span class="p">.</span><span class="n">get_age</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="s">".</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// 그리고 아래와 같이 사용</span>
+
+<span class="n">Person</span> <span class="n">p</span><span class="p">{</span> <span class="mi">20</span> <span class="p">};</span>
+<span class="n">ConsolePersonObserver</span> <span class="n">cpo</span><span class="p">;</span>
+<span class="n">p</span><span class="p">.</span><span class="n">subscribe</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cpo</span><span class="p">);</span>
+<span class="n">p</span><span class="p">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">21</span><span class="p">);</span>
+<span class="n">p</span><span class="p">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">22</span><span class="p">);</span>
+</pre></table></code></div></div><ul><li><p><code class="language-plaintext highlighter-rouge">속성의 종속성, 스레드 안정성(MTSafe), 재진입 안정성(Reenterence)</code>과 같은 문제를 고려할 필요가 없다면 위와 같은 구현으로 사용해도 되지만, 그러한 문제들을 무시하는 상황은 드물다.</p><li><p>이제 그러한 문제까지 고려한 더 정교한 접근 방법을 아래에 기술한다.</p></ul><p><br /></p><h1 id="종속성-문제"><strong>종속성 문제</strong></h1><ul><li><p>가장 낮은 투표 연령은 16세로, 이 국가에서 16세가 되는 투표 권한이 생기는데 Person의 age 필드 변화에 따라 투표 권한이 생겼음을 알리는 기능을 만들어 본다.</p><li><p>먼저 Person에 아래와 같은 속성 읽기 멤버 함수가 있다고 가정한다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre><span class="kt">bool</span> <span class="n">get_can_vote</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">16</span><span class="p">;</span> <span class="p">}</span>
+</pre></table></code></div></div><p><br /></p><hr /><ul><li><p>gen_can_vote() 멤버 함수는 전용 필드 멤버도 없고 대응되는 set 멤버 함수도 없다.</p><ul><li>bool can_vote와 같은 전용 필드를 만들 순 있지만, age로 판별 가능하기 때문에 중복된다.</ul><li><p>그럼에도 불구하고 notify()를 호출해 줘려면 어떻게 해야할까?</p><ul><li>투표 가능 여부가 바뀌었는지는 set_age를 이용해 간접적으로 알 수 있다.</ul><li><p>따라서 can_vote의 변경 여부에 대한 알림은 set_age 안에서 수행될 필요가 있다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">set_age</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">==</span> <span class="n">age</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">auto</span> <span class="n">old_can_vote</span> <span class="o">=</span> <span class="n">can_vote</span><span class="p">();</span>
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+
+    <span class="n">notify</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="s">"age"</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">old_can_vote</span> <span class="o">!=</span> <span class="n">can_vote</span><span class="p">())</span>
+        <span class="n">notify</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="s">"can_vote"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li><p>위 코드는 원래 목적을 벗어나서 과도한 일을 하고 있다.</p><li><p><code class="language-plaintext highlighter-rouge">age의 변화뿐만 아니라 그에 영향받는 can_vote의 변화까지 찾아서 알림을 생성한다.</code></p><ul><li><code class="language-plaintext highlighter-rouge">이러한 방식은 확장성이 없다.</code></ul><li><p>만약 can_vote가 age뿐만 아니라 성별이나 지역같은 다른 필드 멤버에도 영향을 받는다면 어떻게 될까?</p><ul><li><code class="language-plaintext highlighter-rouge">영향받는 필드의 set 멤버 함수마다 can_vote의 변화에 대한 알림코드가 들어가야 한다.</code></ul><li><p>필드가 많아지고 종속성이 복잡할 경우 이런식의 구현의 유지보수는 대단히 어려워진다.</p></ul><p><br /></p><hr /><ul><li><p>위의 시나리오를 일반화하여 말한다면 can_vote가 속성 age에 종속성을 가진는 상황이다.</p><li><p>엑셀로 떠올려보면 이러한 종속성을 야기하는 어려움을 쉽게 이해할 수 있다.</p><ul><li><p>엑셀에서 표로 계산할 때 서로 다른 많은 수식/값 셀들이 서로 참조하고 있으면 셀 하나만 변경되어도 많은 셀들이 다시 계산되어야 한다.</p><li><p>이때 반드시 재계산해야 하는 종속된 셀을 알아내는 것은 쉬운 일이 아니다.</p></ul></ul><p><br /></p><ul><li><p>이러한 속성 종속성에 따른 상호 영향 관계를 map&lt;string,vector<string>&gt;과 같은 도구로 이용하여 추적/관리할 수 있다.</string></p><li><p>즉,어떤 속성에 영향을 주는 속성들의 목록 또는 반대로 어떤 속성이 영향을 받는 속성들의 목록을 저장하여 관리할 수 있다.</p><li><p>그런데 이러한 목록의 문제는 개발자 손으로 일일이 파악하여 기입해야 한다는 것이다.</p><li><p>코드가 변겨오딜 때마다 이러한 목록을 업데이트 하는것은 꽤나 소모적인 일이다.</p></ul><p><br /></p><h1 id="수신-해제와-스레드-안정성"><strong>수신 해제와 스레드 안정성</strong></h1><ul><li><p>한가지 제대로 다루지 않은 부분이 있다.</p><li><p><code class="language-plaintext highlighter-rouge">관찰자의 관찰 대상에 대한 알림 수신 등록을 어떻게 해제할 수 있을까?</code></p><li><p>당연하게도 떠오르는 방법은 관찰자 목록에서 해당 관찰자를 제거하는 것이다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">unsubscrbie</span><span class="p">(</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*</span> <span class="n">observer</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">observers</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span>
+        <span class="n">remove</span><span class="p">(</span><span class="n">observers</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="nb">nullptr</span><span class="p">),</span>
+        <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li><p><code class="language-plaintext highlighter-rouge">기술적으로 이러한 "삭제하고 이동하기" 관례가 틀린것은 아니지만 단일 스레드 상황에서만 정상적인 동작이 보증된다.</code></p><li><p>std::vector는 스레드 안정성이 없다.</p><li><p>따라서 subscribe()와 unsubscribe()가 동시에 호출되면 둘다 vector를 수정하려 하기 때문에 의도치 않은 결과가 발생한다.</p></ul><p><br /></p><hr /><ul><li>이 문제는 관찰 대상 객체의 모든 작업에 lock을 걸어 쉽게 해결할 수 있다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">Observable</span>
+<span class="p">{</span>
+  <span class="k">typedef</span> <span class="n">mutex</span> <span class="n">mutex_t</span><span class="p">;</span>
+
+  <span class="kt">void</span> <span class="n">notify</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span>
+  <span class="p">{</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*&gt;</span> <span class="n">observers_copy</span><span class="p">;</span>
+
+      <span class="p">{</span>
+          <span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">mutex_t</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">{</span> <span class="n">mtx</span> <span class="p">};</span>
+          <span class="n">observers_copy</span> <span class="o">=</span> <span class="n">observers</span><span class="p">;</span>
+      <span class="p">}</span>
+
+      <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">obs</span> <span class="o">:</span> <span class="n">observers_copy</span><span class="p">)</span>
+          <span class="k">if</span> <span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+          <span class="n">obs</span><span class="o">-&gt;</span><span class="n">field_changed</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+
+      <span class="n">observers</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span>
+          <span class="n">remove</span><span class="p">(</span><span class="n">observers</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="nb">nullptr</span><span class="p">),</span>
+          <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">subscribe</span><span class="p">(</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*</span> <span class="n">f</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">mutex_t</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">{</span> <span class="n">mtx</span> <span class="p">};</span>
+    <span class="n">observers</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="kt">void</span> <span class="n">unsubscribe</span><span class="p">(</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*</span> <span class="n">o</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">mutex_t</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">{</span> <span class="n">mtx</span> <span class="p">};</span>
+
+    <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">observers</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">o</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+      <span class="o">*</span><span class="n">it</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span> <span class="c1">// cannot do this for a set</span>
+  <span class="p">}</span>
+
+  <span class="nl">private:</span>
+	<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*&gt;</span> <span class="n">observers</span><span class="p">;</span>
+	<span class="n">mutex_t</span> <span class="n">mtx</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>다른 괜찮은 방법은 TPL/PP과 같은 <code class="language-plaintext highlighter-rouge">병렬 작업 라이브러리를 채용하여 std::vector 대신 스레드 안정성을 보증하는 concurrent_vector를 사용</code>하는 것이다.</p><ul><li><p>단, 이 경우 항목의 순서가 보증되지는 않는다.</p><li><p>예를 들어 두 개의 관찰자 객체를 순서대로 추가하더라도 그 순서대로 알림이 온다는 보증은 없다.</p><li><p>하지만 lock을 직접 관리하느라 소요되는 코딩과 디버깅 시간은 확실히 줄일 순 있다.</p></ul></ul><p><br /></p><h1 id="재진입성reentrancy"><strong>재진입성(reentrancy)</strong></h1><ul><li><p>앞서 구현은 언제든 호출될 수 있는 주요 멤버 함수에 lock을 걸어 일정 수준의 스레드 안정성을 확보했다.</p><li><p>하지만 여전히 문제가 있다.</p><li><p>다음과 같은 시나리오를 생각해본다.</p></ul><p><br /></p><hr /><ul><li><p>운전면허 관제를 위한 컴포넌트 TrafficAdministration가 있다고 한다.</p><li><p>이 컴포넌트는 운전면허 시험 응시 기준에 합치하는지 모든 사람의 연령을 모니터링한다.</p><li><p>그리고 어떤 사람의 나이가 기준 연령 17세에 도달했다면 모니터링을 중단하기 위해 알림 수신 등록을 해제한다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">TrafficAdministration</span> <span class="o">:</span> <span class="n">Observer</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="kt">void</span> <span class="n">TrafficAdministration</span><span class="o">::</span><span class="n">field_changed</span><span class="p">(</span>
+    <span class="n">Person</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">field_name</span><span class="p">)</span> <span class="k">override</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">field_name</span> <span class="o">==</span> <span class="s">"age"</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">source</span><span class="p">.</span><span class="n">get_age</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">17</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Whoa there, you are not old enough to drive!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+      <span class="k">else</span>
+      <span class="p">{</span>
+        <span class="c1">// 이제 적정연령에 도달 했으니 더 이상 모니터링할 필요가 없다.</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"We no longer care!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+        <span class="n">source</span><span class="p">.</span><span class="n">unsubscribe</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>이 시나리오는 문제가 있다.</p><li><p>17세에 도달하면 다음과 같은 호출이 연이어 일어난다.</p><ul><li>notify() –&gt; field_changed() –&gt; unsubscribe()</ul><li><p>여기서 unsubscribe()의 실행이 이미 앞에서 lock이 점유된 이후에 일어나고 있다.</p><ul><li>때문에 이미 점유된 lock을 다시 점유하려 들게 된다.</ul><li><p>이러한 문제를 <code class="language-plaintext highlighter-rouge">재진입(reentrancy) 문제</code>라고 한다.</p></ul><p><br /></p><hr /><ul><li><p>이 문제에 대한 해결책은 몇가지 서로 다른 방법이 있을 수 있다.</p><li><p>첫 번째 해결책은 <code class="language-plaintext highlighter-rouge">이러한 상황을 금지하는 것</code>이다.</p><ul><li>그러면 최소한 이 상황에서만큼은 문제를 피할 수 있다.</ul></ul><p><br /></p><hr /><ul><li><p>또 다른 해결책은 <code class="language-plaintext highlighter-rouge">컬렉션에서 항목을 삭제하는 작업 자체를 우회적으로 처리하는 것</code>이다.</p><ul><li>즉, 다음과 비슷한 방법으로 항목이 삭제 된것과 같은 효과를 낸다.</ul></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">unsubscribe</span><span class="p">(</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*</span> <span class="n">o</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">observers</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">o</span><span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+        <span class="o">*</span><span class="n">it</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">;</span> <span class="c1">// cannot do this for a set</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>이렇게 수정할 경우 당연하게도 notify()에서 추가적인 검사가 필요하다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">notify</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">obs</span> <span class="o">:</span> <span class="n">observers_copy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+        <span class="n">obs</span><span class="o">-&gt;</span><span class="n">field_changed</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li><p>위 방법은 notify()와 subscribe()에서 일어나는 lock 충돌 문제는 해결되지만, 예를 들어 subscribe()와 unsubscribe()가 병렬로 동시에 호출되어 양쪽에서 수정을 시도할 때 발생할 수 있는 문제는 해결하지 못한다.</p><ul><li>그 부분에서는 또 lock을 추가하고 관리해야 한다.</ul></ul><p><br /></p><hr /><ul><li><p>또 다른 방법은 <code class="language-plaintext highlighter-rouge">notify()안에서 컬렉션 전체를 복제하여 사용하는 것</code>이다.</p><li><p>여전히 lock을이 필요하긴 하지만 알림을 보내는 단계에서 lock을을 점유할 필요는 없어진다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre><td class="rouge-code"><pre><span class="kt">void</span> <span class="nf">notify</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span> <span class="n">source</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">vector</span><span class="o">&lt;</span><span class="n">Observer</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;*&gt;</span> <span class="n">observers_copy</span><span class="p">;</span>
+    <span class="p">{</span>
+        <span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">mutex_t</span><span class="o">&gt;</span> <span class="n">lock</span><span class="p">{</span> <span class="n">mtx</span> <span class="p">};</span>
+        <span class="n">observers_copy</span> <span class="o">=</span> <span class="n">observers</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="k">auto</span> <span class="n">obs</span> <span class="o">:</span> <span class="n">observers_copy</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">obs</span><span class="p">)</span>
+        <span class="n">obs</span><span class="o">-&gt;</span><span class="n">field_changed</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">name</span><span class="p">);</span>
+
+    <span class="n">observers</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span>
+        <span class="n">remove</span><span class="p">(</span><span class="n">observers</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="nb">nullptr</span><span class="p">),</span>
+        <span class="n">observers</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>여전히 lock을 사용하지만 field_changed()을 호출하는 시점에는 lock이 해제된 상태가 된다.<ul><li>lock 해제는 lock 변수가 스코프를 벗어날 때 소멸자를 통해 자동으로 수행</ul><li>메모리를 중복으로 사용하긴 하지만 이 예에서 vector는 포인터들을 저장하고 있기 때문에 점유햐는 메모리양이 문제될 만큼 크진 않다.</ul><p><br /></p><hr /><ul><li><p>마지막으로 <code class="language-plaintext highlighter-rouge">mutex를 recursive_mutex로 바꾸는 방법</code>이 있다.</p><ul><li><p>개발자들은 recursive_mutex를 선호하지 않는다.</p><li><p>성능적인 문제보단, 코드 설계에서 약간의 주의만 기울이면 재귀적인 특성이 없는 보통의 mutex를 사용하면서도 문제가 없게 할 수 있기 때문</p></ul></ul><p><br /></p><hr /><ul><li><p>아직 논의되지 않는 이슈들이 몇몇 남아 있다. 이러한 부분들은 연습 문제로 풀면 좋을거 같다.</p><li><p>예시</p><ul><li><p>같은 관찰자가 두번 추가된다면?</p><li><p>만약 중복된 관찰자가 허용된다면 unsubscribe()가 호출될 때 등록된 모든 관찰자를 제거하는지?</p><li><p>vector가 아닌 다른 컨테이너 방식이라면 동작 방식에 어떤 영향을 끼칠지?<br /> 예를 들어 중복 등록을 방지하기 위해 std::set이나 std::unordered_set을 사용한다면?</p><li><p>관찰자들 간에 서로 우선순위가 매겨져 있다면?</p></ul></ul><p><br /></p><h1 id="boostsignals2를-이용한-관찰자"><strong>Boost.Signals2를 이용한 관찰자</strong></h1><ul><li>Boost.Signals2는 관찰자 패턴의 구현을 제공한다.<ul><li>이 라이브러리는 기본적으로 C++ 표준 라이브러리의 std::signal에 해당하는 타입(이벤트라고도 불림)을 제공한다.</ul><li><p>이 signal은 함수나 람다를 전달하여 수신 등록을 할 수 있다.</p><li>수신을 해제하거나 알림을 받을 수 있다.</ul><p><br /></p><hr /><ul><li>Boost.Signals2를 이용하여 Observer&lt;T&gt;를 다음과 같이 정의할 수 있다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">Observable</span>
+<span class="p">{</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Observable</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">signal</span><span class="o">&lt;</span><span class="kt">void</span><span class="p">(</span><span class="n">T</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">property_changed</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li>그리고 아래와 같이 호출할 수 있다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">Person</span> <span class="o">:</span> <span class="n">Observable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span>
+<span class="p">{</span>
+  <span class="p">...</span>
+  <span class="kt">void</span> <span class="n">set_age</span><span class="p">(</span><span class="k">const</span> <span class="kt">int</span> <span class="n">age</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">==</span> <span class="n">age</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+    <span class="k">this</span><span class="o">-&gt;</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span><span class="p">;</span>
+    <span class="n">property_changed</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">,</span> <span class="s">"age"</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="p">...</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>Boost.Signals2 API의 사용 방법은 직접 signal을 사용하는 것이다.</p><li><p>더 사용하기 쉽도록 signal을 감싸서 편의 API를 만들 수도 있다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="n">Person</span> <span class="n">p</span><span class="p">{</span><span class="mi">123</span><span class="p">};</span>
+<span class="k">auto</span> <span class="n">conn</span> <span class="o">=</span> <span class="n">p</span><span class="p">.</span><span class="n">property_changed</span><span class="p">.</span><span class="n">connect</span><span class="p">([](</span><span class="n">Person</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">prop_name</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">prop_name</span> <span class="o">&lt;&lt;</span> <span class="s">" has been changed"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="n">p</span><span class="p">.</span><span class="n">set_age</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">disconnect</span><span class="p">();</span>
+</pre></table></code></div></div><ul><li>connect()에서 리턴되는 객체는 알림이 더 이상 필요없을 때 수신 등록을 해제하는데 이용한다.</ul><p><br /></p><h1 id="요약"><strong>요약</strong></h1><ul><li>관찰자 패턴의 구현에서 이뤄지는 주요한 디자인 선택 사항들을 정리하면 다음과 같다.</ul><div class="language-yaml highlighter-rouge"><div class="code-header"> <span data-label-text="YAML"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+</pre><td class="rouge-code"><pre><span class="s">1. 어떤 정보를 모니터링할 수 있게 커뮤니케이션을 도울 것인지 결정해야 함.</span>
+  <span class="s">예를 들어 필드 속성의 변경을 모니터링할 수 있게 한다면 그 속성의 이름 필요하다면</span> 
+  <span class="s">이전/이후 값을 관찰자에게 제공해야 한다.</span>
+  <span class="s">단, 값이 전용 타입을 가진다면 타입 전달에서 어려움을 겪을 수 있다.</span>
+
+<span class="s">2. 클래스 전체가 관찰자로서 등록되어야 하는지? Or 이벤트 처리 함수를 등록하는 것만으로 충분한지?</span>
+
+<span class="s">3. 관찰자의 알림 수신 해제를 어떻게 처리할지?</span>
+  
+  <span class="s">- 만약 수신 해제 기능이 필요없다면 재진입 시나리오등 까다로운 문제를 처리하지 않아도 됨.</span>
+
+  <span class="s">- 명시적으로 unsubscribe()함수를 제공한다면 "삭제하고 이동하기"관례는 사용하지 않는 것이 좋음</span>
+    <span class="s">대신 삭제할 항목을 표시만 해두고 실제 삭제는 나중에 하는 것이 시나리오에 대응하기 좋다.</span>
+
+  <span class="s">- 일반 포인터(null일 수 있음)를 주고 받는것이 마음에 들지 않는다면 weak_ptr를 고려해볼만 함</span>
+
+<span class="s">4. Observer&lt;T&gt;의 멤버 함수들이 서로 다른 여러 스레드에서 호출될 가능성이 있는지?</span>
+  <span class="s">만약 그렇다면 수신 등록 목록을 보호해야만 한다.</span>
+
+  <span class="s">- lock을 걸거나,</span>
+
+  <span class="s">- 스레드 안정성이 보증되는 컬렉션(concurrent_vector)을 이용한다.</span>
+
+<span class="s">5. 동일한 관찰자가 복수의 수신 등록을 할 수 있어야 하는지?</span>
+  <span class="s">그렇다면 std::set은 사용하지 못함.</span>
+</pre></table></code></div></div><ul><li><p>관찰자 패턴에 있어서 모든 경우를 만족시키는 이상적인 라이브러리는 존재하지 않는다.</p><ul><li>어떤 구현을 사용하든 일정 부분 타협은 뒤따른다.</ul></ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/'>디자인 패턴</a>, <a href='/categories/%ED%96%89%ED%83%9C-%ED%8C%A8%ED%84%B4/'>행태 패턴</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/design-pattern/" class="post-tag no-text-decoration" >design pattern</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=%EA%B4%80%EC%B0%B0%EC%9E%90+%ED%8C%A8%ED%84%B4+-+yjh9317&url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EA%25B4%2580%25EC%25B0%25B0%25EC%259E%2590-%25ED%258C%25A8%25ED%2584%25B4%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=%EA%B4%80%EC%B0%B0%EC%9E%90+%ED%8C%A8%ED%84%B4+-+yjh9317&u=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EA%25B4%2580%25EC%25B0%25B0%25EC%259E%2590-%25ED%258C%25A8%25ED%2584%25B4%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EA%25B4%2580%25EC%25B0%25B0%25EC%259E%2590-%25ED%258C%25A8%25ED%2584%25B4%2F&text=%EA%B4%80%EC%B0%B0%EC%9E%90+%ED%8C%A8%ED%84%B4+-+yjh9317" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/Attribute/">Attribute</a><li><a href="/posts/Sub-UV-Animation/">Sub UV Animation</a><li><a href="/posts/LineTrace%EC%99%80-ShapeTrace/">LineTrace와 ShapeTrace</a><li><a href="/posts/BlendMode/">Blend Mode</a><li><a href="/posts/Collision/">Collision</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/modern-effective-c/">modern effective c++</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/%EC%B1%85%EC%9E%84-%EC%82%AC%EC%8A%AC-%ED%8C%A8%ED%84%B4/"><div class="card-body"> <em class="small" data-ts="1685631600" data-df="ll" > Jun 2, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>책임 사슬 패턴</h3><div class="text-muted small"><p> 프롤로그 책임 사슬은 어떤 시스템을 구성하고 있는 여러 개의 서로 다른 컴포넌트들이 어던 메시지를 역할에 따라 주고 받으며 처리할 수 있다. 어떤 처리를 수행할 담당 컴포넌트의 목록만 있으면 된다. 시나리오 컴퓨터 게임에 크리처가 있다고 한다. 이 크리처는 공격력과 방어력...</p></div></div></a></div><div class="card"> <a href="/posts/%EC%BB%A4%EB%A7%A8%EB%93%9C-%ED%8C%A8%ED%84%B4/"><div class="card-body"> <em class="small" data-ts="1685890800" data-df="ll" > Jun 5, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>커맨드 패턴</h3><div class="text-muted small"><p> 프롤로그 a = 1;과 같은 단순 변숫값 대입은 값은 바뀌지만 기록이 남지 않는다. 데이터 변경 작업들을 직렬화하고 싶을 때 이러한 대입구문을 반영할 수가 없다. 또는 그러한 변경을 되돌리고 싶어도 기록이 없으니 대응할 수 없다. 데이터가 어떻게 관리되는지, 감시를 실행하거나, 변경...</p></div></div></a></div><div class="card"> <a href="/posts/%EC%9D%B8%ED%84%B0%ED%94%84%EB%A6%AC%ED%84%B0-%ED%8C%A8%ED%84%B4/"><div class="card-body"> <em class="small" data-ts="1686150000" data-df="ll" > Jun 8, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>인터프리터 패턴</h3><div class="text-muted small"><p> 프롤로그 인터프리터 디자인 패턴의 목적은 입력 데이터를 해석하는 것이다. 텍스트 입력 대상으로 할 때가 많지만 텍스트에 한정되지는 않는다. 인터프리터에 관한 것에 대해 설명할 것도 많고 디자인 패턴이라는 주제에 집중하는데에도 부적절하기에, 인터프리터 작업을 수행하는 예시를 위주로 설명한다. ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/%EC%96%B8%EB%A6%AC%EC%96%BC-%ED%94%84%EB%A0%88%EC%9E%84%EC%9B%8C%ED%81%AC/" class="btn btn-outline-primary" prompt="Older"><p>언리얼 프레임워크</p></a> <a href="/posts/%EC%83%81%ED%83%9C-%ED%8C%A8%ED%84%B4/" class="btn btn-outline-primary" prompt="Newer"><p>상태 패턴</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2024 <a href="https://twitter.com/username">Yang jeong hyeon</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/modern-effective-c/">modern effective c++</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
