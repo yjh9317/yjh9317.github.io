@@ -48,9 +48,11 @@ GetWorld()->LineTraceSingleByChannel(
 );
 ```
 
-## 문서
+<br>
 
-* <https://dev.epicgames.com/documentation/ko-kr/unreal-engine/traces-tutorials-in-unreal-engine>
+* 좌측은 Single, 우측은 Multi
+
+<center><img src="./../../../assets/img/Unreal/Basic/LineTrace/SingleMultiTrace.png"></center>
 
 <br>
 
@@ -61,3 +63,9 @@ GetWorld()->LineTraceSingleByChannel(
 * `UKismetSystemLibrary` 의 static 함수로 사용할 수 있다.
 
 
+<center><img src="./../../../assets/img/Unreal/Basic/LineTrace/ShapeTrace.png"></center>
+
+
+## 문서
+
+* <https://dev.epicgames.com/documentation/ko-kr/unreal-engine/traces-in-unreal-engine---overview>

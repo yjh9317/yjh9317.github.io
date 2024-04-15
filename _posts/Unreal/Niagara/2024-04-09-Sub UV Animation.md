@@ -18,7 +18,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 # 예시 사진
 
 
-<center><img src="./../../../assets/img/Unreal/Niagara/SubUVAnimation/UV.png" width = 400 height = 400></center>
+<center><img src="./../../../assets/img/Unreal/Niagara/SubUVAnimation/UV.png"></center>
 
 * 가로로 8개, 세로로 8개의 그림이 있는 텍스쳐.
 

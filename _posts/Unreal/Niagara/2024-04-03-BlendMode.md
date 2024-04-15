@@ -42,11 +42,11 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 * 이 사진은 양면(Two Side) 프로퍼티가 True로 설정되어 있어 박스 안도 볼 수 있다.
 
-<center><img src="./../../../assets/img/Unreal/Niagara/BlendMode/OpacityClipMask_0.6.png" width = 400 height = 250></center>
+<center><img src="./../../../assets/img/Unreal/Niagara/BlendMode/OpacityClipMask_0.6.png"></center>
 
 <br>
 
-<center><img src="./../../../assets/img/Unreal/Niagara/BlendMode/OpacityClipMask_0.05.png" width = 400 height = 250></center>
+<center><img src="./../../../assets/img/Unreal/Niagara/BlendMode/OpacityClipMask_0.05.png"></center>
 
 
 

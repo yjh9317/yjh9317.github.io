@@ -12,7 +12,7 @@ tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 
 * 만약 생성자에서 ASC와 AS를 같이 생성했다면 자동적으로 묶어줄 수 있다.
 
-* ASC는 여러 개의 AS를 가질 수 있지만 같은 클래스의 AS는 여러 개를 가질 순 없다.
+* `ASC는 여러 개의 AS를 가질 수 있지만 같은 클래스의 AS는 여러 개를 가질 순 없다`
 
   * ASC에서 AS를 접근할 때 애매해지기 때문
 
@@ -56,9 +56,8 @@ protected:
 
 * FGameplayAttributeData는 기본적으로 BaseValue와 CurrentValue가 있다.
 
-  * `BaseValue는 Attribute의 변하지 않는 값`
+  * `BaseValue는 Attribute의 기본 값`
   * `CurrentValue는 GameplayEffect에 의해 BaseValue값에서 수정된 값`
-
 
 
 * Attribute는 코드로 바로 값을 바꿀 순 있지만, Gameplay Effect를 이용하는 것이 더 선호되는 방법이다.
@@ -84,7 +83,6 @@ protected:
 * `ATTRIBUTE_ACCESSORS`는 Attribute의 Get, Set, Init 함수를 쉽게 만들어주기 위한 매크로로, GAS에서 지원하고 있다.
 
 * 관용적으로 사용하는 느낌으로 적어주면 된다.
-
 
 
 <br>
