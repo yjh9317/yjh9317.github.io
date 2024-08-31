@@ -10,24 +10,21 @@ UPROPERTY
 
 * 변수와 같이 사용하는 리플렉션 매크로로, 매크로의 인자에 값을 넣어 여러가지 방면으로 사용할 수 있다.
 
+<br>
 
-* UPROPERTY에서 자주 사용할 매크로 위주로 작성하려고 한다.
+## 수정 및 공개
 
-<br><br>
-
-수정 및 공개
-==================
 
 * 에디터나 월드에서 변수를 수정할 수 있게 하거나 어디까지 공개할지를 정하는 프로퍼티
 
-<br>
+
 
 * Visible과 Edit은 변수의 수정 가능 여부를 의미한다.
 
   * Visible이 사용되면 그 변수는 Read만 가능하다
   * Edit이 사용되면 그 변수는 Read & Write이 가능하다
 
-<br>
+
 
 * DefaultsOnly는 , InstanceOnly는, Anywhere은 변수 공개 범위를 의미한다.
 
@@ -58,10 +55,10 @@ EditInstanceOnly : 월드상에 배치된 오브젝트의 디테일 패널에서
 EditAnywhere : 블루프린트 에디터 & 월드상에 배치된 오브젝트의 디테일 패널에서 값을 수정 가능
 ```
 
-<br><br>
+<br>
 
-블루 프린트 
-===========
+## 블루 프린트 
+
 
 * 블루 프린트에서 변수를 수정할 수 있게 하거나 어디까지 공개할지를 정하는 프로퍼티
 
@@ -70,7 +67,6 @@ EditAnywhere : 블루프린트 에디터 & 월드상에 배치된 오브젝트�
 * 총 4가지로 아래와 같이 있다
 
 ```
-
 * BlueprintReadOnly : 블루프린트에서 해당 변수를 읽기
 
 * BlueprintReadWrite : 블루프린트에서 해당 변수를 읽기 & 쓰기
@@ -80,25 +76,107 @@ EditAnywhere : 블루프린트 에디터 & 월드상에 배치된 오브젝트�
 * BlueprintSetter :	해당 변수에 수정 할 수 있는 함수를 지정하고 블루프린트는 해당 함수를 통해 변수에 수정
 ```
 
-<br><br>
 
-카테고리
-===============
+
+## Category
+
 
 * 카테고리를 이용해 에디터상에서 변수들의 카테고리를 정해줄 수 있다
 
-* | 기호를 이용하여 상,하위 카테고리로도 나눌수도 있다.
+* UPROPERTY(EditAnywhere, Category = "Player Stats")
 
-<br><br>
 
-Meta
-===================
+
+
+## Meta
+
 
 * 에디터 관련 여러가지 기능을 추가할 수 있다
 
-* 변수가 private으로 되어 있지만 "meta = (AllowPrivateAccess = "true")"명령어를 사용하여 에디터에서 보이게 할 수 있다
+### DisplayName
 
-* UIMin, UIMax는 에디터에서 조정할 수 있는 숫자 범위를 지정하는 명령어
+* 에디터에서 해당 속성이 표시될 때 사용할 이름을 지정
 
-* meta = (BindWidget)를 이용해 블루프린트에서 제작한 변수와 C++를 연결할 수 있다
+* Meta = (DisplayName = "Player Health")
+
+### ToolTip
+
+* 에디터에서 마우스를 속성 위에 올렸을 때 나타나는 툴팁
+
+* Meta = (ToolTip = "The health of the player character")
+
+
+### ClampMin/ClampMax
+
+* 변수의 값을 특정 범위로 제한
+
+* Meta = (ClampMin = "0.0", ClampMax = "100.0")
+
+### AllowPrivateAccess
+
+* 매개변수는 private 변수임에도 불구하고 에디터에서 접근 가능하게 만듦
+
+* Meta = (AllowPrivateAccess = "true")
+
+### HideInDetailPanel
+
+* 에디터의 디테일 패널에서 이 속성을 숨긴다.
+
+* Meta = (HideInDetailPanel)
+
+### ExposeOnSpawn
+
+* 속성을 블루프린트의 "노드 스폰"에서 초기값으로 설정, 특정 객체가 생성될 때 초기화해야 하는 속성을 지정할 때 유용
+
+* Meta = (ExposeOnSpawn)
+
+### UIMin,UIMax
+
+* UPROPERTY에 대한 UI 범위를 설정하는 데 사용되는 매크로
+
+* 변수 값의 슬라이더나 스핀 박스의 최소값과 최대값을 설정하는 데 사용
+
+* Meta = (UIMin = "0.0", UIMax = "100.0")
+
+### BindWidget
+
+* 언리얼 엔진에서 UMG(언리얼 모션 그래픽) 위젯을 C++ 코드에 바인딩하는 데 사용되는 매크로
+
+* Meta = (BindWidget)
   * 단 블루프린트에서의 변수 이름과 C++의 변수이름은 동일해야 한다.
+
+### InlineEditConditionToggle
+
+* EditCondition과 함께 사용되어, 조건을 설정하는 변수에 대한 토글 버튼을 에디터에 표시
+
+* Meta = (InlineEditConditionToggle)
+
+### DisplayPriority
+
+* 에디터의 디테일 패널에서 속성이 표시되는 순서를 결정
+
+* Meta = (DisplayPriority = 1)
+
+### MultiLine
+
+* 에디터에서 텍스트를 입력할 때 여러 줄의 입력을 허용하는 옵션
+
+* Meta = (MultiLine = "true")
+
+### HideAlphaChannel
+
+* 색상에서 알파값을 숨김
+
+* Meta = (HideAlphaChannel)
+
+### PinHiddenByDefault
+
+* 블루프린트 에디터에서 해당 속성이 기본적으로 핀으로 노출되지 않도록 설정
+
+* Meta = (PinHiddenByDefault)
+
+### TitleProperty
+
+* 배열이나 맵 같은 복합 데이터 구조에서, 해당 구조체 또는 클래스의 특정 멤버 변수를 배열 요소의 이름으로 표시
+
+* Meta = (TitleProperty = "Name")

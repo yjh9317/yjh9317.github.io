@@ -56,7 +56,7 @@ class RPGPROJECT_API ITestInterface
 
   * 나열된 ClassName1... 등은 인터페이스 앞에 컴파일이 된다
 
-#### MinimalAPI
+#### `MinimalAPI`
 
   * 클래스의 타입만 다른 모듈에서 사용할 수 있도록 노출시킨다.
 
@@ -66,9 +66,31 @@ class RPGPROJECT_API ITestInterface
 
 <br>
 
+## TScriptInterface 
 
-**인터페이스 상속확인**
-===================
+* 언리얼 엔진에서 특정 인터페이스를 구현하는 객체에 대한 안전한 참조를 관리하기 위해 제공되는 템플릿 클래스
+
+* UObject를 기반으로 하는 객체와 해당 객체가 구현한 인터페이스를 함께 보관하며, C++ 코드와 블루프린트 간의 상호작용을 원활하게 함
+
+### 사용 이유
+
+* `인터페이스의 안전한 관리`: TScriptInterface는 인터페이스를 관리할 때 발생할 수 있는 다양한 오류를 방지합니다. 
+  * 예를 들어, 일반적인 포인터로 인터페이스를 관리하면 발생할 수 있는 참조 무결성 문제를 해결
+
+* C++에서 정의된 인터페이스를 블루프린트에서도 안전하게 사용
+
+### 예시
+
+```c++
+UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interface Example")
+TScriptInterface<IMyInterface> MyInterfaceInstance;
+```
+
+
+<br>
+
+# **인터페이스 상속확인**
+
 
 * 예를 들어 어떤 인터페이스를 상속받아 그 인터페이스의 함수로 특정 행동을 구현했다면, 다른 클래스에서 특정 행동을 하는 Actor만 따로 추출해서 따로 기능을 만들고 싶을 때도 있는데 그럴때 인터페이스 상속을 확인하는 방법을 알아야 한다.
 
@@ -102,3 +124,4 @@ if(ITestInterface* TestInterface = Cast<ITestInterface>(OtherActor))
 
 <center><img src="./../../../assets/img/Unreal/Term/Interface/IsInheritedInterface
 .png" style="width: 100%; height: auto;"></center>
+

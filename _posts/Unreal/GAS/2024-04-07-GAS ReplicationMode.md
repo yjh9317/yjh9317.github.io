@@ -46,8 +46,7 @@ enum class EGameplayEffectReplicationMode : uint8
 
 * Mixed 모드는 OwnerActor의 Actor는 반드시 Controller여야 한다.
 
-  * 자동적으로 Possessedby에서 설정되지만, 다를 경우 OwnerActor의 Owner를 Controller로 직접 설정해줘야 한다.
-
+  * PlayerState에서는 자동적으로 Possessedby에서 설정되지만 Mixed이면서 OwnerActor가 PlayerState가 아닐 경우, OwnerActor의 SetOwner함수에서 반드시 Controller를 Owner로 설정해줘야 한다.
 
 <br>
 

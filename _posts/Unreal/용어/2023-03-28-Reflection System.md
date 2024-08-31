@@ -5,32 +5,39 @@ categories: [unreal, 용어]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
-Reflection System
-====================
+# Reflection System
 
-* 언리얼 Reflection System은 C++ 클래스의 정보를 런타임에 검색하고 수정할 수 있는 시스템입니다.
-* 이를 통해 C++ 클래스를 더 유연하게 사용할 수 있으며, 언리얼 엔진의 많은 기능들에서 Reflection System이 사용됩니다.
 
-<br>
+* Reflection System은 주로 UObject를 기반으로 작동하며, 언리얼 엔진의 다양한 시스템과 통합됩니다.
 
-* Reflection System은 UClass, UProperty, UFunction, UEnum, UScriptStruct 등의 클래스들을 사용하여 구현됩니다. 각 클래스는 다음과 같은 역할을 합니다.
+* 이를 통해 엔진은 런타임에 객체의 속성을 쿼리하고, 에디터에서 이를 노출하며, 블루프린트에서 C++ 코드를 호출할 수 있다
 
-<br>
+## 기능
 
-* UClass: C++ 클래스를 나타내는 클래스입니다. UClass는 런타임에 C++ 클래스의 정보를 검색하고 수정할 수 있는 기능을 제공합니다. UClass는 Reflection System의 핵심 역할을 합니다.
+* `런타임 클래스 탐색 및 조작`: Reflection System을 통해 게임 내에서 특정 클래스의 인스턴스를 찾고, 이 클래스에 정의된 함수나 변수를 동적으로 호출하거나 수정할 수 있습니다
 
-* UProperty: C++ 클래스의 멤버 변수를 나타내는 클래스입니다. UProperty는 Reflection System에서 변수의 정보를 저장하고 검색하는 데 사용됩니다. UProperty는 또한 Blueprint에서 변수의 노출을 제어할 수 있는 기능도 제공합니다.
+* `메타데이터 관리`: 클래스와 변수에 대한 추가 정보를 저장하고, 이를 기반으로 다양한 시스템에서 활용할 수 있게 합니다. 예를 들어, 에디터에서 변수의 이름, 카테고리, 툴팁 등을 표시할 수 있습니다.
 
-* UFunction: C++ 클래스의 멤버 함수를 나타내는 클래스입니다. UFunction은 Reflection System에서 함수의 정보를 저장하고 검색하는 데 사용됩니다. UFunction은 Blueprint에서 함수의 노출을 제어할 수 있는 기능도 제공합니다.
+* `블루프린트 통합`: Reflection System은 블루프린트와 C++ 코드를 긴밀하게 통합합니다. C++에서 정의된 함수나 변수를 블루프린트에서 호출하거나, 반대로 블루프린트에서 정의된 기능을 C++에서 확장할 수 있습니다.
 
-* UEnum: C++ 클래스의 열거형을 나타내는 클래스입니다. UEnum은 Reflection System에서 열거형의 정보를 저장하고 검색하는 데 사용됩니다.
-
-* UScriptStruct: C++ 구조체를 나타내는 클래스입니다. UScriptStruct는 Reflection System에서 구조체의 정보를 저장하고 검색하는 데 사용됩니다.
+* `네트워크 및 복제`: 네트워크 게임에서 객체의 상태를 클라이언트와 서버 간에 동기화하는 데도 사용됩니다. 이를 통해, 네트워크를 통해 전달되는 데이터가 정확하게 복제되고 관리됩니다
 
 <br>
 
-* Reflection System은 UClass의 GetPropertyByName, SetPropertyByName, FindFunctionByName, Invoke 등의 함수를 사용하여 C++ 클래스의 정보를 검색하고 수정합니다. Reflection System은 런타임에 클래스의 정보를 수정할 수 있으므로, 디버깅이나 게임 플레이 중에도 클래스의 정보를 동적으로 변경할 수 있습니다.
+## Reflection System와 연관있는 매크로
 
-* Reflection System은 Blueprint System과 함께 작동하여 Blueprint 클래스와 C++ 클래스 간의 상호 작용을 가능하게 합니다. Blueprint에서 C++ 클래스의 변수나 함수를 노출할 수 있으며, C++ 클래스에서 Blueprint에서 노출된 변수나 함수를 사용할 수 있습니다.
+* `UCLASS`: C++ 클래스가 언리얼 엔진의 UObject 시스템에 통합되도록 지정합니다. 이 매크로가 있는 클래스는 언리얼 엔진의 다양한 시스템(예: 가비지 컬렉션, 네트워킹, 블루프린트 등)과 통합될 수 있습니다.
 
-* Reflection System은 언리얼 엔진의 다양한 기능에서 사용되며, C++ 클래스의 유연한 사용을 가능하게 합니다. 이를 통해 개발자는 C++ 클래스를 더 쉽게 사용할 수 있으며, 언리얼 엔진의 다양한 기능을 더 효율적으로 활용할 수 있습니다.
+* `USTRUCT`: C++ 구조체를 Reflection System에 등록합니다. 이를 통해 구조체도 클래스처럼 블루프린트나 에디터에서 사용할 수 있습니다.
+
+* `UENUM`: C++ 열거형을 Reflection System에 통합합니다. 블루프린트에서 이 열거형을 선택하거나 사용할 수 있습니다.
+
+* `UFUNCTION`: C++ 함수를 Reflection System에 등록합니다. 이 매크로는 함수가 블루프린트에서 호출 가능하도록 하거나, 네트워크 통신을 지원하도록 설정할 수 있습니다.
+
+* `UPROPERTY`: C++ 클래스의 멤버 변수를 Reflection System에 통합합니다. 이를 통해, 변수는 에디터의 디테일 패널에 노출되거나, 블루프린트에서 사용할 수 있습니다.
+
+## Reflection System의 동작 방식
+
+* 언리얼 엔진의 빌드 과정에서, UHT(Unreal Header Tool)는 C++ 헤더 파일을 스캔하여 Reflection System에 필요한 데이터를 생성합니다. 
+* 이 데이터는 .generated.h 파일에 포함되며, 런타임에서 Reflection System이 이를 참조합니다. 
+* 이 과정은 빌드 시에 자동으로 이루어지며, 이를 통해 런타임에 안전하고 일관성 있는 데이터 처리가 가능해집니다.
