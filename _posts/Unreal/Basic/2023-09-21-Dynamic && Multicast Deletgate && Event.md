@@ -68,6 +68,7 @@ IsBound()
 ## 예시
 
 * 다이나믹 델리게이트 선언
+
 ```c++
 // MainCharacter.h, 델리게이트 선언
 DECLARE_DYNAMIC_DELEGATE(FDynamicDelegate);
@@ -154,6 +155,8 @@ Broadcast();
 ## 예시
 
 * 멀티캐스트 델리게이트 선언
+
+
 ```c++
 // MainCharacter.h, 델리게이트 선언
 DECLARE_MULTICAST_DELEGATE(FMultiDelegate);

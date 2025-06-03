@@ -1,12 +1,12 @@
 ---
 title: DISTINCT && ORDERED BY && LIMIT && LIKE
-date: 2024-03-16
+date: 2024-01-16
 categories: [MySQL,MySQL]
 tags: [mysql]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
 # **DISTINCT**
-==========
+
 
 
 * `SELECT DISTINCT <열> FROM <테이블>`를 사용하면 TABLE안에 있는 열에서 중복되는 이름을 제거할 수 있다.
