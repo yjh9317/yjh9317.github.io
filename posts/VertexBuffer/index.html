@@ -1,0 +1,209 @@
+<!DOCTYPE html><html lang="ko" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="VertexBuffer" /><meta property="og:locale" content="ko" /><meta name="description" content="DirectX 정점 버퍼 (VertexBuffer)" /><meta property="og:description" content="DirectX 정점 버퍼 (VertexBuffer)" /><link rel="canonical" href="https://yjh9317.github.io/posts/VertexBuffer/" /><meta property="og:url" content="https://yjh9317.github.io/posts/VertexBuffer/" /><meta property="og:site_name" content="yjh9317" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2022-06-03T00:00:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="VertexBuffer" /><meta name="twitter:site" content="@twitter_username" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-06-17T15:34:32+09:00","datePublished":"2022-06-03T00:00:00+09:00","description":"DirectX 정점 버퍼 (VertexBuffer)","headline":"VertexBuffer","mainEntityOfPage":{"@type":"WebPage","@id":"https://yjh9317.github.io/posts/VertexBuffer/"},"url":"https://yjh9317.github.io/posts/VertexBuffer/"}</script><title>VertexBuffer | yjh9317</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="yjh9317"><meta name="application-name" content="yjh9317"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> </a></div><div class="site-title mt-3"> <a href="/">yjh9317</a></div><div class="site-subtitle font-italic">코딩열심히하려는사람</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/yjh9317" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>VertexBuffer</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>VertexBuffer</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1654182000" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jun 3, 2022 </em> </span> <span> Updated <em class="" data-ts="1750142072" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jun 17, 2025 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/username">Yang jeong hyeon</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1942 words"> <em>10 min</em> read</span></div></div></div><div class="post-content"><h1 id="directx-정점-버퍼-vertexbuffer"><strong>DirectX 정점 버퍼 (VertexBuffer)</strong></h1><ul><li>3D 그래픽스에서 <code class="language-plaintext highlighter-rouge">정점 버퍼(Vertex Buffer)</code>는 3D 모델을 구성하는 기본 단위인 <code class="language-plaintext highlighter-rouge">정점(Vertex)</code>들의 정보를 저장하는 GPU 메모리 영역</ul><h2 id="정점"><span class="mr-2"><strong>정점</strong></span><a href="#정점" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><h3 id="기본정의"><span class="mr-2"><strong>기본정의</strong></span><a href="#기본정의" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>공간상의 한 위치(좌표)를 나타냄.<li>정점들을 연결하여 선이나 면(주로 삼각형) 같은 기본 도형(Primitive)을 만들고, 이 도형들이 모여 3D 모델(메시, Mesh)의 형태를 이룸</ul><h3 id="물리적-특성"><span class="mr-2"><strong>물리적 특성</strong></span><a href="#물리적-특성" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>위치 값만 가지며, 크기는 개념적으로 무시</ul><h3 id="부가-정보"><span class="mr-2"><strong>부가 정보</strong></span><a href="#부가-정보" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li><p>DirectX에서 사용되는 정점은 단순히 위치(x, y, z) 정보뿐만 아니라, 다음과 같은 다양한 부가 데이터를 가질 수 있음</p><li><code class="language-plaintext highlighter-rouge">색상 (Color)</code>: 정점별 색상 정보 (예: Vec4(R, G, B, A))<li><code class="language-plaintext highlighter-rouge">텍스처 좌표 (Texture Coordinates)</code>: 모델 표면에 이미지를 입히기 위한 UV 좌표<li><code class="language-plaintext highlighter-rouge">선 벡터 (Normal Vector)</code>: 빛 계산을 통한 명암 표현에 사용되는 표면의 방향 정보</ul><h2 id="정점-좌표계-ndc-normalized-device-coordinates"><span class="mr-2"><strong>정점 좌표계: NDC (Normalized Device Coordinates)</strong></span><a href="#정점-좌표계-ndc-normalized-device-coordinates" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><ul><li><code class="language-plaintext highlighter-rouge">Vertex Shader를 거친 정점들이 최종적으로 변환되는 2차원 좌표계</code></ul><h3 id="범위"><span class="mr-2"><strong>범위</strong></span><a href="#범위" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>일반적으로 화면의 가로, 세로, 깊이 방향으로 -1.0에서 +1.0 사이의 값을 가짐<li>화면 중앙이 (0,0), 왼쪽 하단이 (-1,-1), 오른쪽 상단이 (1,1)인 2D 평면 좌표계<li>깊이 값 Z도 이 범위 내에 들어옴</ul><h3 id="역할"><span class="mr-2"><strong>역할</strong></span><a href="#역할" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>3D 공간(View Space)의 모든 좌표는 투영(Projection) 변환을 통해 이 NDC 공간으로 사영</ul><h3 id="장점"><span class="mr-2"><strong>장점</strong></span><a href="#장점" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>화면 해상도에 독립적인 좌표계를 사용하므로, 다양한 해상도에 쉽게 대응가능.<li>좌표 계산 과정을 단순화</ul><p><br /></p><h1 id="정점-버퍼-생성-및-사용에-필요한-주요-변수"><strong>정점 버퍼 생성 및 사용에 필요한 주요 변수</strong></h1><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre><span class="c1">// 1. 정점 버퍼 객체</span>
+<span class="c1">// ID3D11Buffer: GPU 메모리에 생성된 버퍼를 관리하는 COM 인터페이스.</span>
+<span class="c1">// 정점 데이터, 인덱스 데이터, 상수 데이터 등 다양한 종류의 데이터를 저장할 수 있음</span>
+<span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D11Buffer</span><span class="o">&gt;</span> <span class="n">g_pVB</span><span class="p">;</span> <span class="c1">// Vertex Buffer를 가리킬 포인터</span>
+
+<span class="c1">// 2. 셰이더 관련 객체</span>
+<span class="c1">// ID3DBlob: 컴파일된 셰이더 코드나 에러 메시지 같은 임의의 바이너리 데이터를 담는 객체.</span>
+<span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3DBlob</span><span class="o">&gt;</span> <span class="n">g_pErrBlob</span><span class="p">;</span> <span class="c1">// 셰이더 컴파일 시 에러 메시지를 저장할 Blob</span>
+
+<span class="c1">// Vertex Shader 객체</span>
+<span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3DBlob</span><span class="o">&gt;</span> <span class="n">g_pVSBlob</span><span class="p">;</span> <span class="c1">// 컴파일된 Vertex Shader 코드를 저장할 Blob</span>
+<span class="n">ComPtr</span><span class="o">&lt;</span><span class="n">ID3D11VertexShader</span><span class="o">&gt;</span> <span class="n">g_pVS</span><span class="p">;</span> <span class="c1">// 실제 Vertex Shader 객체를 가리킬 포인터</span>
+</pre></table></code></div></div><p><br /></p><h1 id="정점-버퍼vertex-buffer-생성-단계"><strong>정점 버퍼(Vertex Buffer) 생성 단계</strong></h1><h3 id="1-정점-데이터-정의"><span class="mr-2"><strong>1. 정점 데이터 정의</strong></span><a href="#1-정점-데이터-정의" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>먼저 GPU로 보낼 정점 데이터를 CPU 메모리에 정의<li>예를 들어, 삼각형을 구성하는 3개의 정점 데이터는 다음과 같이 정의</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre><td class="rouge-code"><pre><span class="c1">// 사용자 정의 Vertex 구조체 (예시)</span>
+<span class="k">struct</span> <span class="nc">Vertex</span>
+<span class="p">{</span>
+    <span class="n">Vec3</span> <span class="n">vPos</span><span class="p">;</span>   <span class="c1">// 정점의 위치 (x, y, z)</span>
+    <span class="n">Vec4</span> <span class="n">vColor</span><span class="p">;</span> <span class="c1">// 정점의 색상 (R, G, B, A)</span>
+<span class="p">};</span>
+
+<span class="n">Vertex</span> <span class="n">arrVtx</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="c1">// 각 정점의 위치(NDC 좌표 사용 예시)와 색상 설정</span>
+<span class="n">arrVtx</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">vPos</span> <span class="o">=</span> <span class="n">Vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>   <span class="c1">// 삼각형의 위쪽 꼭짓점</span>
+<span class="n">arrVtx</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">vColor</span> <span class="o">=</span> <span class="n">Vec4</span><span class="p">(</span><span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">);</span> <span class="c1">// 빨간색</span>
+
+<span class="n">arrVtx</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">vPos</span> <span class="o">=</span> <span class="n">Vec3</span><span class="p">(</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span>  <span class="c1">// 오른쪽 아래 꼭짓점</span>
+<span class="n">arrVtx</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">vColor</span> <span class="o">=</span> <span class="n">Vec4</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">);</span> <span class="c1">// 녹색</span>
+
+<span class="n">arrVtx</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">vPos</span> <span class="o">=</span> <span class="n">Vec3</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.0</span><span class="n">f</span><span class="p">);</span> <span class="c1">// 왼쪽 아래 꼭짓점</span>
+<span class="n">arrVtx</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="n">vColor</span> <span class="o">=</span> <span class="n">Vec4</span><span class="p">(</span><span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">0.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">,</span> <span class="mf">1.</span><span class="n">f</span><span class="p">);</span> <span class="c1">// 파란색</span>
+</pre></table></code></div></div><h3 id="2-버퍼-설정-d3d11_buffer_desc"><span class="mr-2"><strong>2. 버퍼 설정 (D3D11_BUFFER_DESC)</strong></span><a href="#2-버퍼-설정-d3d11_buffer_desc" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>GPU에 생성할 버퍼의 특성을 정의</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre><td class="rouge-code"><pre><span class="n">D3D11_BUFFER_DESC</span> <span class="n">tBufferDesc</span> <span class="o">=</span> <span class="p">{};</span>
+
+<span class="c1">// 버퍼의 총 크기 (바이트 단위)</span>
+<span class="n">tBufferDesc</span><span class="p">.</span><span class="n">ByteWidth</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">Vertex</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// Vertex 구조체 크기 * 정점 개수</span>
+
+<span class="c1">// 버퍼의 용도 및 CPU 접근 권한 설정</span>
+<span class="c1">// D3D11_USAGE_DYNAMIC: CPU에서 쓰고 GPU에서 읽는 동적 버퍼. CPU에서 자주 업데이트할 경우 사용.</span>
+<span class="c1">// D3D11_CPU_ACCESS_WRITE: CPU에서 버퍼에 쓸 수 있도록 허용.</span>
+<span class="n">tBufferDesc</span><span class="p">.</span><span class="n">Usage</span> <span class="o">=</span> <span class="n">D3D11_USAGE_DYNAMIC</span><span class="p">;</span>
+<span class="n">tBufferDesc</span><span class="p">.</span><span class="n">CPUAccessFlags</span> <span class="o">=</span> <span class="n">D3D11_CPU_ACCESS_WRITE</span><span class="p">;</span>
+<span class="c1">// (참고: 정적 버퍼의 경우 D3D11_USAGE_DEFAULT, CPUAccessFlags = 0 이 일반적)</span>
+
+<span class="c1">// 바인딩 플래그: 버퍼가 파이프라인의 어느 단계에 바인딩될지 지정</span>
+<span class="c1">// D3D11_BIND_VERTEX_BUFFER: 이 버퍼가 정점 버퍼로 사용됨을 명시.</span>
+<span class="n">tBufferDesc</span><span class="p">.</span><span class="n">BindFlags</span> <span class="o">=</span> <span class="n">D3D11_BIND_VERTEX_BUFFER</span><span class="p">;</span>
+
+<span class="c1">// 기타 플래그 (일반적인 정점 버퍼에는 0)</span>
+<span class="n">tBufferDesc</span><span class="p">.</span><span class="n">MiscFlags</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">tBufferDesc</span><span class="p">.</span><span class="n">StructureByteStride</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 구조화된 버퍼가 아닐 경우 0</span>
+</pre></table></code></div></div><h3 id="3-초기-데이터-설정-d3d11_subresource_data"><span class="mr-2"><strong>3. 초기 데이터 설정 (D3D11_SUBRESOURCE_DATA)</strong></span><a href="#3-초기-데이터-설정-d3d11_subresource_data" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>버퍼를 생성할 때 함께 채워 넣을 초기 데이터를 지정</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="n">D3D11_SUBRESOURCE_DATA</span> <span class="n">tSubDesc</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="n">tSubDesc</span><span class="p">.</span><span class="n">pSysMem</span> <span class="o">=</span> <span class="n">arrVtx</span><span class="p">;</span> <span class="c1">// CPU 메모리에 있는 정점 데이터 배열의 시작 주소</span>
+<span class="c1">// tSubDesc.SysMemPitch = 0; (텍스처가 아니므로 0)</span>
+<span class="c1">// tSubDesc.SysMemSlicePitch = 0; (3D 텍스처가 아니므로 0)</span>
+</pre></table></code></div></div><h3 id="4-버퍼-생성-createbuffer"><span class="mr-2"><strong>4. 버퍼 생성 (CreateBuffer)</strong></span><a href="#4-버퍼-생성-createbuffer" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>Direct3D 디바이스의 CreateBuffer 함수를 호출하여 GPU 메모리에 정점 버퍼를 생성</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="c1">// DEVICE는 ID3D11Device* 타입의 디바이스 객체 포인터라고 가정</span>
+<span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">DEVICE</span><span class="o">-&gt;</span><span class="n">CreateBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">tBufferDesc</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">tSubDesc</span><span class="p">,</span> <span class="n">g_pVB</span><span class="p">.</span><span class="n">GetAddressOf</span><span class="p">());</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="c1">// 에러 처리</span>
+    <span class="n">assert</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>이제 g_pVB는 GPU에 생성된 정점 버퍼를 가리키게 됨</ul><p><br /></p><h1 id="vertex-shader-생성-단계"><strong>Vertex Shader 생성 단계</strong></h1><ul><li><p>정점 버퍼의 데이터를 GPU에서 처리하여 변환(예: 월드 변환, 뷰 변환, 투영 변환)하는 역할을 하는 것이 Vertex Shader</p><li><p><code class="language-plaintext highlighter-rouge">HLSL(High Level Shader Language)</code>로 작성된 셰이더 코드를 컴파일하고 객체로 만들어야 함</p></ul><h3 id="1-vertex-shader-파일-컴파일-d3dcompilefromfile"><span class="mr-2"><strong>1. Vertex Shader 파일 컴파일 (D3DCompileFromFile)</strong></span><a href="#1-vertex-shader-파일-컴파일-d3dcompilefromfile" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>HLSL로 작성된 셰이더 파일(예: .fx 또는 .hlsl 파일)을 컴파일</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre><td class="rouge-code"><pre><span class="n">UINT</span> <span class="n">iFlag</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="cp">#ifdef _DEBUG
+</span>    <span class="c1">// 디버그 모드에서는 셰이더 디버깅 정보 포함</span>
+    <span class="n">iFlag</span> <span class="o">=</span> <span class="n">D3DCOMPILE_DEBUG</span> <span class="o">|</span> <span class="n">D3DCOMPILE_SKIP_OPTIMIZATION</span><span class="p">;</span> <span class="c1">// 최적화 건너뛰기 옵션도 추가 가능</span>
+<span class="cp">#endif
+</span>
+<span class="c1">// 셰이더 파일 경로 (예시)</span>
+<span class="n">wstring</span> <span class="n">strShaderFilePath</span> <span class="o">=</span> <span class="n">CPathMgr</span><span class="o">::</span><span class="n">GetInst</span><span class="p">()</span><span class="o">-&gt;</span><span class="n">GetContentPath</span><span class="p">()</span> <span class="o">+</span> <span class="s">L"shader</span><span class="se">\\</span><span class="s">test.fx"</span><span class="p">;</span>
+
+<span class="c1">// D3DCompileFromFile 함수를 사용하여 셰이더 파일 컴파일</span>
+<span class="n">HRESULT</span> <span class="n">hr</span> <span class="o">=</span> <span class="n">D3DCompileFromFile</span><span class="p">(</span>
+    <span class="n">strShaderFilePath</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span>      <span class="c1">// 셰이더 파일 경로</span>
+    <span class="nb">nullptr</span><span class="p">,</span>                        <span class="c1">// 매크로 정의 (없으면 nullptr)</span>
+    <span class="n">D3D_COMPILE_STANDARD_FILE_INCLUDE</span><span class="p">,</span> <span class="c1">// 표준 인클루드 처리기 사용</span>
+    <span class="s">"VS_Test"</span><span class="p">,</span>                      <span class="c1">// 컴파일할 셰이더 함수의 이름 (HLSL 코드 내 함수명)</span>
+    <span class="s">"vs_5_0"</span><span class="p">,</span>                       <span class="c1">// 셰이더 모델 버전 (Vertex Shader Model 5.0)</span>
+    <span class="n">iFlag</span><span class="p">,</span>                          <span class="c1">// 컴파일 플래그 (디버그 등)</span>
+    <span class="mi">0</span><span class="p">,</span>                              <span class="c1">// 효과 컴파일 플래그 (일반 셰이더는 0)</span>
+    <span class="n">g_pVSBlob</span><span class="p">.</span><span class="n">GetAddressOf</span><span class="p">(),</span>       <span class="c1">// 컴파일된 셰이더 코드를 받을 Blob 객체의 주소</span>
+    <span class="n">g_pErrBlob</span><span class="p">.</span><span class="n">GetAddressOf</span><span class="p">()</span>       <span class="c1">// 에러 발생 시 메시지를 받을 Blob 객체의 주소</span>
+<span class="p">);</span>
+
+<span class="c1">// 컴파일 실패 시 에러 메시지 출력</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">g_pErrBlob</span><span class="p">)</span> <span class="c1">// 에러 Blob이 유효한지 확인</span>
+    <span class="p">{</span>
+        <span class="n">MessageBoxA</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span><span class="o">*</span><span class="p">)</span><span class="n">g_pErrBlob</span><span class="o">-&gt;</span><span class="n">GetBufferPointer</span><span class="p">(),</span> <span class="s">"Vertex Shader Compile Failed!!"</span><span class="p">,</span> <span class="n">MB_OK</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">assert</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">);</span> <span class="c1">// 또는 다른 방식으로 에러 처리</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h3 id="2-vertex-shader-객체-생성-createvertexshader"><span class="mr-2"><strong>2. Vertex Shader 객체 생성 (CreateVertexShader)</strong></span><a href="#2-vertex-shader-객체-생성-createvertexshader" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><ul><li>성공적으로 컴파일된 셰이더 코드(Blob)를 이용하여 실제 Vertex Shader 객체를 생성</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre><td class="rouge-code"><pre><span class="c1">// DEVICE는 ID3D11Device* 타입의 디바이스 객체 포인터라고 가정</span>
+<span class="n">hr</span> <span class="o">=</span> <span class="n">DEVICE</span><span class="o">-&gt;</span><span class="n">CreateVertexShader</span><span class="p">(</span>
+    <span class="n">g_pVSBlob</span><span class="o">-&gt;</span><span class="n">GetBufferPointer</span><span class="p">(),</span> <span class="c1">// 컴파일된 셰이더 코드 데이터의 시작 주소</span>
+    <span class="n">g_pVSBlob</span><span class="o">-&gt;</span><span class="n">GetBufferSize</span><span class="p">(),</span>    <span class="c1">// 컴파일된 셰이더 코드의 크기</span>
+    <span class="nb">nullptr</span><span class="p">,</span>                       <span class="c1">// 클래스 연결 정보 (일반적으로 nullptr)</span>
+    <span class="n">g_pVS</span><span class="p">.</span><span class="n">GetAddressOf</span><span class="p">()</span>           <span class="c1">// 생성된 Vertex Shader 객체를 받을 포인터의 주소</span>
+<span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="n">FAILED</span><span class="p">(</span><span class="n">hr</span><span class="p">))</span>
+<span class="p">{</span>
+    <span class="c1">// 에러 처리</span>
+    <span class="n">assert</span><span class="p">(</span><span class="nb">nullptr</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li>이제 g_pVS는 렌더링 파이프라인에 설정하여 사용할 수 있는 Vertex Shader 객체를 가리키게 됩니다. 이 셰이더는 g_pVB에 담긴 정점들을 입력으로 받아 처리하게 됨</ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/directx/'>DirectX</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/directx/" class="post-tag no-text-decoration" >directx</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=VertexBuffer+-+yjh9317&url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2FVertexBuffer%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=VertexBuffer+-+yjh9317&u=https%3A%2F%2Fyjh9317.github.io%2Fposts%2FVertexBuffer%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2FVertexBuffer%2F&text=VertexBuffer+-+yjh9317" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/Gameplay-Param/">GameplayTag Param</a><li><a href="/posts/Device/">Device</a><li><a href="/posts/SwapChain/">SwapChain</a><li><a href="/posts/VertexBuffer/">VertexBuffer</a><li><a href="/posts/IndexBuffer/">IndexBuffer</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/modern-effective-c/">modern effective c++</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/Device/"><div class="card-body"> <em class="small" data-ts="1653836400" data-df="ll" > May 30, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Device</h3><div class="text-muted small"><p> DirectX 디바이스 (Device) DirectX를 사용하여 그래픽을 렌더링하려면, 하드웨어인 그래픽 카드(또는 어댑터)와 통신하고 제어할 수 있는 소프트웨어적인 매개체가 필요 이 핵심적인 소프트웨어 객체를 디바이스(Device)라고 부름 그래픽 카드 추상화: 디바이스는 복잡한 그래픽 하드웨어...</p></div></div></a></div><div class="card"> <a href="/posts/SwapChain/"><div class="card-body"> <em class="small" data-ts="1654009200" data-df="ll" > Jun 1, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>SwapChain</h3><div class="text-muted small"><p> DirectX 스왑 체인 (SwapChain) DirectX에서 스왑 체인(SwapChain)은 부드러운 화면 출력을 위한 핵심 기술* 기본적으로 두 개의 버퍼, 즉 프론트 버퍼(Front Buffer)와 백 버퍼(Back Buffer)를 사용 프론트 버퍼: 현재 모니터에 보여지고 있는 화면 ...</p></div></div></a></div><div class="card"> <a href="/posts/IndexBuffer/"><div class="card-body"> <em class="small" data-ts="1654268400" data-df="ll" > Jun 4, 2022 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>IndexBuffer</h3><div class="text-muted small"><p> DirectX 인덱스 버퍼 (Index Buffer) 3D 모델을 렌더링할 때, 특히 복잡한 모델은 수많은 삼각형으로 구성됨. 이때 인덱스 버퍼(Index Buffer)는 정점 버퍼(Vertex Buffer)와 함께 사용되어 렌더링 효율성을 크게 향상시키는 중요한 요소 인덱스 버퍼가 필요한 이유 정점 버퍼만 사용할 경우 첫 ...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/BubbleSort/" class="btn btn-outline-primary" prompt="Older"><p>BubbleSort</p></a> <a href="/posts/InsertSort/" class="btn btn-outline-primary" prompt="Newer"><p>InsertSort</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2025 <a href="https://twitter.com/username">Yang jeong hyeon</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/modern-effective-c/">modern effective c++</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>

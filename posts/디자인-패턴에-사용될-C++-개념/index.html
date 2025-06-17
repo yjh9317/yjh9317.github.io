@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="ko" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="generator" content="Jekyll v4.2.2" /><meta property="og:title" content="디자인 패턴에 사용될 C++ 개념" /><meta property="og:locale" content="ko" /><meta name="description" content="이상한 재귀 탬플릿 패턴(CRTP)" /><meta property="og:description" content="이상한 재귀 탬플릿 패턴(CRTP)" /><link rel="canonical" href="https://yjh9317.github.io/posts/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4%EC%97%90-%EC%82%AC%EC%9A%A9%EB%90%A0-C++-%EA%B0%9C%EB%85%90/" /><meta property="og:url" content="https://yjh9317.github.io/posts/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4%EC%97%90-%EC%82%AC%EC%9A%A9%EB%90%A0-C++-%EA%B0%9C%EB%85%90/" /><meta property="og:site_name" content="yjh9317" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2023-04-17T00:00:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="디자인 패턴에 사용될 C++ 개념" /><meta name="twitter:site" content="@twitter_username" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-07-06T13:36:45+09:00","datePublished":"2023-04-17T00:00:00+09:00","description":"이상한 재귀 탬플릿 패턴(CRTP)","headline":"디자인 패턴에 사용될 C++ 개념","mainEntityOfPage":{"@type":"WebPage","@id":"https://yjh9317.github.io/posts/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4%EC%97%90-%EC%82%AC%EC%9A%A9%EB%90%A0-C++-%EA%B0%9C%EB%85%90/"},"url":"https://yjh9317.github.io/posts/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4%EC%97%90-%EC%82%AC%EC%9A%A9%EB%90%A0-C++-%EA%B0%9C%EB%85%90/"}</script><title>디자인 패턴에 사용될 C++ 개념 | yjh9317</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="yjh9317"><meta name="application-name" content="yjh9317"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc" data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> </a></div><div class="site-title mt-3"> <a href="/">yjh9317</a></div><div class="site-subtitle font-italic">코딩열심히하려는사람</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="https://github.com/yjh9317" aria-label="github" target="_blank" rel="noopener"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/twitter_username" aria-label="twitter" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['example','doamin.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper" class="row justify-content-center"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>디자인 패턴에 사용될 C++ 개념</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>디자인 패턴에 사용될 C++ 개념</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1681657200" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Apr 17, 2023 </em> </span> <span> Updated <em class="" data-ts="1688618205" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jul 6, 2023 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://twitter.com/username">Yang jeong hyeon</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="980 words"> <em>5 min</em> read</span></div></div></div><div class="post-content"><h1 id="이상한-재귀-탬플릿-패턴crtp">이상한 재귀 탬플릿 패턴(CRTP)</h1><ul><li><p>Curious Recurring Template Pattern, CRTP라고도 부른다.</p><li><p><code class="language-plaintext highlighter-rouge">자기 자신을 베이스 클래스의 템플릿 인자로 상속받는 패턴</code></p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="k">struct</span> <span class="nc">Foo</span> <span class="o">:</span> <span class="n">SomeBase</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="p">....</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>이 방식의 장점은 베이스 <code class="language-plaintext highlighter-rouge">클래스의 구현부에서 타입이 지정된 this 포인터를 사용할 수 있는 것</code>이다.</p><li><p>SomeBase를 상속받는 모든 서브 클래스들에 begin() 메서드를 구현한다고 가정해보자.</p><li>SomeBase의 메서드 안에서 서브 클래스의 객체를 순회할 방법이 있을까?<ul><li>부모 클래스인 SomeBase에 begin()/end() 인터페이스가 정의되어 있지 않는 한 불가능하다.</ul><li><p>하지만 CRTP를 적용하면 this를 서브 클래스 타입으로 캐스팅할 수 있다.</p><li><code class="language-plaintext highlighter-rouge">CRTP</code><ul><li><code class="language-plaintext highlighter-rouge">기반 클래스에서 파생 클래스의 이름을 사용할 수 있으며, 가상함수(virtual) 없이 가상 함수를 override 한 것과 같은 효과를 볼 수 있다.</code><li><code class="language-plaintext highlighter-rouge">가상함수를 호출하는 데에 많은 오버헤드 비용(동적 다형성의 비용)이 발생하게 되는데 해당 비용을 없앨 수 있다</code></ul></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre><td class="rouge-code"><pre><span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Derived</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">SomeBase</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="k">auto</span><span class="o">&amp;</span> <span class="n">check</span> <span class="o">=</span> <span class="o">*</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+        <span class="n">check</span><span class="p">.</span><span class="n">Begin</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">Begin</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"SomeBase"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nc">Foo</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SomeBase</span><span class="o">&lt;</span><span class="n">Foo</span><span class="o">&gt;</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">void</span> <span class="n">Begin</span><span class="p">()</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Foo"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Foo</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">foo</span><span class="p">();</span>
+	<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="err">결과</span>
+<span class="cm">/*
+Foo
+*/</span>
+</pre></table></code></div></div><p><br /><br /></p><h1 id="첨가mixin-상속">첨가(Mixin) 상속</h1><ul><li>C++는 클래스를 정의할 때 자기 자신을 템플릿 인자로 할 수 있다.</ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">T</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">Mixin</span> <span class="o">:</span> <span class="n">T</span>
+<span class="p">{</span>
+    <span class="p">...</span>
+<span class="p">};</span>
+</pre></table></code></div></div><ul><li><p>이러한 방식을 <code class="language-plaintext highlighter-rouge">첨가 상속(mixin inheritance)</code> 라고 한다</p><li><p>is-a 관계를 완전히 구현하지 않고도 기능을 추가할 때 사용한다.</p><li><p>첨가 상속을 이용하면 계층적으로 여러 타입을 합성할 수 있다.</p></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+</pre><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="nc">Number</span> <span class="p">{</span>
+	<span class="k">typedef</span> <span class="kt">int</span> <span class="n">value_type</span><span class="p">;</span>
+	<span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+	
+    <span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+  		<span class="n">n</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> 
+	<span class="p">}</span>
+    
+  	<span class="kt">int</span> <span class="n">get</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> 
+    	<span class="k">return</span> <span class="n">n</span><span class="p">;</span> 
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">BASE</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">T</span> <span class="o">=</span> <span class="k">typename</span> <span class="nc">BASE</span><span class="o">::</span><span class="n">value_type</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">Undoable</span> <span class="o">:</span> <span class="n">BASE</span> <span class="p">{</span>
+  	<span class="k">typedef</span> <span class="n">T</span> <span class="n">value_type</span><span class="p">;</span>
+  	<span class="n">T</span> <span class="n">before</span><span class="p">;</span>
+  
+  	<span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> 
+    	<span class="n">before</span> <span class="o">=</span> <span class="n">BASE</span><span class="o">::</span><span class="n">get</span><span class="p">();</span> 
+        <span class="n">BASE</span><span class="o">::</span><span class="n">set</span><span class="p">(</span><span class="n">v</span><span class="p">);</span> 
+    <span class="p">}</span>
+  
+  	<span class="kt">void</span> <span class="n">undo</span><span class="p">()</span> <span class="p">{</span> 
+  		<span class="n">BASE</span><span class="o">::</span><span class="n">set</span><span class="p">(</span><span class="n">before</span><span class="p">);</span> 
+  	<span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">BASE</span><span class="p">,</span> <span class="k">typename</span> <span class="nc">T</span> <span class="o">=</span> <span class="k">typename</span> <span class="nc">BASE</span><span class="o">::</span><span class="n">value_type</span><span class="p">&gt;</span>
+<span class="k">struct</span> <span class="nc">Redoable</span> <span class="o">:</span> <span class="n">BASE</span> <span class="p">{</span>
+    <span class="k">typedef</span> <span class="n">T</span> <span class="n">value_type</span><span class="p">;</span>
+    <span class="n">T</span> <span class="n">after</span><span class="p">;</span>
+
+    <span class="kt">void</span> <span class="n">set</span><span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    	<span class="n">after</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+        <span class="n">BASE</span><span class="o">::</span><span class="n">set</span><span class="p">(</span><span class="n">v</span><span class="p">);</span> 
+	<span class="p">}</span>
+    
+    <span class="kt">void</span> <span class="n">redo</span><span class="p">()</span> <span class="p">{</span>
+    	<span class="n">BASE</span><span class="o">::</span><span class="n">set</span><span class="p">(</span><span class="n">after</span><span class="p">);</span> 
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">typedef</span> <span class="n">Redoable</span><span class="o">&lt;</span> <span class="n">Undoable</span><span class="o">&lt;</span><span class="n">Number</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">ReUndoableNumber</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">ReUndoableNumber</span> <span class="n">mynum</span><span class="p">;</span>
+  
+  <span class="n">mynum</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">42</span><span class="p">);</span> 
+  
+  <span class="n">mynum</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">84</span><span class="p">);</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">mynum</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>  <span class="c1">// 84</span>
+  
+  <span class="n">mynum</span><span class="p">.</span><span class="n">undo</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">mynum</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>  <span class="c1">// 42</span>
+  
+  <span class="n">mynum</span><span class="p">.</span><span class="n">redo</span><span class="p">();</span>
+  <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">mynum</span><span class="p">.</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>  <span class="c1">// back to 84</span>
+<span class="p">}</span>
+</pre></table></code></div></div><ul><li><p>ReUndoableNumber의 원형인 Redoable&lt;Undoable&lt;Number&gt;&gt;와 같이 새로운 타입을 따로 구현하지 않고도 세 가지 타입의 속성을 지니게 할 수 있다.</p><li><p>장점</p><ul><li>컴파일 타임에 컴파일된 클래스 유형을 알고있기 때문에 가상함수는 필요 없다.</ul><li>단점<ul><li>보다시피 직관적인 접근 방법을 제공하지 않는다.</ul><li><a href="https://stackoverflow.com/questions/18773367/what-are-mixins-as-a-concept">https://stackoverflow.com/questions/18773367/what-are-mixins-as-a-concept</a> 참고.</ul><p><br /><br /></p><h1 id="속성">속성</h1><ul><li><p><code class="language-plaintext highlighter-rouge">get/set메서드를 가지는 클래스 내부 변수(보통 private으로 선언되는)를 보통 그 클래스의 속성</code>이라 부른다.</p><li><p>C++은 다른 언어들과 달리 속성을 언어 자체의 내장기능으로 제공하지 않는다.</p><ul><li>그럼에도 대부분의 컴파일러(MSVC, Clang, Intel)에서 비표준적인 방법으로 지원하고 있다.</ul></ul><div class="language-c++ highlighter-rouge"><div class="code-header"> <span data-label-text="C++"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">Person</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+
+<span class="nl">public:</span>
+    <span class="kt">int</span> <span class="n">get_age</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">age</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">set_age</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span> <span class="n">age</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kr">__declspec</span><span class="p">(</span><span class="n">property</span><span class="p">(</span><span class="n">get</span> <span class="o">=</span> <span class="n">get_age</span><span class="p">,</span> <span class="n">put</span> <span class="o">=</span> <span class="n">set_age</span><span class="p">))</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Person</span> <span class="n">person</span><span class="p">;</span>
+    <span class="n">person</span><span class="p">.</span><span class="n">age</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span> <span class="c1">// calls p.set_age(20)</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></table></code></div></div></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4/'>디자인 패턴</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/design-pattern/" class="post-tag no-text-decoration" >design pattern</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=%EB%94%94%EC%9E%90%EC%9D%B8+%ED%8C%A8%ED%84%B4%EC%97%90+%EC%82%AC%EC%9A%A9%EB%90%A0+C%2B%2B+%EA%B0%9C%EB%85%90+-+yjh9317&url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8-%25ED%258C%25A8%25ED%2584%25B4%25EC%2597%2590-%25EC%2582%25AC%25EC%259A%25A9%25EB%2590%25A0-C%2B%2B-%25EA%25B0%259C%25EB%2585%2590%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=%EB%94%94%EC%9E%90%EC%9D%B8+%ED%8C%A8%ED%84%B4%EC%97%90+%EC%82%AC%EC%9A%A9%EB%90%A0+C%2B%2B+%EA%B0%9C%EB%85%90+-+yjh9317&u=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8-%25ED%258C%25A8%25ED%2584%25B4%25EC%2597%2590-%25EC%2582%25AC%25EC%259A%25A9%25EB%2590%25A0-C%2B%2B-%25EA%25B0%259C%25EB%2585%2590%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://t.me/share/url?url=https%3A%2F%2Fyjh9317.github.io%2Fposts%2F%25EB%2594%2594%25EC%259E%2590%25EC%259D%25B8-%25ED%258C%25A8%25ED%2584%25B4%25EC%2597%2590-%25EC%2582%25AC%25EC%259A%25A9%25EB%2590%25A0-C%2B%2B-%25EA%25B0%259C%25EB%2585%2590%2F&text=%EB%94%94%EC%9E%90%EC%9D%B8+%ED%8C%A8%ED%84%B4%EC%97%90+%EC%82%AC%EC%9A%A9%EB%90%A0+C%2B%2B+%EA%B0%9C%EB%85%90+-+yjh9317" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/Gameplay-Param/">GameplayTag Param</a><li><a href="/posts/Device/">Device</a><li><a href="/posts/SwapChain/">SwapChain</a><li><a href="/posts/VertexBuffer/">VertexBuffer</a><li><a href="/posts/IndexBuffer/">IndexBuffer</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/modern-effective-c/">modern effective c++</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="tail-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-5%EC%9B%90%EC%B9%99-(SOLID)/"><div class="card-body"> <em class="small" data-ts="1681657200" data-df="ll" > Apr 17, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>객체 지향 5원칙</h3><div class="text-muted small"><p> SOLID 디자인 원칙 SOLID는 다음과 같이 디자인 원칙들의 앞글자를 따서 만든 약어이다. 단일 책임 원칙 (Single Responsibility Principle, SRP) 모든 클래스는 각각 하나의 책임만 가져야 한다. 클래스는 그 책임을 완전히 캡슐화해야 함을 말한다. 열림-...</p></div></div></a></div><div class="card"> <a href="/posts/1.%EB%8B%A8%EC%9D%BC-%EC%B1%85%EC%9E%84-%EC%9B%90%EC%B9%99/"><div class="card-body"> <em class="small" data-ts="1681743600" data-df="ll" > Apr 18, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>단일 책임 원칙</h3><div class="text-muted small"><p> 단일 책임 원칙 (SRP) 클래스로 메모장을 만들기로 하려 한다. 이 메모장에는 제목 하나에 여러 항목이 저장될 수 있도록 만들 것이다. 이러한 기능은 다음과 같이 모델링 될 수 있다. 1 2 3 4 5 6 7 struct Journal { string title; vector...</p></div></div></a></div><div class="card"> <a href="/posts/2.%EC%97%B4%EB%A6%BC-%EB%8B%AB%ED%9E%98-%EC%9B%90%EC%B9%99/"><div class="card-body"> <em class="small" data-ts="1681743600" data-df="ll" > Apr 18, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>열림-닫힘 원칙</h3><div class="text-muted small"><p> 열림-닫힘 원칙 (OCP) DataBase에 어떤 제품에 대한 정보가 저장되어 있다고 한다. 제품은 서로 다른 색상과 크기를 가지며 아래와 같이 정의된다. 1 2 3 4 5 6 7 8 9 enum class Color { red, green, blue }; enum class Size { small, medium, large }; st...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-5%EC%9B%90%EC%B9%99-(SOLID)/" class="btn btn-outline-primary" prompt="Older"><p>객체 지향 5원칙</p></a> <a href="/posts/%EB%B9%84%EB%8F%99%EA%B8%B0-I-O%EC%99%80-APC/" class="btn btn-outline-primary" prompt="Newer"><p>비동기 I/O와 APC</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center text-muted"><div class="footer-left"><p class="mb-0"> © 2025 <a href="https://twitter.com/username">Yang jeong hyeon</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div></p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/unreal/">unreal</a> <a class="post-tag" href="/tags/c/">C++</a> <a class="post-tag" href="/tags/design-pattern/">design pattern</a> <a class="post-tag" href="/tags/coding-test/">coding test</a> <a class="post-tag" href="/tags/directx/">directx</a> <a class="post-tag" href="/tags/windows/">windows</a> <a class="post-tag" href="/tags/data-structure/">data_structure</a> <a class="post-tag" href="/tags/modern-effective-c/">modern effective c++</a> <a class="post-tag" href="/tags/directx3d/">directx3d</a> <a class="post-tag" href="/tags/python/">python</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lozad/dist/lozad.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/ko.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/app.js"></script>
