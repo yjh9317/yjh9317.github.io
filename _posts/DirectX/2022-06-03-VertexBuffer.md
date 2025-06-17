@@ -6,22 +6,22 @@ tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
 
-# DirectX 정점 버퍼 (VertexBuffer)
+# **DirectX 정점 버퍼 (VertexBuffer)**
 
 * 3D 그래픽스에서 `정점 버퍼(Vertex Buffer)`는 3D 모델을 구성하는 기본 단위인 `정점(Vertex)`들의 정보를 저장하는 GPU 메모리 영역
 
-## 정점
+## **정점**
 
-### 기본정의
+### **기본정의**
 
 * 공간상의 한 위치(좌표)를 나타냄.
 * 정점들을 연결하여 선이나 면(주로 삼각형) 같은 기본 도형(Primitive)을 만들고, 이 도형들이 모여 3D 모델(메시, Mesh)의 형태를 이룸
 
-### 물리적 특성
+### **물리적 특성**
 
 * 위치 값만 가지며, 크기는 개념적으로 무시
 
-### 부가 정보
+### **부가 정보**
 
 * DirectX에서 사용되는 정점은 단순히 위치(x, y, z) 정보뿐만 아니라, 다음과 같은 다양한 부가 데이터를 가질 수 있음
 
@@ -30,28 +30,28 @@ tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 * `선 벡터 (Normal Vector)`: 빛 계산을 통한 명암 표현에 사용되는 표면의 방향 정보
 
 
-## 정점 좌표계: NDC (Normalized Device Coordinates)
+## **정점 좌표계: NDC (Normalized Device Coordinates)**
 
 * `Vertex Shader를 거친 정점들이 최종적으로 변환되는 2차원 좌표계`
 
-### 범위
+### **범위**
 
 * 일반적으로 화면의 가로, 세로, 깊이 방향으로 -1.0에서 +1.0 사이의 값을 가짐
 * 화면 중앙이 (0,0), 왼쪽 하단이 (-1,-1), 오른쪽 상단이 (1,1)인 2D 평면 좌표계
 * 깊이 값 Z도 이 범위 내에 들어옴
 
-### 역할
+### **역할**
 
 * 3D 공간(View Space)의 모든 좌표는 투영(Projection) 변환을 통해 이 NDC 공간으로 사영
 
-### 장점
+### **장점**
 
 * 화면 해상도에 독립적인 좌표계를 사용하므로, 다양한 해상도에 쉽게 대응가능.
 * 좌표 계산 과정을 단순화
 
 <br>
 
-# 정점 버퍼 생성 및 사용에 필요한 주요 변수
+# **정점 버퍼 생성 및 사용에 필요한 주요 변수**
 
 
 ```c++
@@ -71,9 +71,9 @@ ComPtr<ID3D11VertexShader> g_pVS; // 실제 Vertex Shader 객체를 가리킬 �
 
 <br>
 
-# 정점 버퍼(Vertex Buffer) 생성 단계
+# **정점 버퍼(Vertex Buffer) 생성 단계**
 
-### 1. 정점 데이터 정의
+### **1. 정점 데이터 정의**
 
 * 먼저 GPU로 보낼 정점 데이터를 CPU 메모리에 정의
 * 예를 들어, 삼각형을 구성하는 3개의 정점 데이터는 다음과 같이 정의
@@ -99,7 +99,7 @@ arrVtx[2].vPos = Vec3(-0.5f, -0.5f, 0.0f); // 왼쪽 아래 꼭짓점
 arrVtx[2].vColor = Vec4(0.f, 0.f, 1.f, 1.f); // 파란색
 ```
     
-### 2. 버퍼 설정 (D3D11_BUFFER_DESC)
+### **2. 버퍼 설정 (D3D11_BUFFER_DESC)**
 
 * GPU에 생성할 버퍼의 특성을 정의
 
@@ -125,7 +125,7 @@ tBufferDesc.MiscFlags = 0;
 tBufferDesc.StructureByteStride = 0; // 구조화된 버퍼가 아닐 경우 0
 ```
 
-### 3. 초기 데이터 설정 (D3D11_SUBRESOURCE_DATA)
+### **3. 초기 데이터 설정 (D3D11_SUBRESOURCE_DATA)**
 
 * 버퍼를 생성할 때 함께 채워 넣을 초기 데이터를 지정
 
@@ -136,7 +136,7 @@ tSubDesc.pSysMem = arrVtx; // CPU 메모리에 있는 정점 데이터 배열의
 // tSubDesc.SysMemSlicePitch = 0; (3D 텍스처가 아니므로 0)
 ```
 
-### 4. 버퍼 생성 (CreateBuffer)
+### **4. 버퍼 생성 (CreateBuffer)**
 
 * Direct3D 디바이스의 CreateBuffer 함수를 호출하여 GPU 메모리에 정점 버퍼를 생성
 
@@ -154,13 +154,13 @@ if (FAILED(hr))
 
 <br>
 
-# Vertex Shader 생성 단계
+# **Vertex Shader 생성 단계**
 
 * 정점 버퍼의 데이터를 GPU에서 처리하여 변환(예: 월드 변환, 뷰 변환, 투영 변환)하는 역할을 하는 것이 Vertex Shader
 
 *  `HLSL(High Level Shader Language)`로 작성된 셰이더 코드를 컴파일하고 객체로 만들어야 함
 
-### 1. Vertex Shader 파일 컴파일 (D3DCompileFromFile)
+### **1. Vertex Shader 파일 컴파일 (D3DCompileFromFile)**
 
 * HLSL로 작성된 셰이더 파일(예: .fx 또는 .hlsl 파일)을 컴파일
 
@@ -199,7 +199,7 @@ if (FAILED(hr))
 ```
 
 
-### 2. Vertex Shader 객체 생성 (CreateVertexShader)
+### **2. Vertex Shader 객체 생성 (CreateVertexShader)**
 
 * 성공적으로 컴파일된 셰이더 코드(Blob)를 이용하여 실제 Vertex Shader 객체를 생성
 

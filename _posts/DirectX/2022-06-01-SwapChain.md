@@ -7,7 +7,7 @@ tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 
 
 
-# DirectX 스왑 체인 (SwapChain)
+# **DirectX 스왑 체인 (SwapChain)**
 
 * DirectX에서 `스왑 체인(SwapChain)`은 부드러운 화면 출력을 위한 핵심 기술*
 
@@ -18,7 +18,7 @@ tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 
 <br>
 
-# 렌더링 과정
+# **렌더링 과정**
 
 1. 애플리케이션은 백 버퍼에 다음 프레임의 이미지를 그림
 
@@ -32,7 +32,7 @@ tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 
 <br>
 
-# 스왑 체인 설정 코드 (DXGI_SWAP_CHAIN_DESC)
+# **스왑 체인 설정 코드 (DXGI_SWAP_CHAIN_DESC)**
 
 
 ```c++
@@ -83,7 +83,7 @@ desc.Windowed = true;       //  창모드거나 전체화면 (true면 창,false�
 
 <br>
 
-# 스왑 체인 생성 과정
+# **스왑 체인 생성 과정**
 
 * 스왑 체인을 실제로 생성하려면 몇 가지 DXGI 인터페이스를 통해야 함
 

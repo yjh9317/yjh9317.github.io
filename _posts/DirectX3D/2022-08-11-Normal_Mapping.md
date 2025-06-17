@@ -5,115 +5,138 @@ categories: [DirectX3D, DirectX3D]
 tags: [directx3d]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
+# **노멀 매핑 (Normal Mapping)**
 
-노말 맵핑
-==============================
-* 평평한 Mesh를 쓰면 노멀벡터가 전부 같아서 명암이 모두 같아 부자연스러워진다.
-* 울퉁불퉁한 Mesh를 사용하기 위해 정점을 찍어야하는데 디테일해질수록 정점이 많아지면서 렌더링 부담이 심해진다
-  * 예시 : terrain wireframe
+* `상대적으로 적은 수의 폴리곤(Low-poly)으로 구성된 3D 모델 표면에 마치 많은 폴리곤(High-poly)으로 만들어진 것처럼 세밀한 요철과 질감을 표현하는 컴퓨터 그래픽 기술`
 
-* 그래서 적은 정점으로 디테일을 살리기 위해 나온 것이 노말 맵핑이다.
-* 노말 맵핑이란 노말 맵을 사용해서 명암을 표현하여 입체감과 질감을 구현하는 방법이다.
+* 실제 지오메트리를 변경하지 않고, 빛의 반사를 조작하여 시각적으로 디테일을 추가
 
-<br><br>
+## **핵심 원리**
 
-노말 맵핑 원리
-===============
-노말 맵은 노말 맵핑을 적용시킬 텍스쳐의 노말 벡터를 RGB에 저장한 텍스쳐이다.(노말 벡터의 xyz축 순서대로 RGB에 저장함)<br><br>
-이 노말 맵 안에 있는 노말 벡터를 가져와서 그 값으로 명암을 적용시켜 입체감을 구현하는 것인데<br>
-3D에서는 로컬 스페이스의 좌표가 바뀌면서 애니메이션을 적용 시키는데 노말 맵은 고정된 로컬 스페이스의 노말 벡터가 저장되어 있기 때문에 맞지 않게 된다.
+### **1. 노멀 맵 텍스처 (Normal Map Texture)**
 
+* `노멀 맵은 각 텍셀(texel)이 표면의 법선 벡터(Normal Vector) 방향 정보를 담고 있는 특수한 텍스처`
+* 이 법선 벡터의 X, Y, Z 성분은 주로 텍스처의 R, G, B 채널에 각각 매핑되어 저장.
+  *  일반적으로 X, Y는 -1에서 +1 범위, Z는 0에서 +1 범위의 값을 0-255 범위로 변환하여 저장
+* 이 법선 벡터는 대부분 `탄젠트 공간(Tangent Space)`을 기준으로 정의
 
-그래서 정점의 노말벡터가 z축인 정점별의 고유 좌표계인 Tangent Space(접선 공간)로 가져와서 상대적인 좌표로 변환시켜야 한다.<br>
+### **2. 탄젠트 공간 (Tangent Space)**
 
-<br><br>
+* `각 정점(vertex) 또는 표면의 특정 지점에서 정의되는 국소적인 3차원 좌표계`
+* 주로 세 개의 축으로 구성
+  * `법선 (Normal - N)`: 표면에 수직인 방향 (원래 지오메트리의 법선).
+  * `탄젠트 (Tangent - T)`: 표면에 접하면서 주로 텍스처의 U 좌표 방향과 일치하는 벡터.
+  * `바이노멀 (Binormal / Bitangent - B)`: 법선(N)과 탄젠트(T)에 모두 수직인 벡터 (N과 T의 외적으로 계산 가능), 주로 텍스처의 V 좌표 방향과 일치.
+* 노멀 맵에 저장된 법선 벡터는 이 탄젠트 공간을 기준으로 "위쪽"(파란색 계열, (0,0,1)에 해당)을 향하는 것이 일반적
 
-노말 벡터를 RGB에 저장하는 과정
-================
-노말 벡터를 RGB로 변환해야 하는데 여기서 생각 해야할 것이 있다.<br><br>
+### 3. 계산 과정
 
-* 첫 번째<br>
-  
-셰이더에서 사용하기 위해서 노말 벡터를 RGB로 변환하는데 Shader는 텍스쳐를 샘플링할 때 UV값으로 0 에서 1 사이의 실수값으로 변환해서 가져온다.<br>
+#### **정점 셰이더 (Vertex Shader)**
 
-노말 벡터는 방향값을 가지므로 -1 부터 1의 값인데 이 값이 0 ~ 1값으로 치환이 되는것 이므로 <br>
-음수인 -1 ~ 0 의 값은 0에서 0.5로 , 양수인 0 ~ 1의 값은 0.5에서 1의 값으로 치환이 된다.
+* 모델의 정점 데이터로부터 법선(N), 탄젠트(T), 바이노멀(B) 벡터를 가져와 월드 공간 또는 뷰 공간으로 변환.
+  * 바이노멀은 N과 T로부터 계산할 수도 있음
+* 이 세 벡터를 사용하여 TBN 행렬(탄젠트 공간에서 월드/뷰 공간으로 변환하는 행렬)을 만들거나, 반대로 광원 방향과 시선 방향 같은 벡터들을 탄젠트 공간으로 변환하여 픽셀 셰이더로 전달
 
-샘플링한 UV값을 다시 원래대로 -1 ~ 1사이의 값(진짜 노말벡터방향)으로 되돌리기 위해 0 ~ 1 인 값에 *2를 하고 -1를 해서 다시 범위를 -1 ~ 1 로 되돌려준다.
+#### **픽셀 셰이더 (Pixel Shader)**
 
-<br>
+* 노멀 맵 텍스처에서 현재 픽셀에 해당하는 탄젠트 공간 법선 벡터를 샘플링
+* 샘플링된 값(보통 0~1 범위)을 원래의 벡터 범위(-1~1)로 변환
+  * 예: `normal_ts = sampledColor.rgb * 2.0 - 1.0;`
 
-* 두 번째<br>
+* 옵션 A (탄젠트 공간 조명 계산): 월드/뷰 공간의 광원 방향과 시선 방향을 TBN 행렬의 역행렬(또는 전치행렬, TBN이 직교한다면)을 사용하여 탄젠트 공간으로 변환.
+  * 그런 다음, 노멀 맵에서 읽은 탄젠트 공간 법선을 사용하여 조명 계산(난반사, 정반사 등)을 수행
 
-노말 맵의 노말 벡터를 Tangent Space로 적용시켜야 한다.그러기 위해 회전 행렬을 구해야하는데
-
-구하는 방법은 Tangent Space에서의 단위벡터가 노말맵의 Tangent,Normal,Binormal의 값과 일치시키는 것이다.<br>
-
-일단 노말 맵의 Tangent, Normal, Binormal의 값을 따로 저장한다음 비교를 한다.<br>
-Tangent Space에서의 (1,0,0)이 정점의 tangent 와 같고<br>
-Tangent Space에서의 (0,0,1)이 정점의 Binoraml과 같고<br>
-Tangent Space에서의 (0,1,0)이 정점의 Normal과 같다.<br>
-
-이 정보들을 토대로 행렬로 변환시켜 보면<br>
-
-    ( 1 , 0 , 0 )                 ( Tx, Ty, Tz )
-    ( 0 , 1 , 0 ) * R(회전행렬) = ( Nx, Ny, Nz )
-    ( 0 , 0 , 1 )                 ( Bx, By, Bz )
-
-<br>
-이 모양이 나오게 되는데 왼쪽 행렬은 단위 행렬이므로 곧 R(회전 행렬)이 계산 값이 되는 것이다.<br>
-이 회전 행렬을 곱하기 전에 주의 해야 할 점은 DirectX의 좌표계와 Tangent Space의 좌표계의 축이 다르기 떄문에<br> Normal과 Binormal의 위치를 바꿔줘야 한다.<br>
-
-* DirectX의 y와 z축를 바꿔야 Tangent Space의 좌표축이 된다.<br><br>
-
-그래서 결국 회전 행렬은 아래가 된다.<br>
-
-    ( Tx, Ty, Tz )
-    ( Bx, By, Bz )
-    ( Nx, Ny, Nz )
-
-
-
- 
+* 옵션 B (월드/뷰 공간 조명 계산): 노멀 맵에서 읽은 탄젠트 공간 법선을 TBN 행렬을 사용하여 월드 공간 또는 뷰 공간으로 변환.
+  * 그런 다음, 월드/뷰 공간의 광원 방향, 시선 방향, 그리고 변환된 법선을 사용하여 조명 계산을 수행
 
 <br>
 
-코드
-=======================
+## **정점 데이터 요구 사항 Vertex_Data**
 
-      // 노말맵핑
-      if (g_btex_1) // 노말 맵이 있다면
-      {
-          float3 vNormal = g_tex_1.Sample(g_sam_0, _in.vUV).rgb;
-          vNormal = vNormal * 2.f - 1.f;  // 0 ~ 1 값을 -1 ~ 1 로 확장       
-          
-          // 회전 행렬
-          float3x3 matRot =
-          {
-                _in.vViewTangent
-              , _in.vViewBinormal
-              , _in.vViewNormal
-          };
-          
-          // 뷰 스페이스 기준의 노말 벡터와 회전 행렬을 곱해서 뷰 스페이스의 노말벡터를 구함.
-          vViewNormal = normalize(mul(vNormal, matRot));        
-      }
+* 노멀 매핑을 사용하려면 정점 데이터에 다음 정보가 포함되어야 함
+  * 위치 (Position)
+  * 텍스처 좌표 (Texture Coordinates - UV)
+  * 법선 (Normal)
+  * 탄젠트 (Tangent)
+  * (선택적) 바이노멀/바이탄젠트 (Binormal/Bitangent) 
+    * 탄젠트와 법선으로부터 계산 가능
+
+* 탄젠트와 바이노멀 벡터는 모델링 도구나 전처리 과정에서 생성
+
+<br>
+
+## **HLSL 구현 예시 (픽셀 셰이더 중심) Shader_Example**
+
+```c++
+// 정점 셰이더 출력 / 픽셀 셰이더 입력 구조체
+struct PS_INPUT
+{
+    float4 positionH     : SV_Position;
+    float2 texCoord      : TEXCOORD0;
+    float3 normal_ws     : NORMAL0;      // 월드 공간 법선 (원래 지오메트리)
+    float3 tangent_ws    : TANGENT0;     // 월드 공간 탄젠트
+    // float3 binormal_ws : BINORMAL0; // 필요시 바이노멀도 전달 (또는 픽셀 셰이더에서 계산)
+    float3 position_ws   : POSITION0;    // 월드 공간 위치
+};
+
+// 텍스처 및 샘플러
+Texture2D normalMapTexture : register(t1); // 노멀 맵 텍스처
+SamplerState linearSampler : register(s0);
+
+// 상수 버퍼 (예: 광원 정보, 카메라 위치)
+cbuffer LightParams : register(b1)
+{
+    float3 lightDirection_ws; // 월드 공간에서의 광원 방향 (방향성 광원 예시)
+    float3 eyePosition_ws;    // 월드 공간에서의 카메라 위치
+    // ... 기타 조명 파라미터 ...
+};
+
+float4 PS_NormalMapping(PS_INPUT input) : SV_Target
+{
+    // 1. 노멀 맵에서 탄젠트 공간 법선 샘플링 및 변환
+    float3 normal_ts_from_map = normalMapTexture.Sample(linearSampler, input.texCoord).rgb;
+    normal_ts_from_map = normalize(normal_ts_from_map * 2.0f - 1.0f); // [0,1] 범위를 [-1,1] 범위로
+
+    // 2. TBN 행렬 구성 또는 필요한 벡터들을 탄젠트 공간으로 변환
+    float3 N_ws = normalize(input.normal_ws);
+    float3 T_ws = normalize(input.tangent_ws - dot(input.tangent_ws, N_ws) * N_ws); // Gram-Schmidt 과정으로 T를 N에 직교하게 만듦
+    float3 B_ws = normalize(cross(N_ws, T_ws)); // 바이노멀 계산 (탄젠트와 법선의 외적)
+
+    // TBN 행렬 (탄젠트 공간 -> 월드 공간 변환용)
+    float3x3 TBN_ws = float3x3(T_ws, B_ws, N_ws);
+    // 또는 월드 공간 -> 탄젠트 공간 변환용 TBN 행렬 (위 행렬의 전치)
+    // float3x3 worldToTangentSpace = transpose(TBN_ws);
 
 
+    // 옵션 A: 탄젠트 공간에서 조명 계산
+    // float3 lightDir_ts = mul(normalize(lightDirection_ws), worldToTangentSpace);
+    // float3 viewDir_ts  = mul(normalize(eyePosition_ws - input.position_ws), worldToTangentSpace);
+    // float3 finalNormal_ts = normal_ts_from_map;
+    // ... finalNormal_ts, lightDir_ts, viewDir_ts로 조명 계산 ...
 
+    // 옵션 B: 노멀 맵의 법선을 월드 공간으로 변환하여 조명 계산 (더 일반적)
+    float3 finalNormal_ws = normalize(mul(normal_ts_from_map, TBN_ws));
 
-<br><br>
+    // 3. 월드 공간에서 조명 계산 (예: 간단한 디퓨즈)
+    float3 lightDir_ws_norm = normalize(lightDirection_ws); // 방향성 광원은 방향 자체가 주어짐
+    float diffuseFactor = saturate(dot(finalNormal_ws, -lightDir_ws_norm)); // 광원을 향하는 방향으로 계산
 
-Tangent Space(접선 공간)를 사용하는 이유
-=================================
-3D에서는 물체의 정보(로컬 스페이스의 좌표값)가 수시로 바뀌면서 노말 벡터도 수시로 변하기 때문에 
-매 프레임 노말 벡터를 계산한다면 새로운 계산이 필요로 한다.<br>  
+    float3 baseColor = float3(0.8f, 0.8f, 0.8f); // 임시 기본 색상
+    float3 finalColor = baseColor * diffuseFactor;
 
-그런데 Tangent Space를 사용하는 이유는 결국 정점의 표면 정보를 기준으로 하는 상대좌표이기 때문에 노말 방향이 변하더라도 상관이 없게 된다.
+    return float4(finalColor, 1.0f);
+}
+```
 
+## **장점**
 
-<br><br>
+* `시각적 디테일 향상`: 적은 폴리곤으로도 매우 디테일한 표면 질감을 표현할 수 있어, 모델링 및 렌더링 비용을 절감
+* `성능 효율성`: 실제 지오메트리를 늘리는 것보다 훨씬 적은 연산량과 메모리를 사용
 
-참고 : https://mgun.tistory.com/1289<br>
-       https://artkong.tistory.com/39<br>
-       https://shkim0811.tistory.com/45
+## **고려사항**
+
+* `실루엣(Silhouette) 불변`: 노멀 매핑은 빛의 반사만을 조작하므로, 모델의 외곽선(실루엣)은 원래의 저폴리곤 메시 형태를 그대로 따름.
+  * 외곽선까지 변화시키려면 `변위 매핑(Displacement Mapping)`과 같은 기법이 필요함
+* `탄젠트 공간 정밀도`: 탄젠트, 바이노멀 벡터 계산 및 보간 시 정밀도 문제가 발생할 수 있으며, 이는 노멀 매핑 결과에 영향을 줄 수 있음. 
+  * 예: `MikkTSpace`와 같은 표준화된 탄젠트 생성 방식 사용
+* `노멀 맵 압축`: 노멀 맵은 보통 X, Y 성분만 저장하고 Z 성분은 `sqrt(1 - x*x - y*y)`로 복원하는 방식(`BC5/3Dc 압축 포맷` 등)으로 압축하여 메모리를 절약하기도 함

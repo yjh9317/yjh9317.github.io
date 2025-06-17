@@ -1,7 +1,7 @@
 ---
 title: Control Rig 기초
 date: 2024-04-13
-categories: [unreal,Animation]
+categories: [unreal,ControlRig]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 

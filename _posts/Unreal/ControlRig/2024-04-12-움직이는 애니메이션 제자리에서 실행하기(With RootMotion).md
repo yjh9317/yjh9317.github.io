@@ -1,7 +1,7 @@
 ---
 title: 움직이는 애니메이션 제자리에서 실행하기(With RootMotion)
 date: 2024-04-12
-categories: [unreal,Animation]
+categories: [unreal,ControlRig]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 

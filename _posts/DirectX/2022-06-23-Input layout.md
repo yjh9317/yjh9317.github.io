@@ -5,7 +5,7 @@ categories: [DirectX, DirectX]
 tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
-# 입력 레이아웃(Input Layout)
+# **입력 레이아웃(Input Layout)**
 
 * GPU가 정점 버퍼(Vertex Buffer)로부터 정점 데이터를 어떻게 읽어들여 해석해야 하는지를 정의하는 **"청사진" 또는 "설계도"**와 같음
 
@@ -13,39 +13,39 @@ tags: [directx]		# TAG는 반드시 소문자로 이루어져야함!
 
 * `입력 레이아웃은 Vertex Shader가 입력으로 받을 정점 데이터의 정확한 구조와 내용을 애플리케이션 코드(C++)와 HLSL 셰이더 코드 간에 일치시키는 다리 역할`
 
-### 정의
+### **정의**
 
 * 입력 레이아웃은 개별 정점을 구성하는 각 요소(특성)의 데이터 형식, 의미, 메모리 내 위치 등을 상세하게 기술
   
-### 역할
+### **역할**
+
 * 정점 버퍼에 저장된 연속적인 바이트 스트림을 의미 있는 정점 데이터(예: 위치, 색상, 텍스처 좌표, 법선)로 구조화하여 Vertex Shader의 입력으로 전달될 수 있도록 함
 
 
-## 입력 레이아웃의 주요 역할
+## **입력 레이아웃의 주요 역할**
 
-#### 어떤 데이터인지
+#### **어떤 데이터인지**
 
 * 각 정점 요소가 어떤 의미를 가지는가 (예: 위치 정보인가, 색상 정보인가?). 이는 **시맨틱(Semantic)**을 통해 정의
 
-#### 어떤 형식인지
+#### **어떤 형식인지**
 
 * 각 정점 요소가 어떤 데이터 타입과 몇 개의 성분으로 구성되는가 (예: float3인가, byte4인가?). 이는 DXGI_FORMAT으로 정의
 
-#### 어디에 있는지
+#### **어디에 있는지**
 
 * 여러 개의 정점 버퍼를 사용할 경우, 이 데이터가 몇 번째 정점 버퍼 슬롯에서 오는가? (InputSlot)
 
 * 정점 데이터 구조체 내에서 이 요소가 몇 바이트 오프셋부터 시작하는가? (AlignedByteOffset)
 
-#### 어떻게 공급되는지
+#### **어떻게 공급되는지**
 
 * 데이터가 각 정점마다 제공되는가, 아니면 여러 인스턴스에 걸쳐 한 번 제공되는가? 
   * (InputSlotClass, InstanceDataStepRate)
 
 <br>
 
-## D3D11_INPUT_ELEMENT_DESC 구조체 상세
-
+## **D3D11_INPUT_ELEMENT_DESC 구조체 상세**
 
 ```c++
 typedef struct D3D11_INPUT_ELEMENT_DESC {
@@ -59,11 +59,9 @@ typedef struct D3D11_INPUT_ELEMENT_DESC {
 } D3D11_INPUT_ELEMENT_DESC;
 ```
 
-<Br>
+## **입력 레이아웃 객체 생성 (ID3D11Device::CreateInputLayout)**
 
-## 입력 레이아웃 객체 생성 (ID3D11Device::CreateInputLayout) 
-
-* D3D11_INPUT_ELEMENT_DESC 구조체의 배열을 정의한 후, 이 배열과 컴파일된 Vertex Shader의 바이트코드 포인터를 ID3D11Device::CreateInputLayout 함수에 전달하여 ID3D11InputLayout 객체를 생성
+* `D3D11_INPUT_ELEMENT_DESC` 구조체의 배열을 정의한 후, 이 배열과 컴파일된 Vertex Shader의 바이트코드 포인터를 `ID3D11Device::CreateInputLayout` 함수에 전달하여 `ID3D11InputLayout` 객체를 생성
 
 * CreateInputLayout에 `사용되는 Vertex Shader 바이트코드는 해당 입력 레이아웃과 정확히 일치하는 입력 시그니처(시맨틱 이름, 순서, 형식 등)를 가져야 함`. 그렇지 않으면 CreateInputLayout 함수 호출이 실패
 

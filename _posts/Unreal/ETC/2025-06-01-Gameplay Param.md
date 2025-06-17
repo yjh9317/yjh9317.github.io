@@ -1,7 +1,7 @@
 ---
 title: GameplayTag Param
 date: 2025-06-01
-categories: [unreal, ETC]
+categories: [unreal, Unreal Etc]
 tags: [unreal]		# TAG는 반드시 소문자로 이루어져야함!
 ---
 
